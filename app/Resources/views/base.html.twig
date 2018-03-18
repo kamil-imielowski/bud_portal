@@ -18,9 +18,10 @@
         <!-- <link rel="stylesheet" type="text/css" href="assets/vendors/bootstrap4/bootstrap-grid.min.css"> -->
         <!-- App & fonts-->
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i&amp;amp;subset=latin-ext">
-        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/main.css') }}"><!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <![endif]-->
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/main.css') }}">
+        {#<!--[if lt IE 9]><!-->#}
+            {#<script src="{{ asset('assets/js/html5shiv.js') }}"></script>#}
+        {#<![endif]-->#}
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
@@ -28,22 +29,24 @@
         <div class="page-wrap">
 
             <!-- header -->
-            <header class="header header__style-02">
+            <header class="header {{ app.request.attributes.get('_route') == 'homepage' ? 'header__style-02' : '' }}">
                 <div class="container">
-                    <div class="header__logo"><a href="index.html"><img src="assets/img/logo.png" alt=""/></a></div>
+                    <div class="header__logo"><a href="{{ path('homepage') }}"><img src="{{ asset('assets/img/logo.png') }}" alt=""/></a></div>
                     <div class="header__toogleGroup">
                         <div class="header__chooseLanguage">
 
                             <!-- dropdown -->
-                            <div class="dropdown" data-init="dropdown"><a class="dropdown__toggle" href="javascript:void(0)">EN <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                                <div class="dropdown__content" data-position="right">
-                                    <ul class="list-style-none">
-                                        <li><a href="#">EN</a></li>
-                                        <li><a href="#">DE</a></li>
-                                        <li><a href="#">VI</a></li>
-                                    </ul>
-                                </div>
-                            </div><!-- End / dropdown -->
+                            <div class="dropdown" data-init="dropdown">
+                                <a class="dropdown__toggle" href="javascript:void(0)">Zaloguj<!--<i class="fa fa-angle-down" aria-hidden="true"></i>--></a>
+                                {#<div class="dropdown__content" data-position="right">#}
+                                    {#<ul class="list-style-none">#}
+                                        {#<li><a href="#">EN</a></li>#}
+                                        {#<li><a href="#">DE</a></li>#}
+                                        {#<li><a href="#">VI</a></li>#}
+                                    {#</ul>#}
+                                {#</div>#}
+                            </div>
+                            <!-- End / dropdown -->
 
                         </div>
                         <div class="search-form">
@@ -53,7 +56,7 @@
                                 <!-- form-search -->
                                 <div class="form-search">
                                     <form>
-                                        <input class="form-control" type="text" placeholder="Hit enter to search or ESC to close"/>
+                                        <input class="form-control" type="text" placeholder="Wciśnij enter, aby wyszukać"/>
                                     </form>
                                 </div><!-- End / form-search -->
 
@@ -66,35 +69,27 @@
 
                         <!-- consult-menu -->
                         <ul class="consult-menu">
-                            <li class="current-menu-item"><a href="index.html">Home</a>
+                            <li {{ app.request.attributes.get('_route') == 'homepage' ? 'class="current-menu-item"' : '' }}>
+                                <a href="{{ path('homepage') }}">Strona główna</a>
                             </li>
-                            <li><a href="about.html">about</a>
+                            <li {{ app.request.attributes.get('_route') == 'lawbook' ? 'class="current-menu-item"' : '' }}>
+                                <a href="{{ path('lawbook') }}">Ustawy</a>
                             </li>
-                            <li class="menu-item-has-children"><a href="#">page</a>
+                            <li class="menu-item-has-children {{ app.request.attributes.get('_route') == 'verbalQuestions' ? 'current-menu-item' : '' }} {{ app.request.attributes.get('_route') == 'writtenQuestions' ? 'current-menu-item' : '' }}"><a href="#">Pytania</a>
                                 <ul class="sub-menu">
-                                    <li><a href="comming-soon.html">Comming Soon</a>
+                                    <li>
+                                        <a href="{{ path('verbalQuestions') }}">Ustne</a>
                                     </li>
-                                    <li><a href="404.html">404</a>
-                                    </li>
-                                    <li><a href="typography.html">Typography</a>
+                                    <li>
+                                        <a href="{{ path('writtenQuestions') }}">Pisemne</a>
                                     </li>
                                 </ul>
                             </li>
-                            <li><a href="service.html">services</a>
+                            <li {{ app.request.attributes.get('_route') == 'practice' ? 'class="current-menu-item"' : '' }}>
+                                <a href="{{ path('practice') }}">Praktyka</a>
                             </li>
-                            <li class="menu-item-has-children"><a href="project.html">project</a>
-                                <ul class="sub-menu">
-                                    <li><a href="project-detail.html">Project detail</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="menu-item-has-children"><a href="blog.html">blog</a>
-                                <ul class="sub-menu">
-                                    <li><a href="blog-detail.html">Blog detail</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="contact.html">contact</a>
+                            <li {{ app.request.attributes.get('_route') == 'blog' ? 'class="current-menu-item"' : '' }}>
+                                <a href="{{ path('blog') }}">Blog</a>
                             </li>
                         </ul><!-- consult-menu -->
 
@@ -116,8 +111,8 @@
                 <div class="footer__main">
                     <div class="row row-eq-height">
                         <div class="col-8 col-sm-7 col-md-9 col-lg-3 ">
-                            <div class="footer__item"><a class="consult_logo" href="#"><img src="assets/img/logo.png" alt=""/></a>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut laoreet ut lacus a tincidunt.</p>
+                            <div class="footer__item"><a class="consult_logo" href="#"><img src="{{ asset('assets/img/logo.png') }}" alt=""/></a>
+                                {#<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut laoreet ut lacus a tincidunt.</p>#}
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2 offset-0 offset-sm-0 offset-md-0 offset-lg-0 offset-xl-1 ">
@@ -127,10 +122,8 @@
                                 <section class="widget-text__widget widget">
                                     <div class="widget-text__content">
                                         <ul>
-                                            <li><a href="#">Term of Services </a></li>
-                                            <li><a href="#">Privacy Policy </a></li>
-                                            <li><a href="#">Sitemap </a></li>
-                                            <li><a href="#">Help</a></li>
+                                            <li><a href="{{ path('termsOfServices') }}">Regulamin </a></li>
+                                            <li><a href="{{ path('privacyPolicy') }}">Polityka prywatności </a></li>
                                         </ul>
                                     </div>
                                 </section><!-- End / widget-text__widget -->
@@ -144,10 +137,8 @@
                                 <section class="widget-text__widget widget">
                                     <div class="widget-text__content">
                                         <ul>
-                                            <li><a href="#">How It Work </a></li>
-                                            <li><a href="#">Carrier </a></li>
-                                            <li><a href="#">Pricing </a></li>
-                                            <li><a href="#">Support</a></li>
+                                            <li><a href="{{ path('prices') }}">Cennik </a></li>
+                                            <li><a href="{{ path('contact') }}">Kontakt</a></li>
                                         </ul>
                                     </div>
                                 </section><!-- End / widget-text__widget -->
@@ -159,10 +150,10 @@
 
                                 <!-- form-sub -->
                                 <div class="form-sub">
-                                    <h4 class="form-sub__title">Our Newsletter</h4>
+                                    <h4 class="form-sub__title">Newsletter</h4>
                                     <form class="form-sub__form">
                                         <div class="form-item">
-                                            <input class="form-control" type="email" placeholder="Enter Your Email Address..."/>
+                                            <input class="form-control" type="email" placeholder="Podaj twój E-mail"/>
                                         </div>
                                         <div class="form-submit">
                                             <button class="form-button" type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
@@ -173,11 +164,11 @@
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-4 col-lg-2 col-xl-2  consult_backToTop">
-                            <div class="footer__item"><a href="#" id="back-to-top"> <i class="fa fa-angle-up" aria-hidden="true"> </i><span>Back To Top</span></a></div>
+                            <div class="footer__item"><a href="#" id="back-to-top"> <i class="fa fa-angle-up" aria-hidden="true"> </i><span>powrót na górę</span></a></div>
                         </div>
                     </div>
                 </div>
-                <div class="footer__copyright">2017 &copy; Copyright Awe7. All rights Reserved.</div>
+                <div class="footer__copyright">{{ "now"|date("Y") }} &copy; Copyright Budportal. All rights Reserved.</div>
             </footer><!-- End / footer -->
 
             <!-- Vendors-->

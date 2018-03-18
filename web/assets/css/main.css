@@ -3648,18 +3648,18 @@ mark, .mark {
 }
 
 .footer__main {
-    padding: 80px 15px 50px;
+    padding: 30px 15px 10px;
 }
 
 @media (min-width: 768px) {
     .footer__main {
-        padding: 80px 30px 40px;
+        padding: 30px 30px 10px;
     }
 }
 
 @media (min-width: 1200px) {
     .footer__main {
-        padding: 140px 75px 60px;
+        padding: 50px 75px 10px;
     }
 }
 

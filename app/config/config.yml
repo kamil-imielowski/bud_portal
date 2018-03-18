@@ -35,6 +35,8 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    paths:
+      '%kernel.project_dir%\vendor\egeloen\ckeditor-bundle\Resources\views': IvoryCKEditorBundle
 
 # Doctrine Configuration
 doctrine:
@@ -58,6 +60,14 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
 
+# gedmo timestamp
+stof_doctrine_extensions:
+    default_locale: pl_PL
+    orm:
+        default:
+            timestampable: true # not needed: listeners are not enabled by default
+
+
 # Swiftmailer Configuration
 swiftmailer:
     transport: '%mailer_transport%'
@@ -65,3 +75,58 @@ swiftmailer:
     username: '%mailer_user%'
     password: '%mailer_password%'
     spool: { type: memory }
+
+# Easy Admin Configuration
+easy_admin:
+    entities:
+
+        CMS:
+            class: AppBundle\Entity\CMS
+            form:  # <-- 'form' is applied to both 'new' and 'edit' views
+                fields:
+                  - { property: 'content', type: 'Ivory\CKEditorBundle\Form\Type\CKEditorType', type_options: { config_name: 'base_config' } }
+
+#        Advertising:
+#            class: AppBundle\Entity\Advertising
+#            form:
+#              fields:
+#                - {property: 'name', label: 'Nazwa'}
+#                - {property: 'place', label: 'Miejsce wyświetlania', type: 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', type_options: {choices: {miejsce1: 1, miejsce2: 2, miejsce3: 3, miejsce4: 4}}}
+#                - {property: 'code', label: 'Kod'}
+#                - {property: 'expireAt', label: 'Ważne do:'}
+#
+#        Movie:
+#            class: AppBundle\Entity\Movie
+#            list:
+#                fields: ['id', 'name', 'channel.name', 'views', 'createdAt', 'updatedAt']
+#            form:
+#              fields:
+#                - 'name'
+#                - 'link'
+#                - { property: 'description', type_options:{empty_data: ""}}
+#                - { property: 'channel', label: 'Channel', type: 'Symfony\Bridge\Doctrine\Form\Type\EntityType', type_options: {class: AppBundle\Entity\Channel, choice_label: 'name', required: false, empty_data: null}}
+#
+#        Settings:
+#          class: AppBundle\Entity\Settings
+#          list:
+#              fields: ['description', 'value']
+#          disabled_actions: ['new', 'delete']
+#          form:
+#            fields:
+#                - 'description'
+#                - 'value'
+
+    site_name: 'Panel administracyjny'
+    design:
+        brand_color: '#1ABC9C'
+        assets:
+          favicon: 'images/favicon.png'
+          js:
+            - 'js/easyadminbundle.js'
+
+ivory_ck_editor:
+    input_sync: true
+    default_config: base_config
+    configs:
+        base_config:
+          language: 'pl'

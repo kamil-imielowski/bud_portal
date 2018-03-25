@@ -1,0 +1,75 @@
+# Easy Admin Configuration
+easy_admin:
+    site_name: 'Panel administracyjny'
+    design:
+        brand_color: '#1ABC9C'
+        assets:
+          favicon: 'assets/img/favicon.png'
+          js:
+            - 'js/easyadminbundle.js'
+    entities:
+
+        CMS:
+            class: AppBundle\Entity\CMS
+            disabled_actions: ['new', 'delete']
+            form:  # <-- 'form' is applied to both 'new' and 'edit' views
+                fields:
+                  - { property: 'content', type: 'Ivory\CKEditorBundle\Form\Type\CKEditorType', type_options: { config_name: 'base_config' } }
+            list:
+              fields:
+                - {property: 'place'}
+                - {property: 'updatedAt'}
+
+        Blog:
+          class: AppBundle\Entity\Blog
+          form:
+              fields:
+                  - {property: 'title', type: 'Symfony\Component\Form\Extension\Core\Type\TextType'}
+                  - {property: 'imageFile', type: 'Vich\UploaderBundle\Form\Type\VichImageType'}
+                  - {property: 'content', type: 'Ivory\CKEditorBundle\Form\Type\CKEditorType'}
+                  - {property: 'published', type: 'Symfony\Component\Form\Extension\Core\Type\CheckboxType'}
+          list:
+            fields:
+              - {property: 'title'}
+              - {property: 'image', type: 'image', base_path: "%app.blog.image%"}
+              - {property: 'published', type: 'toggle'}
+              - {property: 'views'}
+
+#        Advertising:
+#            class: AppBundle\Entity\Advertising
+#            form:
+#              fields:
+#                - {property: 'name', label: 'Nazwa'}
+#                - {property: 'place', label: 'Miejsce wyświetlania', type: 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', type_options: {choices: {miejsce1: 1, miejsce2: 2, miejsce3: 3, miejsce4: 4}}}
+#                - {property: 'code', label: 'Kod'}
+#                - {property: 'expireAt', label: 'Ważne do:'}
+#
+#        Movie:
+#            class: AppBundle\Entity\Movie
+#            list:
+#                fields: ['id', 'name', 'channel.name', 'views', 'createdAt', 'updatedAt']
+#            form:
+#              fields:
+#                - 'name'
+#                - 'link'
+#                - { property: 'description', type_options:{empty_data: ""}}
+#                - { property: 'channel', label: 'Channel', type: 'Symfony\Bridge\Doctrine\Form\Type\EntityType', type_options: {class: AppBundle\Entity\Channel, choice_label: 'name', required: false, empty_data: null}}
+#
+#        Settings:
+#          class: AppBundle\Entity\Settings
+#          list:
+#              fields: ['description', 'value']
+#          disabled_actions: ['new', 'delete']
+#          form:
+#            fields:
+#                - 'description'
+#                - 'value'
+
+
+vich_uploader:
+  db_driver: orm
+  mappings:
+      blog_images:
+          uri_prefix:         '%app.blog.image%'
+          upload_destination: '%kernel.root_dir%/../web/uploads/images/blog'
+          namer: vich_uploader.namer_uniqid #według dokumentacji'Vich\UploaderBundle\Naming\UniqidNamer' - nie dziala. Lepiej sprawdzic jak service sie nazywa w $this->container->get

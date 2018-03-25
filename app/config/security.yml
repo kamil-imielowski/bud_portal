@@ -35,6 +35,7 @@ security:
                 check_path: login
             logout: true
             anonymous: ~
+            logout_on_user_change: true
 
     access_control:
         - { path: ^/admin/, role: ROLE_ADMIN }

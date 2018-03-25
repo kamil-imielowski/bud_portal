@@ -21,4 +21,8 @@ class BlogController extends Controller
     public function blogAction(){
         return $this->render("blog/index.html.twig");
     }
+
+    public function testAction(){
+        //$logger = $this->container->get('vich_uploader.namer_uniqid')
+    }
 }

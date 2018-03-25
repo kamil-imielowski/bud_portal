@@ -35,6 +35,23 @@ easy_admin:
               - {property: 'published', type: 'toggle'}
               - {property: 'views'}
 
+
+        Lawbook:
+          class: AppBundle\Entity\Lawbook
+          form:
+              fields:
+                  - {property: 'title', type: 'Symfony\Component\Form\Extension\Core\Type\TextType'}
+                  - {property: 'content', type: 'Ivory\CKEditorBundle\Form\Type\CKEditorType'}
+                  - {property: 'published', type: 'Symfony\Component\Form\Extension\Core\Type\CheckboxType'}
+                  - {property: 'freeDownload', type: 'Symfony\Component\Form\Extension\Core\Type\CheckboxType'}
+          list:
+            fields:
+              - {property: 'title'}
+              - {property: 'published', type: 'toggle'}
+              - {property: 'freeDownload', type: 'toggle'}
+              - {property: 'views'}
+
+
 #        Advertising:
 #            class: AppBundle\Entity\Advertising
 #            form:

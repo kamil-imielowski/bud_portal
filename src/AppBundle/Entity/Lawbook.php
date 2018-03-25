@@ -22,6 +22,12 @@ class Lawbook
     private $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\LawbookCategory", inversedBy="lawbooks")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     */
+    private $category;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255)
@@ -79,6 +85,23 @@ class Lawbook
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set category
+     *
+     * @param $category
+     *
+     * @return Lawbook
+     */
+    public function setCategory($category){
+        $this->category = $category;
+
+        Return $this;
+    }
+
+    public function getCategory(){
+        return $this->category;
     }
 
     /**

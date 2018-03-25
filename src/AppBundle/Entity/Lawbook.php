@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Lawbook
@@ -58,7 +59,7 @@ class Lawbook
     /**
      * @var int
      *
-     * @ORM\Column(name="views", type="integer", options={"default" : 0})
+     * @ORM\Column(name="views", type="integer", nullable=true, options={"default" : 0})
      */
     private $views;
 
@@ -66,6 +67,7 @@ class Lawbook
      * @var \DateTime
      *
      * @ORM\Column(name="createdAt", type="datetime")
+     * @Gedmo\Timestampable(on="create")
      */
     private $createdAt;
 
@@ -73,6 +75,7 @@ class Lawbook
      * @var \DateTime
      *
      * @ORM\Column(name="updatedAt", type="datetime")
+     * @Gedmo\Timestampable(on="update")
      */
     private $updatedAt;
 

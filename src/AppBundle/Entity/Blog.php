@@ -66,7 +66,7 @@ class Blog
     /**
      * @var int
      *
-     * @ORM\Column(name="views", type="integer", options={"default" : 0})
+     * @ORM\Column(name="views", type="integer", nullable=true, options={"default" : 0})
      */
     private $views;
 

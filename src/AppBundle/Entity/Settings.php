@@ -2,18 +2,16 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * questionCategories
+ * Settings
  *
- * @ORM\Table(name="question_categories")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\questionCategoriesRepository")
+ * @ORM\Table(name="settings")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\SettingsRepository")
  */
-class QuestionCategories
+class Settings
 {
     /**
      * @var int
@@ -27,9 +25,23 @@ class QuestionCategories
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="text")
+     * @ORM\Column(name="valueKey", type="string", length=255)
      */
-    private $name;
+    private $valueKey;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text")
+     */
+    private $description;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="value", type="text")
+     */
+    private $value;
 
     /**
      * @var \DateTime
@@ -47,45 +59,6 @@ class QuestionCategories
      */
     private $updatedAt;
 
-    /**
-     * @var Collection
-     *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\WrittenQuestion", mappedBy="category")
-     */
-    private $writtenQuestions;
-
-    /**
-     * @var Collection
-     *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\VerbalQuestion", mappedBy="category")
-     */
-    private $verbalQuestions;
-
-    public function __construct()
-    {
-        $this->writtenQuestions = new ArrayCollection();
-        $this->verbalQuestions = new ArrayCollection();
-    }
-
-    /**
-     * get writtenQuestion
-     *
-     * @return Collection|WrittenQuestion[]
-     */
-    public function getWrittenQuestion()
-    {
-        return $this->writtenQuestions;
-    }
-
-    /**
-     * get verbalQuestions
-     *
-     * @return Collection|VerbalQuestion[]
-     */
-    public function getVerbalQuestions()
-    {
-        return $this->verbalQuestions;
-    }
 
     /**
      * Get id
@@ -98,27 +71,75 @@ class QuestionCategories
     }
 
     /**
-     * Set name
+     * Set valueKey
      *
-     * @param string $name
+     * @param string $valueKey
      *
-     * @return questionCategories
+     * @return Settings
      */
-    public function setName($name)
+    public function setValueKey($valueKey)
     {
-        $this->name = $name;
+        $this->valueKey = $valueKey;
 
         return $this;
     }
 
     /**
-     * Get name
+     * Get valueKey
      *
      * @return string
      */
-    public function getName()
+    public function getValueKey()
     {
-        return $this->name;
+        return $this->valueKey;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Settings
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set value
+     *
+     * @param string $value
+     *
+     * @return Settings
+     */
+    public function setValue($value)
+    {
+        $this->value = $value;
+
+        return $this;
+    }
+
+    /**
+     * Get value
+     *
+     * @return string
+     */
+    public function getValue()
+    {
+        return $this->value;
     }
 
     /**
@@ -126,7 +147,7 @@ class QuestionCategories
      *
      * @param \DateTime $createdAt
      *
-     * @return questionCategories
+     * @return Settings
      */
     public function setCreatedAt($createdAt)
     {
@@ -150,7 +171,7 @@ class QuestionCategories
      *
      * @param \DateTime $updatedAt
      *
-     * @return questionCategories
+     * @return Settings
      */
     public function setUpdatedAt($updatedAt)
     {

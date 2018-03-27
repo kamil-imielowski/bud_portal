@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * writtenQuestion
@@ -56,9 +57,17 @@ class WrittenQuestion
     private $answerC;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(name="isFree", type="boolean", options={"default" : false})
+     */
+    private $isFree;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="createdAt", type="datetime")
+     * @Gedmo\Timestampable(on="create")
      */
     private $createdAt;
 
@@ -66,6 +75,7 @@ class WrittenQuestion
      * @var \DateTime
      *
      * @ORM\Column(name="updatedAt", type="datetime")
+     * @Gedmo\Timestampable(on="update")
      */
     private $updatedAt;
 
@@ -195,6 +205,30 @@ class WrittenQuestion
     public function getAnswerC()
     {
         return $this->answerC;
+    }
+
+    /**
+     * Set isFree
+     *
+     * @param boolean $isFree
+     *
+     * @return WrittenQuestion
+     */
+    public function setIsFree($isFree)
+    {
+        $this->isFree = $isFree;
+
+        return $this;
+    }
+
+    /**
+     * Get isFree
+     *
+     * @return bool
+     */
+    public function getIsFree()
+    {
+        return $this->isFree;
     }
 
     /**

@@ -4,11 +4,23 @@ easy_admin:
     formats:
             datetime: 'd.m.Y H:i'
     design:
-        brand_color: '#1ABC9C'
+        brand_color: 'rgb(2, 93, 244)'
         assets:
           favicon: 'assets/img/favicon.png'
           js:
             - 'js/easyadminbundle.js'
+        menu:
+          - { entity: 'Blog', icon: 'align-justify' }
+          - { label: 'Lawbook' }
+          - { entity: 'Lawbook', icon: 'gavel' }
+          - { entity: 'LawbookCategory', icon: 'gavel' }
+          - { label: 'Questions' }
+          - { entity: 'WrittenQuestion', icon: 'question' }
+          - { entity: 'VerbalQuestion', icon: 'question' }
+          - { entity: 'QuestionCategories', icon: 'question' }
+          - { label: 'Settings' }
+          - { entity: 'CMS', icon: 'bolt' }
+          - { entity: 'Settings', icon: 'cog' }
 
     list:
       actions:
@@ -73,6 +85,61 @@ easy_admin:
               - {property: 'name'}
               - {property: 'updatedAt'}
 
+        WrittenQuestion:
+          class: AppBundle\Entity\WrittenQuestion
+          form:
+            fields:
+              - {property: 'question', type: 'Symfony\Component\Form\Extension\Core\Type\TextType'}
+              - {property: 'answerA', type: 'Symfony\Component\Form\Extension\Core\Type\TextType'}
+              - {property: 'answerB', type: 'Symfony\Component\Form\Extension\Core\Type\TextType'}
+              - {property: 'answerC', type: 'Symfony\Component\Form\Extension\Core\Type\TextType'}
+              - {property: 'category', type: 'Symfony\Bridge\Doctrine\Form\Type\EntityType', type_options: {class: AppBundle\Entity\QuestionCategories, choice_label: 'name', required: true, empty_data: null}}
+          list:
+            fields:
+              - {property: 'id'}
+              - {property: 'question'}
+              - {property: 'answerA'}
+              - {property: 'isFree', type: 'toggle'}
+              - {property: 'category.name'}
+              - {property: 'updatedAt'}
+
+        VerbalQuestion:
+          class: AppBundle\Entity\VerbalQuestion
+          form:
+            fields:
+              - {property: 'question', type: 'Symfony\Component\Form\Extension\Core\Type\TextType'}
+              - {property: 'answer', type: 'Symfony\Component\Form\Extension\Core\Type\TextType'}
+              - {property: 'category', type: 'Symfony\Bridge\Doctrine\Form\Type\EntityType', type_options: {class: AppBundle\Entity\QuestionCategories, choice_label: 'name', required: true, empty_data: null}}
+          list:
+            fields:
+              - {property: 'id'}
+              - {property: 'question'}
+              - {property: 'answer'}
+              - {property: 'isFree', type: 'toggle'}
+              - {property: 'category.name'}
+              - {property: 'updatedAt'}
+
+        QuestionCategories:
+          class: AppBundle\Entity\QuestionCategories
+          form:
+              fields:
+                  - {property: 'name', type: 'Symfony\Component\Form\Extension\Core\Type\TextType'}
+          list:
+            fields:
+              - {property: 'id'}
+              - {property: 'name'}
+              - {property: 'updatedAt'}
+
+        Settings:
+          class: AppBundle\Entity\Settings
+          list:
+              fields: ['description', 'value']
+          disabled_actions: ['show', 'new', 'delete']
+          form:
+            fields:
+#              - 'valueKey'
+              - 'description'
+              - 'value'
 
 #        Advertising:
 #            class: AppBundle\Entity\Advertising

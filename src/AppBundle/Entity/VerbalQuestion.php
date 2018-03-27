@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * verbalQuestion
@@ -42,9 +43,17 @@ class VerbalQuestion
     private $answer;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(name="isFree", type="boolean", options={"default" : false})
+     */
+    private $isFree;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="createdAt", type="datetime")
+     * @Gedmo\Timestampable(on="create")
      */
     private $createdAt;
 
@@ -52,6 +61,7 @@ class VerbalQuestion
      * @var \DateTime
      *
      * @ORM\Column(name="updatedAt", type="datetime")
+     * @Gedmo\Timestampable(on="update")
      */
     private $updatedAt;
 
@@ -133,6 +143,30 @@ class VerbalQuestion
     public function getAnswer()
     {
         return $this->answer;
+    }
+
+    /**
+     * Set isFree
+     *
+     * @param boolean $isFree
+     *
+     * @return VerbalQuestion
+     */
+    public function setIsFree($isFree)
+    {
+        $this->isFree = $isFree;
+
+        return $this;
+    }
+
+    /**
+     * Get isFree
+     *
+     * @return bool
+     */
+    public function getIsFree()
+    {
+        return $this->isFree;
     }
 
     /**

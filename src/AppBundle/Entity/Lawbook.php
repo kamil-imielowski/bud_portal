@@ -103,6 +103,11 @@ class Lawbook
         Return $this;
     }
 
+    /**
+     * Get category
+     *
+     * @return mixed
+     */
     public function getCategory(){
         return $this->category;
     }

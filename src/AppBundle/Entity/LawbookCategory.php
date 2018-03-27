@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -49,6 +50,8 @@ class LawbookCategory
 
 
     /**
+     * @var Collection
+     *
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Lawbook", mappedBy="category")
      */
     private $lawbooks;
@@ -56,6 +59,16 @@ class LawbookCategory
     public function __construct()
     {
         $this->lawbooks = new ArrayCollection();
+    }
+
+    /**
+     * get lawbooks
+     *
+     * @return Collection|Lawbook[]
+     */
+    public function getLawbooks()
+    {
+        return $this->lawbooks;
     }
 
     /**

@@ -57,6 +57,7 @@ easy_admin:
           list:
             fields:
               - {property: 'title'}
+              - {property: 'category.name'}
               - {property: 'published', type: 'toggle'}
               - {property: 'freeDownload', type: 'toggle'}
               - {property: 'views'}

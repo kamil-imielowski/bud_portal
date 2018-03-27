@@ -11,10 +11,26 @@
                     <div class="col-lg-10 col-xl-8 offset-0 offset-sm-0 offset-md-0 offset-lg-1 offset-xl-2 ">
 
                         <!-- title-01 -->
-                        <div class="title-01 title-01__style-04">
+                        {#<div class="title-01 title-01__style-04">#}
+                            {#Ustawy#}
+                        {#</div>#}
+                        {#<div class="post-02__media"><img src="{{ asset('assets/img/judge-court-hammer-header.jpg') }}" alt=""/></div>#}
+                        {#<div class="post-02__body">#}
+                        <!-- End / title-01 -->
 
-                        </div><!-- End / title-01 -->
+                        {% for lawbookCategory in lawbookCategories %}
 
+                            <div class="title-01 title-01__style-02">
+                                <h2 class="title-01__title">{{ lawbookCategory.name }}</h2>
+
+                                <ul class="list-style-none">
+                                    {% for lawbook in lawbookCategory.lawbooks %}
+                                        <li><a href="#test-popup" class="open-popup-link lawbook" data-url="{{ path('lawbookContent', {'id': lawbook.id}) }}">{{ lawbook.title }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+
+                        {% endfor %}
                     </div>
                 </div>
             </div>
@@ -23,8 +39,34 @@
 
     </div>
     <!-- End / Content-->
+
+
+
+<div id="test-popup" class="white-popup mfp-hide">
+    <div id="lawbookContent"></div>
+</div>
 {% endblock %}
 
-{% block stylesheets %}
-
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $('.open-popup-link').magnificPopup({
+            type:'inline',
+            closeBtnInside:true,
+            midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
+        });
+        
+        $('.lawbook').click(function () {
+            $('#lawbookContent').html('<div class="text-center"><img src="{{ asset('assets/img/loader.gif') }}" class="img-fluid mx-auto d-block" /></div>');
+            var url = $(this).data("url");
+            $.ajax({
+                url: url,
+                method: "GET",
+                data: false,
+                success: function(results){
+                    $('#lawbookContent').html(results);
+                }
+            })
+        })
+    </script>
 {% endblock %}

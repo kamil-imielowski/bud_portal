@@ -11,6 +11,7 @@ easy_admin:
             - 'js/easyadminbundle.js'
         menu:
           - { entity: 'Blog', icon: 'align-justify' }
+          - { entity: 'NewsLetterEmails', icon: 'envelope' }
           - { label: 'Lawbook' }
           - { entity: 'Lawbook', icon: 'gavel' }
           - { entity: 'LawbookCategory', icon: 'gavel' }
@@ -140,6 +141,15 @@ easy_admin:
 #              - 'valueKey'
               - 'description'
               - 'value'
+
+        NewsLetterEmails:
+          class: AppBundle\Entity\NewsLetterEmails
+          controller: AppBundle\Controller\NewsletterAdminController
+          disabled_actions: ['delete']
+          form:
+            fields:
+                - {property: 'title', type: 'Symfony\Component\Form\Extension\Core\Type\TextType'}
+                - {property: 'content', type: 'Ivory\CKEditorBundle\Form\Type\CKEditorType'}
 
 #        Advertising:
 #            class: AppBundle\Entity\Advertising

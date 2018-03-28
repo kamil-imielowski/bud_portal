@@ -9,6 +9,8 @@
 namespace AppBundle\Controller;
 
 
+use AppBundle\Entity\VerbalQuestion;
+use AppBundle\Entity\WrittenQuestion;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -20,7 +22,11 @@ class QuestionController extends Controller
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function verbalQuestionsAction(){
-        return $this->render("lawbook/index.html.twig");
+        $entityManager = $this->getDoctrine()->getManager();
+        $questions = $entityManager->getRepository(VerbalQuestion::class)->findBy(["isFree" => true]);
+        return $this->render("question/verbalQuestions.html.twig", [
+            "questions" => $questions
+        ]);
     }
 
     /**
@@ -28,6 +34,10 @@ class QuestionController extends Controller
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function writtenQuestionsAction(){
-        return $this->render("lawbook/index.html.twig");
+        $entityManager = $this->getDoctrine()->getManager();
+        $questions = $entityManager->getRepository(WrittenQuestion::class)->findBy(["isFree" => true]);
+        return $this->render("question/writtenQuestions.html.twig", [
+            "questions" => $questions
+        ]);
     }
 }

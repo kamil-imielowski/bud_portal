@@ -86,8 +86,19 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li {{ app.request.attributes.get('_route') == 'practice' ? 'class="current-menu-item"' : '' }}>
-                                <a href="{{ path('practice') }}">Praktyka</a>
+                            <li class="{% if app.request.attributes.get('_route') == "" %} current-menu-item {% elseif app.request.attributes.get('_route') == "" %} current-menu-item {% elseif app.request.attributes.get('_route') == "" %} current-menu-item {% endif %}">
+                                <a href="#">Praktyka</a>
+                                <ul class="sub-menu">
+                                    <li>
+                                        <a href="{{ path('practice_office') }}">W biurze projektowym</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ path('practice_onBuild') }}">Na Budowie</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ path('practice_contracts') }}">Umowy</a>
+                                    </li>
+                                </ul>
                             </li>
                             <li {{ app.request.attributes.get('_route') == 'blog' ? 'class="current-menu-item"' : '' }}>
                                 <a href="{{ path('blog') }}">Blog</a>

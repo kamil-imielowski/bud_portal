@@ -1,0 +1,68 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% if error %}
+    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+{% endif %}
+
+{#<form action="{{ path("fos_user_security_check") }}" method="post">#}
+    {#{% if csrf_token %}#}
+        {#<input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />#}
+    {#{% endif %}#}
+
+    {#<div class="form-group">#}
+        {#<label for="username">Login:</label>#}
+        {#<input type="text" id="username" name="_username" value="{{ last_username }}" required="required" autocomplete="username" />#}
+    {#</div>#}
+
+    {#<div class="form-group">#}
+        {#<label for="password">Hasło:</label>#}
+        {#<input type="password" id="password" name="_password" required="required" autocomplete="current-password" />#}
+    {#</div>#}
+
+    {#<div class="form-check">#}
+        {#<input type="checkbox" class="form-check-input" id="remember_me"name="_remember_me" value="on" >#}
+        {#<label class="form-check-label" for="exampleCheck1">Zapamiętaj mnie</label>#}
+    {#</div>#}
+
+    {#<input type="submit" id="_submit" name="_submit" class="btn btn-primary" value="Logowanie" />#}
+{#</form>#}
+
+
+
+<!-- Section -->
+{#<section class="md-section js-consult-form js-consult-form--02" style="background-color:#f7f7f7;">#}
+<div class="container">
+
+    <div class="consult-form consult-form--02 js-consult-form__content">
+
+        <!-- form-01 -->
+        <div class="form-01" style="padding:60px;">
+            <h2 class="form-01__title">Zaloguj się</h2>
+            <small id="emailHelp" class="form-text text-muted"><a href="{{ path('fos_user_registration_register') }}">Jeśli nie posiadasz konta zarejestruj się.</a></small>
+
+            <form action="{{ path("fos_user_security_check") }}" method="post" class="form-01__form">
+                {% if csrf_token %}
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                {% endif %}
+                <div class="form__item">
+                    <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" autocomplete="username" placeholder="E-mail lub Login"/>
+                </div>
+                <div class="form__item">
+                    <input type="password" id="password" name="_password" required="required" autocomplete="current-password"  placeholder="Hasło"/>
+                </div>
+                <div class="form__item">
+                    <input type="checkbox" class="form-check-input" id="remember_me"name="_remember_me" value="on" >
+                    <label class="form-check-label" for="exampleCheck1">Zapamiętaj mnie</label>
+                </div>
+                <div class="form__button">
+                    <input type="submit" id="_submit" name="_submit" class="btn btn-primary" value="Logowanie" />
+                </div>
+            </form>
+
+        </div><!-- End / form-01 -->
+
+    </div>
+
+</div>
+{#</section>#}
+

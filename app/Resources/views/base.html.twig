@@ -37,16 +37,11 @@
                         <div class="header__chooseLanguage">
 
                             <!-- dropdown -->
-                            <div class="dropdown" data-init="dropdown">
-                                <a class="dropdown__toggle" href="javascript:void(0)">Zaloguj<!--<i class="fa fa-angle-down" aria-hidden="true"></i>--></a>
-                                {#<div class="dropdown__content" data-position="right">#}
-                                    {#<ul class="list-style-none">#}
-                                        {#<li><a href="#">EN</a></li>#}
-                                        {#<li><a href="#">DE</a></li>#}
-                                        {#<li><a href="#">VI</a></li>#}
-                                    {#</ul>#}
-                                {#</div>#}
-                            </div>
+                            {% if is_granted("ROLE_USER") %}
+                                {% include("layout/menuAuthenticated.html.twig") %}
+                            {% else %}
+                                {% include("layout/menuAnonymous.html.twig") %}
+                            {% endif %}
                             <!-- End / dropdown -->
 
                         </div>

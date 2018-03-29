@@ -1,0 +1,37 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="container">
+
+    <div class="consult-form consult-form--02 js-consult-form__content">
+
+        <!-- form-01 -->
+        <div class="form-01" style="padding:60px;">
+            <h2 class="form-01__title">Rejestracja</h2>
+
+            {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'form-01__form fos_user_registration_register'}}) }}
+            <div class="form__item">
+                    {{ form_widget(form.email, {'attr': {'placeholder': 'Adres e-mail'}}) }}
+                </div>
+
+                <div class="form__item">
+                    {{ form_widget(form.username, {'attr': {'placeholder': 'Login'}}) }}
+                </div>
+
+                <div class="form__item">
+                    {{ form_widget(form.plainPassword.first, {'attr': {'placeholder': 'Hasło'}}) }}
+                </div>
+
+                <div class="form__item">
+                    {{ form_widget(form.plainPassword.second, {'attr': {'placeholder': 'Powtórz hasło'}}) }}
+                </div>
+
+                <div class="form__button">
+                    <input type="submit" id="_submit" name="_submit" class="btn btn-primary" value="Zarejestruj się" />
+                </div>
+            {{ form_end(form) }}
+        </div><!-- End / form-01 -->
+
+    </div>
+
+</div>
+

@@ -3,7 +3,15 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block fos_user_content %}
-<p>
-{{ 'resetting.check_email'|trans({'%tokenLifetime%': tokenLifetime})|nl2br }}
-</p>
+<div class="container">
+
+    <div class="consult-form consult-form--02 js-consult-form__content">
+        <p>
+            Wysłano wiadomość email, zawiera on hiperłącze, które należy otworzyć w celu zresetowania hasła.
+            Uwaga: możesz prosić o reset hasła raz na dwie godziny.
+
+            Jeśli nie otrzymałeś wiadomości e-mail sprawdź folder Spam.
+        </p>
+    </div>
+</div>
 {% endblock %}

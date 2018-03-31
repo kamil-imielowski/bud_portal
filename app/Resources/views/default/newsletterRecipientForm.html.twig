@@ -1,0 +1,36 @@
+<!-- form-sub -->
+<div class="form-sub">
+    <h4 class="form-sub__title">Newsletter</h4>
+    {{ form_start(form, {'method': 'post', 'action': path('newsletterRecipientAdd'), 'attr': { 'class': 'form-sub__form', 'id': 'newsletterRecipientAdd' }}) }}
+    {#<form class="form-sub__form">#}
+
+        <div class="form-item">
+            {{ form_widget(form.email) }}
+        </div>
+        <div class="form-submit">
+            <button class="form-button" type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+        </div>
+    {{ form_end(form) }}
+</div><!-- End / form-sub -->
+
+<div id="alert-content" class="white-popup mfp-hide"></div>
+
+<script>
+    $('#newsletterRecipientAdd').submit(function (e) {
+        e.preventDefault();
+        var url = $(this).attr('action');
+        var formSerialize = $(this).serialize();
+
+        $.post(url, formSerialize, function(response) {
+            $("#alert-content").text(response.message);
+            //$("#alert-content").removeClass('alert alert-success alert-danger').addClass(response.class);
+
+            $.magnificPopup.open({
+                items: {
+                    src: '#alert-content'
+                },
+                type: 'inline'
+            });
+        }, 'JSON');
+    })
+</script>

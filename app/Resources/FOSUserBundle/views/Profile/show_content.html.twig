@@ -1,6 +1,88 @@
 {% trans_default_domain 'FOSUserBundle' %}
+<!-- Section -->
+<section class="md-section" style="background-color:#f7f7f7;">
+    <div class="container">
+        <div class="row">
 
-<div class="fos_user_user_show">
-    <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
-    <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
-</div>
+            {#<div class="col-md-10 col-lg-8 offset-0 offset-sm-0 offset-md-1 offset-lg-2 ">#}
+
+                <!-- title-01 -->
+                <div class=" col-md-12 title-01 title-01__style-04">
+                    <h2 class="title-01__title">Twoje dane:</h2>
+                </div>
+                <!-- End / title-01 -->
+
+                <div class="col-md-6 ">
+                    <p><b class="">Imię:</b> <bdi class="pull-right">{{ user.name }}</bdi></p>
+                    <p><b class="">Nazwisko:</b> <bdi class="pull-right">{{ user.surname }}</bdi></p>
+                    <p><b class="">Login:</b> <bdi class="pull-right">{{ user.username }}</bdi></p>
+                    <p><b class="">E-mail:</b> <bdi class="pull-right">{{ user.email }}</bdi></p>
+                    <p><b class="">Miasto:</b> <bdi class="pull-right">{{ user.city == '' ? 'brak danych' : user.city }}</bdi></p>
+                    <p><b class="">Województwo:</b> <bdi class="pull-right">{{ user.zone }}</bdi></p>
+                    <p><b class="">Telefon:</b> <bdi class="pull-right">{{ user.phone == '' ? 'brak danych' : user.phone }}</bdi></p>
+                    <p><b class="">Data urodzena:</b> <bdi class="pull-right">{{ user.birthdate == '' ? 'brak danych' : user.birthdate }}</bdi></p>
+                    <p><b class="">Pracowania:</b> <bdi class="pull-right">{{ user.studio == '' ? 'brak danych' : user.studio }}</bdi></p>
+                    <p><b class="">Ukończona uczelnia:</b> <bdi class="pull-right">{{ user.graduation == '' ? 'brak danych' : user.graduation }}</bdi></p>
+                    <p><b class="">Tytuł zawodowy:</b> <bdi class="pull-right">{{ user.degree }}</bdi></p>
+                </div>
+                <div class="col-md-6 ">
+                    <p><b class="">Imię:</b> {{ user.name }}</p>
+                    <p><b class="">Nazwisko:</b> {{ user.surname }}</p>
+                    <p><b class="">Login:</b> {{ user.username }}</p>
+                    <p><b class="">E-mail:</b> {{ user.email }}</p>
+                    <p><b class="">Miasto:</b> {{ user.city == '' ? 'brak danych' : user.city }}</p>
+                    <p><b class="">Województwo:</b> {{ user.zone }}</p>
+                    <p><b class="">Telefon:</b> {{ user.phone == '' ? 'brak danych' : user.phone }}</p>
+                    <p><b class="">Data urodzena:</b> {{ user.birthdate == '' ? 'brak danych' : user.birthdate }}</p>
+                    <p><b class="">Pracowania:</b> {{ user.studio == '' ? 'brak danych' : user.studio }}</p>
+                    <p><b class="">Ukończona uczelnia:</b> {{ user.graduation == '' ? 'brak danych' : user.graduation }}</p>
+                    <p><b class="">Tytuł zawodowy:</b> {{ user.degree }}</p>
+                </div>
+            {#</div>#}
+        </div>
+
+        <div class="row">
+
+            <div class="col-sm-6 col-md-6 col-lg-3 ">
+                <!-- iconbox -->
+                <div class="iconbox iconbox__style-02">
+
+                </div><!-- End / iconbox -->
+            </div>
+
+            <div class="col-sm-6 col-md-6 col-lg-3 ">
+                <!-- iconbox -->
+                <div class="iconbox iconbox__style-02">
+                    <div>
+                        <div class="col-md-6 col-lg-6 col-xl-6">
+                            <div><a class="btn btn-primary btn-outline btn-w180" href="{{ path('fos_user_profile_edit') }}">Zmień swoje dane</a></div>
+                        </div>
+                    </div>
+                </div><!-- End / iconbox -->
+            </div>
+
+            <div class="col-sm-6 col-md-6 col-lg-3 ">
+
+                <!-- iconbox -->
+                <div class="iconbox iconbox__style-02">
+                    <div>
+                        <div class="col-md-6 col-lg-6 col-xl-6">
+                            <div><a class="btn btn-primary btn-outline btn-w180" href="{{ path('fos_user_change_password') }}">Zmień hasło</a></div>
+                        </div><!-- End / pricing -->
+                    </div>
+                </div><!-- End / iconbox -->
+
+            </div>
+
+            <div class="col-sm-6 col-md-6 col-lg-3 ">
+                <!-- iconbox -->
+                <div class="iconbox iconbox__style-02">
+
+                </div><!-- End / iconbox -->
+            </div>
+        </div>
+
+    </div>
+</section>
+<!-- End / Section -->
+

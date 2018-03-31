@@ -7,6 +7,7 @@
  */
 
 namespace AppBundle\Controller;
+use AppBundle\Entity\NewsletterRecipient;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AdminController as BaseAdminController;
 use EasyCorp\Bundle\EasyAdminBundle\Event\EasyAdminEvents;
 use Swift_Mailer;
@@ -40,27 +41,18 @@ class NewsletterAdminController extends  BaseAdminController
 
             //wysłanie e-mailow
             //$mailer = $this->container->get("swiftmailer.mailer");
+            $entityManager = $this->getDoctrine()->getManager();
+            $receivers = $entityManager->getRepository(NewsletterRecipient::class)->findAll();
 
-            $emails = ['kamil@imielowski.pl', "toma4wow@wp.pl"];
 
-            foreach ($emails as $email){
-//                $message = (new \Swift_Message('Hello Email'))
-//                    ->setFrom('send@example.com')
-//                    ->setTo($email)
-//                    ->setBody(
-//                        $this->renderView(
-//                            'emails/newsletter.html.twig',
-//                            array('name' => $email)
-//                        ),
-//                        'text/html'
-//                    );
-//
-//
-//                $mailer->send($message);
+
+            //$emails = ['kamil@imielowski.pl', "toma4wow@wp.pl"];
+
+            foreach ($receivers as $receiver){
                 $message = \Swift_Message::newInstance(null)
                     ->setSubject($entity->getTitle())
-                    ->setFrom($this->container->getParameter("newsletter_email"))
-                    ->setTo($email)
+                    ->setFrom($this->container->getParameter("mailer_user"))
+                    ->setTo($receiver->getEmail())
                     ->setBody($entity->getContent(), 'text/html')
 //                    ->setBody(
 //                        $this->renderView(

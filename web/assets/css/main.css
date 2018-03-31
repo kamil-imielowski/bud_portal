@@ -3826,7 +3826,7 @@ mark, .mark {
 }
 
 .header__chooseLanguage a {
-    display: block;
+    display: inline-block;
 }
 
 .header__toogleGroup {

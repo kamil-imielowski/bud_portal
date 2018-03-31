@@ -2,9 +2,14 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\NewsletterRecipient;
+use AppBundle\Form\NewsletterRecipientType;
+use Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
@@ -17,5 +22,30 @@ class DefaultController extends Controller
         return $this->render('default/index.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
+    }
+
+    /**
+     * @Route("/newsletterRecipientAdd", name="newsletterRecipientAdd")
+     * @param Request $request
+     * @return Response
+     */
+    public function newsletterRecipientAddAction(Request $request){
+        $nR = new NewsletterRecipient();
+
+        $form = $this->createForm(NewsletterRecipientType::class, $nR);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityMenager = $this->getDoctrine()->getManager();
+            $entityMenager->persist($nR); // ma zapisac obiekt
+            $entityMenager->flush(); // wykonanie sql
+            $referer = $request->headers->get('referer');
+            return new Response(json_encode(array('status'=>'success', 'class' => 'alert alert-success', 'message' => "Dodano adres {$nR->getEmail()} do subskrybcji")));
+        }elseif($form->isSubmitted() && !$form->isValid()){
+            $error = str_replace('ERROR: ', '', $form['email']->getErrors());
+            return new Response(json_encode(array('status'=>'failed', 'class' => 'alert alert-danger', 'message' => "$error")));
+        }
+
+        return $this->render("default/newsletterRecipientForm.html.twig", ['form' => $form->createView()]);
     }
 }

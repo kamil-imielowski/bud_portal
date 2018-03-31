@@ -8,12 +8,15 @@
         <meta name="format-detection" content="telephone=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <!-- Fonts-->
-        <link rel="stylesheet" type="text/css" href="{{ asset('assets/fonts/fontawesome/font-awesome.min.css') }}">
+        {#<link rel="stylesheet" type="text/css" href="{{ asset('assets/fonts/fontawesome/font-awesome.min.css') }}">#}
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/fonts/themify-icons/themify-icons.css') }}">
         <!-- Vendors-->
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/bootstrap4/bootstrap-grid.min.css') }}">
+        {#<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">#}
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/magnific-popup/magnific-popup.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/owl.carousel/owl.carousel.css') }}">
+        <script type="text/javascript" src="{{ asset('assets/vendors/jquery/jquery.js') }}"></script>
         <!-- <link rel="stylesheet" type="text/css" href="assets/vendors/bootstrap4/bootstrap-grid.min.css"> -->
         <!-- <link rel="stylesheet" type="text/css" href="assets/vendors/bootstrap4/bootstrap-grid.min.css"> -->
         <!-- App & fonts-->
@@ -155,18 +158,19 @@
                         <div class="col-md-4 col-lg-2 col-xl-2 ">
                             <div class="footer__item">
 
-                                <!-- form-sub -->
-                                <div class="form-sub">
-                                    <h4 class="form-sub__title">Newsletter</h4>
-                                    <form class="form-sub__form">
-                                        <div class="form-item">
-                                            <input class="form-control" type="email" placeholder="Podaj twój E-mail"/>
-                                        </div>
-                                        <div class="form-submit">
-                                            <button class="form-button" type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
-                                        </div>
-                                    </form>
-                                </div><!-- End / form-sub -->
+                                {{ render(controller('AppBundle:Default:newsletterRecipientAdd')) }}
+                                {#<!-- form-sub -->#}
+                                {#<div class="form-sub">#}
+                                    {#<h4 class="form-sub__title">Newsletter</h4>#}
+                                    {#<form class="form-sub__form">#}
+                                        {#<div class="form-item">#}
+                                            {#<input class="form-control" type="email" placeholder="Podaj twój E-mail"/>#}
+                                        {#</div>#}
+                                        {#<div class="form-submit">#}
+                                            {#<button class="form-button" type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>#}
+                                        {#</div>#}
+                                    {#</form>#}
+                                {#</div><!-- End / form-sub -->#}
 
                             </div>
                         </div>
@@ -179,7 +183,7 @@
             </footer><!-- End / footer -->
 
             <!-- Vendors-->
-            <script type="text/javascript" src="{{ asset('assets/vendors/jquery/jquery.js') }}"></script>
+
             <script type="text/javascript" src="{{ asset('assets/vendors/imagesloaded/imagesloaded.pkgd.js') }}"></script>
             <script type="text/javascript" src="{{ asset('assets/vendors/isotope-layout/isotope.pkgd.js') }}"></script>
             <script type="text/javascript" src="{{ asset('assets/vendors/jquery.countdown/jquery.countdown.min.js') }}"></script>

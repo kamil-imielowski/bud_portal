@@ -12,34 +12,70 @@
                 </div>
                 <!-- End / title-01 -->
 
-                <div class="col-md-6 ">
-                    <p><b class="">Imię:</b> <bdi class="pull-right">{{ user.name }}</bdi></p>
-                    <p><b class="">Nazwisko:</b> <bdi class="pull-right">{{ user.surname }}</bdi></p>
-                    <p><b class="">Login:</b> <bdi class="pull-right">{{ user.username }}</bdi></p>
-                    <p><b class="">E-mail:</b> <bdi class="pull-right">{{ user.email }}</bdi></p>
-                    <p><b class="">Miasto:</b> <bdi class="pull-right">{{ user.city == '' ? 'brak danych' : user.city }}</bdi></p>
-                    <p><b class="">Województwo:</b> <bdi class="pull-right">{{ user.zone }}</bdi></p>
-                    <p><b class="">Telefon:</b> <bdi class="pull-right">{{ user.phone == '' ? 'brak danych' : user.phone }}</bdi></p>
-                    <p><b class="">Data urodzena:</b> <bdi class="pull-right">{{ user.birthdate == '' ? 'brak danych' : user.birthdate }}</bdi></p>
-                    <p><b class="">Pracowania:</b> <bdi class="pull-right">{{ user.studio == '' ? 'brak danych' : user.studio }}</bdi></p>
-                    <p><b class="">Ukończona uczelnia:</b> <bdi class="pull-right">{{ user.graduation == '' ? 'brak danych' : user.graduation }}</bdi></p>
-                    <p><b class="">Tytuł zawodowy:</b> <bdi class="pull-right">{{ user.degree }}</bdi></p>
+
+
+                <div class="col-sm">
+                    <div class="row">
+                        <div class="col-6 text-right"><b class="">Imię:</b></div>
+                        <div class="col-6 text-left">{{ user.name }}</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6 text-right"><b class="">Nazwisko:</b></div>
+                        <div class="col-6 text-left">{{ user.surname }}</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6 text-right"><b class="">Login:</b></div>
+                        <div class="col-6 text-left">{{ user.username }}</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6 text-right"><b class="">E-mail:</b></div>
+                        <div class="col-6 text-left">{{ user.email }}</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6 text-right"><b class="">Miasto:</b></div>
+                        <div class="col-6 text-left">{{ user.city == '' ? 'brak danych' : user.city }}</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6 text-right"><b class="">Województwo:</b></div>
+                        <div class="col-6 text-left">{{ user.zone }}</div>
+                    </div>
                 </div>
-                <div class="col-md-6 ">
-                    <p><b class="">Imię:</b> {{ user.name }}</p>
-                    <p><b class="">Nazwisko:</b> {{ user.surname }}</p>
-                    <p><b class="">Login:</b> {{ user.username }}</p>
-                    <p><b class="">E-mail:</b> {{ user.email }}</p>
-                    <p><b class="">Miasto:</b> {{ user.city == '' ? 'brak danych' : user.city }}</p>
-                    <p><b class="">Województwo:</b> {{ user.zone }}</p>
-                    <p><b class="">Telefon:</b> {{ user.phone == '' ? 'brak danych' : user.phone }}</p>
-                    <p><b class="">Data urodzena:</b> {{ user.birthdate == '' ? 'brak danych' : user.birthdate }}</p>
-                    <p><b class="">Pracowania:</b> {{ user.studio == '' ? 'brak danych' : user.studio }}</p>
-                    <p><b class="">Ukończona uczelnia:</b> {{ user.graduation == '' ? 'brak danych' : user.graduation }}</p>
-                    <p><b class="">Tytuł zawodowy:</b> {{ user.degree }}</p>
+    
+                <div class="col-sm">
+                    <div class="row">
+                        <div class="col-6 text-right"><b class="">Telefon:</b></div>
+                        <div class="col-6 text-left">{{ user.phone == '' ? 'brak danych' : user.phone }}</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6 text-right"><b class="">Data urodzena:</b></div>
+                        <div class="col-6 text-left">{{ user.birthdate == '' ? 'brak danych' : user.birthdate }}</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6 text-right"><b class="">Pracowania:</b></div>
+                        <div class="col-6 text-left">{{ user.studio == '' ? 'brak danych' : user.studio }}</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6 text-right"><b class="">Ukończona uczelnia:</b></div>
+                        <div class="col-6 text-left">{{ user.graduation == '' ? 'brak danych' : user.graduation }}</div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-6 text-right"><b class="">Tytuł zawodowy:</b></div>
+                        <div class="col-6 text-left">{{ user.degree }}</div>
+                    </div>
                 </div>
             {#</div>#}
         </div>
+
+        <hr />
 
         <div class="row">
 

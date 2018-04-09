@@ -1,8 +1,131 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-{{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
-    {{ form_widget(form) }}
-    <div>
-        <input type="submit" value="{{ 'profile.edit.submit'|trans }}" />
+<div class="container">
+    <div class="consult-form consult-form--02 js-consult-form__content">
+        <!-- form-01 -->
+        <div class="form-01" style="padding:60px;">
+
+            <h2 class="form-01__title">Zmiana danych:</h2>
+
+            {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
+                {#{{ form_widget(form) }}#}
+
+                <div>
+                    <label>E-mail</label>
+                    {{ form_widget(form.email) }}
+                </div>
+                <div>
+                    <label>Imię</label>
+                    {{ form_widget(form.name) }}
+                </div>
+                <div>
+                    <label>Nazwisko</label>
+                    {{ form_widget(form.surname) }}
+                </div>
+                <div>
+                    <label>Login</label>
+                    {{ form_widget(form.username) }}
+                </div>
+                <div>
+                    <label>Telefon</label>
+                    {{ form_widget(form.phone) }}
+                </div>
+                <div>
+                    <label>Miasto</label>
+                    {{ form_widget(form.city, {'attr': {'onFocus': 'geolocate()', 'autocomplete': 'true'}}) }}
+                </div>
+                <div>
+                    <label>Województwo</label>
+                    {{ form_widget(form.zone) }}
+                </div>
+                <div>
+                    <label>Data urodzenia</label>
+                    {{ form_widget(form.birthdate, {'attr': {'class': 'datepickerB'}}) }}
+                </div>
+                <div>
+                    <label>Pracownia</label>
+                    {{ form_widget(form.studio) }}
+                </div>
+                <div>
+                    <label>Ukończona uczelnia</label>
+                    {{ form_widget(form.graduation) }}
+                </div>
+                <div>
+                    <label>Tytuł zawodowy</label>
+                    {{ form_widget(form.degree) }}
+                </div>
+                <div>
+                    <label>Aby zapisać zmiany wprowadź hasło:</label>
+                    {{ form_widget(form.current_password) }}
+                </div>
+                <div>
+                    <input class="btn btn-primary" type="submit" value="Zapisz" />
+                </div>
+            {{ form_end(form) }}
+
+        </div><!-- End / form-01 -->
     </div>
-{{ form_end(form) }}
+</div>
+
+<script>
+    var placeSearch, autocomplete;
+    var componentForm = {
+        street_number: 'short_name',
+        route: 'long_name',
+        locality: 'long_name',
+        administrative_area_level_1: 'short_name',
+        country: 'long_name',
+        postal_code: 'short_name'
+    };
+
+    function initAutocomplete() {
+        autocomplete = new google.maps.places.Autocomplete(
+            /** @type {!HTMLInputElement} */(document.getElementById('fos_user_profile_form_city')),
+            {types: ['(cities)'], componentRestrictions: {country: "pl"}});
+
+        autocomplete.addListener('place_changed', fillInAddress);
+    }
+
+    function fillInAddress() {
+        // Get the place details from the autocomplete object.
+        var place = autocomplete.getPlace();
+        var city = place.address_components[0][componentForm['locality']];
+        var zone = place.address_components[2][componentForm['administrative_area_level_1']];
+        if(zone.indexOf("Województwo ") !== 1){
+            zone = zone.replace('Województwo ', '');
+        }
+        $('#fos_user_profile_form_city').val(city);
+        $('#fos_user_registration_form_zone option[value='+zone+']').attr('selected', 'selected');
+    }
+
+    // Bias the autocomplete object to the user's geographical location,
+    // as supplied by the browser's 'navigator.geolocation' object.
+    function geolocate() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var geolocation = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+                var circle = new google.maps.Circle({
+                    center: geolocation,
+                    radius: position.coords.accuracy
+                });
+                autocomplete.setBounds(circle.getBounds());
+            });
+        }
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYsITi_pjVej8nQjseHOTUumSTMG7QBEw&libraries=places&callback=initAutocomplete" async defer></script>
+
+<script src="{{ asset('assets/js/moment-with-locales.min.js') }}"></script>
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap-datepicker.css') }}" >
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap-dropdownOnly4datepicker.css') }}" >
+<script src="{{ asset('assets/js/bootstrap-datepicker.js') }}"></script>
+<script src="{{ asset('assets/js/bootstrap-datepicker.pl.js') }}"></script>
+<script>
+    $('.datepickerB').datepicker({
+        format: 'yyyy-mm-dd',
+        language: 'pl'
+    });
+</script>

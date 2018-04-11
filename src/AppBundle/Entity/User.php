@@ -8,6 +8,8 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -106,6 +108,36 @@ class User extends BaseUser
      * @Assert\NotBlank(message="Wybierz tytuł zawodowy", groups={"Registration", "Profile"})
      */
     protected $degree;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="vip_to", type="datetime", nullable=true)
+     */
+    protected $vipTo;
+
+    /**
+     * @var Collection
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\PaymentTransaction", mappedBy="user")
+     */
+    protected $paymentTransactions;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->paymentTransactions = new ArrayCollection();
+    }
+
+    /**
+     * get paymentTransactions
+     *
+     * @return Collection|PaymentTransaction[]
+     */
+    public function getPaymentTransaction()
+    {
+        return $this->paymentTransactions;
+    }
 
     /**
      * set name
@@ -276,5 +308,29 @@ class User extends BaseUser
      */
     public function getDegree(){
         return $this->degree;
+    }
+
+    /**
+     * Set vipTo
+     *
+     * @param \DateTime $vipTo
+     *
+     * @return User
+     */
+    public function setVipTo($vipTo)
+    {
+        $this->vipTo = $vipTo;
+
+        return $this;
+    }
+
+    /**
+     * Get vipTo
+     *
+     * @return \DateTime
+     */
+    public function getVipTo()
+    {
+        return $this->vipTo;
     }
 }

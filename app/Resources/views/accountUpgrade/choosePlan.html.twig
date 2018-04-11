@@ -1,0 +1,135 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <!-- Content-->
+    <div class="md-content">
+
+        <!-- Section -->
+        <section class="md-section">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-6 col-lg-3 col-xl-3 ">
+                        <!-- pricing -->
+                        <div class="pricing">
+                            <header>
+                                <div class="pricing__icon"><i class="ti-support" aria-hidden="true"></i></div>
+                                <h2 class="pricing__title">1 miesiąc</h2>
+                            </header>
+                            <div>
+                                <ul class="pricing__list">
+                                    <li>Cena: {{ pricing.one_month.value }} zł</li>
+                                    {#<li class="disable">Cruise Ship Accidents</li>#}
+                                    {#<li class="disable">Bicycle accidents</li>#}
+                                </ul>
+                                <div class="pricing__price">{{ pricing.one_month.value }} zł<span class="pricing__time">/ miesiąc</span>
+                                </div><button class="btn btn-primary btn-outline btn-w180 initPT" data-plan="{{ pricing.one_month.valueKey }}">Wybierz plan</button>
+                            </div>
+                        </div><!-- End / pricing -->
+                    </div>
+
+                    <div class="col-md-6 col-lg-3 col-xl-3 ">
+                        <!-- pricing -->
+                        <div class="pricing">
+                            <header>
+                                <div class="pricing__icon"><i class="ti-ruler-pencil" aria-hidden="true"></i></div>
+                                <h2 class="pricing__title">3 miesiące</h2>
+                            </header>
+                            <div>
+                                <ul class="pricing__list">
+                                    <li>Cena: {{ pricing.three_month.value }} zł</li>
+                                    {#<li>Cruise Ship Accidents</li>#}
+                                    {#<li>Bicycle accidents</li>#}
+                                </ul>
+                                <div class="pricing__price">{{ (pricing.three_month.value / 3) |round(2, 'ceil') }} zł<span class="pricing__time">/ miesiąc</span>
+                                </div><button class="btn btn-primary btn-outline btn-w180 initPT" data-plan="{{ pricing.three_month.valueKey }}">Wybierz plan</button>
+                            </div>
+                        </div><!-- End / pricing -->
+                    </div>
+
+                    <div class="col-md-6 col-lg-3 col-xl-3 ">
+                        <!-- pricing -->
+                        <div class="pricing">
+                            <header>
+                                <div class="pricing__icon"><i class="ti-server" aria-hidden="true"></i></div>
+                                <h2 class="pricing__title">6 miesięcy</h2>
+                            </header>
+                            <div>
+                                <ul class="pricing__list">
+                                    <li>Cena: {{ pricing.six_month.value }} zł</li>
+                                    {#<li class="disable">Cruise Ship Accidents</li>#}
+                                    {#<li class="disable">Bicycle accidents</li>#}
+                                </ul>
+                                <div class="pricing__price">{{ (pricing.six_month.value / 6) |round(2, 'ceil') }} zł<span class="pricing__time">/ miesiąc</span>
+                                </div><button class="btn btn-primary btn-outline btn-w180 initPT" data-plan="{{ pricing.six_month.valueKey }}">Wybierz plan</button>
+                            </div>
+                        </div><!-- End / pricing -->
+                    </div>
+
+                    <div class="col-md-6 col-lg-3 col-xl-3 ">
+                        <!-- pricing -->
+                        <div class="pricing">
+                            <header>
+                                <div class="pricing__icon"><i class="ti-harddrives" aria-hidden="true"></i></div>
+                                <h2 class="pricing__title">12 miesięcy</h2>
+                            </header>
+                            <div>
+                                <ul class="pricing__list">
+                                    <li>Cena: {{ pricing.one_year.value }} zł</li>
+                                    {#<li class="disable">Cruise Ship Accidents</li>#}
+                                    {#<li class="disable">Bicycle accidents</li>#}
+                                </ul>
+                                <div class="pricing__price">{{ (pricing.one_year.value / 12) |round(2, 'ceil') }} zł<span class="pricing__time">/ miesiąc</span>
+                                </div><button class="btn btn-primary btn-outline btn-w180 initPT" data-plan="{{ pricing.one_year.valueKey }}">Wybierz plan</button>
+                            </div>
+                        </div><!-- End / pricing -->
+                    </div>
+
+                    <p>Wybranie planu spowoduje przejscie do płatności</p>
+                </div>
+            </div>
+        </section>
+        <!-- End / Section -->
+
+    </div>
+    <!-- End / Content-->
+
+    <form action="https://ssl.dotpay.pl/test_payment/" method="post" id="dotpayPayment">
+        <input type="hidden" name="id">
+        <input type="hidden" name="amount">
+        <input type="hidden" name="currency" value="PLN">
+        <input type="hidden" name="description" value="członkostwo na 6 msc">
+        <input type="hidden" name="lang" value="pl">
+        <input type="hidden" name="URL" value="{{ url('homepage') }}">
+        <input type="hidden" name="type" value="0">
+        <input type="hidden" name="buttontext" value="Wróć do archi-info.pl">
+        <input type="hidden" name="URLC" value="{{ url('getPaymentStatus') }}">
+        <input type="hidden" name="control">
+        <input type="submit" value="wyslij">
+    </form>
+{% endblock %}
+
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/js/membership.js') }}"></script>
+
+    <script>
+        $('.initPT').click(function () {
+            var plan = $(this).data("plan");
+            $.ajax({
+                url: "{{ path('initTransaction')|escape('js') }}",
+                method: "POST",
+                data: {"plan": plan},
+                success: function(results){
+                    console.log(results);
+                    $("#dotpayPayment input[name = 'id']").val(results.data.dotpay_acc_id);
+                    $("#dotpayPayment input[name = 'control']").val(results.data.control);
+                    $("#dotpayPayment input[name = 'amount']").val(results.data.price);
+                    $('#dotpayPayment').submit();
+                }
+            })
+        })
+    </script>
+{% endblock %}

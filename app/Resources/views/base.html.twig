@@ -7,6 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <meta name="format-detection" content="telephone=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
+        {#<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">#}
         <!-- Fonts-->
         {#<link rel="stylesheet" type="text/css" href="{{ asset('assets/fonts/fontawesome/font-awesome.min.css') }}">#}
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
@@ -27,9 +28,10 @@
             <script src="{{ asset('assets/js/html5shiv.js') }}"></script>
         <![endif]-->
         {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon.png') }}" />
     </head>
     <body>
+
         <div class="page-wrap">
 
             <!-- header -->
@@ -121,7 +123,7 @@
                 <div class="footer__main">
                     <div class="row row-eq-height">
                         <div class="col-8 col-sm-7 col-md-9 col-lg-3 ">
-                            <div class="footer__item"><a class="consult_logo" href="#"><img src="{{ asset('assets/img/logo.png') }}" alt=""/></a>
+                            <div class="footer__item"><a class="consult_logo" href="#"><img class="invert" src="{{ asset('assets/img/logo.png') }}" alt=""/></a>
                                 {#<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut laoreet ut lacus a tincidunt.</p>#}
                             </div>
                         </div>
@@ -199,7 +201,16 @@
             <script type="text/javascript" src="{{ asset('assets/vendors/smoothscroll/SmoothScroll.min.js') }}"></script>
             <!-- App-->
             <script type="text/javascript" src="{{ asset('assets/js/main.js') }}"></script>
-            {% block javascripts %}{% endblock %}
+            <!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+            <script type="text/javascript">
+                window.cookieconsent_options = {"message":"Używamy plików cookies, aby ułatwić Ci korzystanie z naszego serwisu oraz do celów statystycznych. Jeśli nie blokujesz tych plików, to zgadzasz się na ich użycie oraz zapisanie w pamięci urządzenia. Pamiętaj, że możesz samodzielnie zarządzać cookies, zmieniając ustawienia przeglądarki.","dismiss":"Rozumiem!","learnMore":"","link":null,"theme":"dark-bottom"};
+            </script>
+
+            <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+            <!-- End Cookie Consent plugin -->
+            {% block javascripts %}
+
+            {% endblock %}
         </div>
     </body>
 </html>

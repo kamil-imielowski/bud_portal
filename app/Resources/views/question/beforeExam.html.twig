@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <!-- Section -->
+    <section class="md-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-xl-8 offset-0 offset-sm-0 offset-md-0 offset-lg-1 offset-xl-2 ">
+
+                    <div class="title-01 title-01__style-04">
+
+                    </div>
+
+                    <form method="post">
+                        <input name="route" type="hidden" value="exam_lobby">
+                        <div>
+                            <label>Ilość pytań:</label>
+                            <input name="questions" type="number" step="1" min="1" max="80" value="45" required>
+                        </div>
+                        <button type="submit" class="btn btn-w180" id="startExam">Rozpocznij Egzamin</button>
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End / Section -->
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/js/disabledCopy.js') }}"></script>
+    <script>
+        localStorage.clear();
+    </script>
+{% endblock %}

@@ -2,6 +2,8 @@
 # https://symfony.com/doc/current/security.html
 security:
 
+    always_authenticate_before_granting: true
+
     role_hierarchy:
         ROLE_VIP: [ROLE_USER]
         ROLE_ADMIN: [ROLE_VIP]

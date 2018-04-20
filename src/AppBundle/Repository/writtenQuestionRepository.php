@@ -1,6 +1,8 @@
 <?php
 
 namespace AppBundle\Repository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 
 /**
  * writtenQuestionRepository
@@ -10,4 +12,25 @@ namespace AppBundle\Repository;
  */
 class writtenQuestionRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getAllIds()
+    {
+        return $this->createQueryBuilder('w')
+            ->select('w.id')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getIDsRange()
+    {
+        try {
+            return $this->createQueryBuilder('w')
+                ->select('MAX(w.id) as maxId', 'MIN(w.id) as minId')
+                ->getQuery()
+                ->getSingleResult();
+        } catch (NoResultException $e) {
+
+        } catch (NonUniqueResultException $e) {
+
+        }
+    }
 }

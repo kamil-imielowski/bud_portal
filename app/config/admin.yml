@@ -10,6 +10,7 @@ easy_admin:
           js:
             - 'js/easyadminbundle.js'
         menu:
+          - { entity: 'User', icon: 'user' }
           - { entity: 'Blog', icon: 'align-justify' }
           - { entity: 'NewsLetterEmails', icon: 'envelope' }
           - { label: 'Lawbook' }
@@ -151,35 +152,22 @@ easy_admin:
                 - {property: 'title', type: 'Symfony\Component\Form\Extension\Core\Type\TextType'}
                 - {property: 'content', type: 'Ivory\CKEditorBundle\Form\Type\CKEditorType'}
 
-#        Advertising:
-#            class: AppBundle\Entity\Advertising
-#            form:
-#              fields:
-#                - {property: 'name', label: 'Nazwa'}
-#                - {property: 'place', label: 'Miejsce wyświetlania', type: 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', type_options: {choices: {miejsce1: 1, miejsce2: 2, miejsce3: 3, miejsce4: 4}}}
-#                - {property: 'code', label: 'Kod'}
-#                - {property: 'expireAt', label: 'Ważne do:'}
-#
-#        Movie:
-#            class: AppBundle\Entity\Movie
-#            list:
-#                fields: ['id', 'name', 'channel.name', 'views', 'createdAt', 'updatedAt']
-#            form:
-#              fields:
-#                - 'name'
-#                - 'link'
-#                - { property: 'description', type_options:{empty_data: ""}}
-#                - { property: 'channel', label: 'Channel', type: 'Symfony\Bridge\Doctrine\Form\Type\EntityType', type_options: {class: AppBundle\Entity\Channel, choice_label: 'name', required: false, empty_data: null}}
-#
-#        Settings:
-#          class: AppBundle\Entity\Settings
-#          list:
-#              fields: ['description', 'value']
-#          disabled_actions: ['new', 'delete']
-#          form:
-#            fields:
-#                - 'description'
-#                - 'value'
+        User:
+          class: AppBundle\Entity\User
+          label: 'Users'
+          list:
+              label: 'Users'
+              fields: ['name', 'surname', 'username', 'email', 'enabled', 'lastLogin', 'degree', 'vipTo']
+          form:
+              fields:
+                  - username
+                  - email
+                  - enabled
+                  - lastLogin
+#                  - { property: 'plainPassword', type: 'text', type_options: { required: false } }
+                  - { property: 'roles', type: 'choice', type_options: { multiple: true, choices: { 'ROLE_USER': 'ROLE_USER', 'ROLE_VIP': 'ROLE_VIP', 'ROLE_ADMIN': 'ROLE_ADMIN' } } }
+                  - { property: 'vipTo', type: 'Symfony\Component\Form\Extension\Core\Type\DateTimeType', }
+
 
 
 vich_uploader:

@@ -1,0 +1,138 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <!-- Section -->
+    <section class="md-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-xl-8 offset-0 offset-sm-0 offset-md-0 offset-lg-1 offset-xl-2 ">
+
+                    <div class="row">
+                        <div class="col-6 offset-0">
+                            <a href="{{ path('exam_end') }}" class="btn btn-danger">Zakońćż egzamin</a>
+                        </div>
+                        <div class="col-6 offset-0">
+                            <div id="timer" class="text-right"><h3><span id="minutes">00</span>:<span id="seconds">00</span></h3></div>
+                        </div>
+                    </div>
+                    <hr />
+
+                    <div class="row">
+                        {% for i in 1..app.session.get('egzamin')['pytan'] %}
+                            {% if app.session.get('egzamin')['pytania'][i - 1]['correct'] is not null %}
+                                <div class="col-sm-2 col-md-1">
+                                    <div class="qbox pointer {{ app.session.get('egzamin')['pytania'][i - 1]['correct'] == 'true' ? "qbox-correct" : "qbox-bad" }}" data-qk="{{ i - 1 }}" id="qbox-{{ i - 1 }}">{{ i }}</div>
+                                </div>
+                            {% else %}
+                                <div class="col-sm-2 col-md-1">
+                                    <div class="qbox pointer" data-qk="{{ i - 1 }}" id="qbox-{{ i - 1 }}">{{ i }}</div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+
+                    <hr />
+
+                    <div class="row">
+                        <div class="col-6 offset-0">
+                            <button type="button" class="btn btn-primary btn-w180 change-question" id="previous-question" data-num="-1"><i class="fas fa-chevron-left"></i> Poprzednie pytanie</button>
+                        </div>
+                        <div class="col-6 offset-0 text-right">
+                            <button type="button" class="btn btn-primary btn-w180 change-question" id="next-question" data-num="+1">Następne pytanie <i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+
+
+
+                    <div class="question-box" id="questionContent">
+                        <div class="text-center"><img src="{{ asset('assets/img/loader.gif') }}" class="img-fluid mx-auto d-block" /></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End / Section -->
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {#<script src="{{ asset('assets/js/disabledCopy.js') }}"></script>#}
+    <script>
+        var current = 0;
+        var init = {{ app.session.get('egzamin')['init'] }};
+        var questions = $.parseJSON('{{ app.session.get('egzamin')['pytania']|json_encode()|raw }}');
+        var questionQ = {{ app.session.get('egzamin')['pytan'] }}
+        var url = "{{ path('exam_get_question') }}";
+        var sec = typeof localStorage.getItem("sec") == 'undefined' ? 0 : localStorage.getItem("sec");
+
+        function pad ( val ) { return val > 9 ? val : "0" + val; }
+        setInterval( function(){
+            $("#seconds").html(pad(++sec%60));
+            $("#minutes").html(pad(parseInt(sec/60,10)));
+        }, 1000);
+
+        $(window).bind('beforeunload',function(){
+            localStorage.setItem("sec", sec);
+        });
+
+        $( document ).ready(function() {
+            questionContent(init);
+        });
+
+        $('.qbox').click(function () {
+            refreshQuestionState();
+            var qk = parseInt($(this).data('qk'));
+            questionContent(qk);
+        })
+
+        $(".change-question").click(function () {
+            refreshQuestionState();
+            var qk = current + parseInt($(this).data('num'));
+            questionContent(qk);
+        })
+
+        function refreshQuestionState(){
+            $.ajax({
+                url: "{{ path('refreshQuestionState') }}",
+                method: "GET",
+                data: false,
+                success: function(results){
+                    questions = results;
+                }
+            })
+        }
+
+        function questionContent(qk){
+            $('#questionContent').html('<div class="text-center"><img src="{{ asset('assets/img/loader.gif') }}" class="img-fluid mx-auto d-block" /></div>');
+            current = qk;
+            buttonControll();
+            var id = questions[qk].id;
+            var checked = questions[qk].resolved;
+            $.ajax({
+                url: url,
+                method: "GET",
+                data: {id: id, resolved: checked, qk: qk},
+                success: function(results){
+                    $('#questionContent').html(results);
+                }
+            })
+        }
+
+        function buttonControll(){
+            if(current === 0){
+                $('#previous-question').attr('disabled', 'disabled');
+            }
+            if(current > 0){
+                $('#previous-question').removeAttr('disabled');
+            }
+            if(current === questionQ - 1){
+                $('#next-question').attr('disabled', 'disabled');
+            }
+            if(current < questionQ - 1){
+                $('#next-question').removeAttr('disabled');
+            }
+        }
+    </script>
+{% endblock %}

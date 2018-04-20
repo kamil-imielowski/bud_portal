@@ -3,11 +3,12 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: admin.yml }  # <-- easyAdminBundle and Vich
+    - { resource: paginator.yml }  # <-- KNP paginator
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: en
+    locale: pl
     app.blog.image: /uploads/images/blog
 
 framework:

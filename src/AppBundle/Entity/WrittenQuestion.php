@@ -57,6 +57,13 @@ class WrittenQuestion
     private $answerC;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="prompt", type="text")
+     */
+    private $prompt;
+
+    /**
      * @var bool
      *
      * @ORM\Column(name="isFree", type="boolean", options={"default" : false})
@@ -205,6 +212,30 @@ class WrittenQuestion
     public function getAnswerC()
     {
         return $this->answerC;
+    }
+
+    /**
+     * Set prompt
+     *
+     * @param string $prompt
+     *
+     * @return writtenQuestion
+     */
+    public function setPrompt($prompt)
+    {
+        $this->prompt = $prompt;
+
+        return $this;
+    }
+
+    /**
+     * Get prompt
+     *
+     * @return string
+     */
+    public function getPrompt()
+    {
+        return $this->prompt;
     }
 
     /**

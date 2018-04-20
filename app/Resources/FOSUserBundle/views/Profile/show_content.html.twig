@@ -2,6 +2,7 @@
 <!-- Section -->
 <section class="md-section" style="background-color:#f7f7f7;">
     <div class="container">
+
         <div class="row">
 
             {#<div class="col-md-10 col-lg-8 offset-0 offset-sm-0 offset-md-1 offset-lg-2 ">#}
@@ -70,6 +71,17 @@
                     <div class="row">
                         <div class="col-6 text-right"><b class="">Tytuł zawodowy:</b></div>
                         <div class="col-6 text-left">{{ user.degree }}</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6 text-right"><b class=""> Konto:</b></div>
+                        <div class="col-6 text-left">
+                            {% if is_granted('ROLE_VIP') %}
+                                VIP, ważne do {{ app.user.vipTo|localizeddate('long', 'none', locale) }}
+                            {% else %}
+                                Standard. <a href="{{ path('memberPlans') }}">Zostań VIPem</a>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
             {#</div>#}

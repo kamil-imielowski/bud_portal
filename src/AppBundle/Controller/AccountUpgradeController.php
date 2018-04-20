@@ -58,7 +58,7 @@ class AccountUpgradeController extends Controller
                 $user->addRole('ROLE_VIP');
                 $to = new \DateTime();
             }
-            $to->add(\DateInterval::createfromdatestring('+5 month'));
+            $to->add(\DateInterval::createfromdatestring("+{$this->getTimeofPlan($pt->getPlan())} month"));
             $user->setVipTo($to);
             $userManager = $this->get('fos_user.user_manager');
             $userManager->updateUser($user);
@@ -67,6 +67,28 @@ class AccountUpgradeController extends Controller
         return new Response("OK");
     }
 
+    private function getTimeofPlan($plan){
+        switch($plan){
+            case 'one_month_subscription_price':
+                return 1;
+                break;
+
+            case 'three_month_subscription_price':
+                return 3;
+                break;
+
+            case 'six_month_subscription_price':
+                return 6;
+                break;
+
+            case 'one_year_subscription_price':
+                return 12;
+                break;
+
+            default:
+                return 0;
+        }
+    }
 
     /**
      * @Route("/initTransaction", name="initTransaction", methods={"POST"})

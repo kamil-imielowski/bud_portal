@@ -1,9 +1,10 @@
 <div class="dropdown" data-init="dropdown">
     <a class="dropdown__toggle" href="javascript:void(0)">Moje konto <i class="fa fa-angle-down" aria-hidden="true"></i></a>
     <div class="dropdown__content" data-position="right">
-        <ul class="list-style-none" style="width: 100px;">
+        <ul class="list-style-none text-left" style="width: 100px;">
             <li><i class="fas fa-user"></i><a href="{{ path('fos_user_profile_show') }}">Profil</a></li>
             <li><i class="fas fa-trophy"></i><a href="{{ path('memberPlans') }}">Dostęp</a></li>
+            <li><i class="fas fa-file-alt"></i><a href="{{ path('exam_lobby') }}">Egzamin</a></li>
             <li><i class="fas fa-power-off"></i><a href="{{ path('fos_user_security_logout') }}">Wyloguj</a></li>
         </ul>
     </div>

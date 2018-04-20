@@ -1,33 +1,35 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <!-- Content-->
-    <div class="md-content">
 
-        <!-- Section -->
-        <section class="md-section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-10 col-xl-8 offset-0 offset-sm-0 offset-md-0 offset-lg-1 offset-xl-2 ">
+    <!-- Section -->
+    <section class="md-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-xl-8 offset-0 offset-sm-0 offset-md-0 offset-lg-1 offset-xl-2 ">
 
-                        <!-- title-01 -->
-                        <div class="title-01 title-01__style-04">
+                    <!-- title-01 -->
+                    <div class="title-01 title-01__style-04">
+                        <h3>Pytania ustne</h3>
+                    </div><!-- End / title-01 -->
 
-                        </div><!-- End / title-01 -->
 
-                        {% for question in questions %}
-                            <div>
-                                <p>{{ question.question }}</p>
-                            </div>
-                        {% endfor %}
+                    {% for question in questions %}
+                        <div>
+                            <p>{{ question.question }}</p>
+                        </div>
+                    {% endfor %}
+
+                    {#<div class="navigation">#}
+                    <div class="layout-blog__content">
+                    {{ knp_pagination_render(questions) }}
                     </div>
+                    {#</div>#}
                 </div>
             </div>
-        </section>
-        <!-- End / Section -->
-
-    </div>
-    <!-- End / Content-->
+        </div>
+    </section>
+    <!-- End / Section -->
 {% endblock %}
 
 {% block javascripts %}

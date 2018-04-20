@@ -4,10 +4,8 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\NewsletterRecipient;
 use AppBundle\Form\NewsletterRecipientType;
-use Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -48,4 +46,32 @@ class DefaultController extends Controller
 
         return $this->render("default/newsletterRecipientForm.html.twig", ['form' => $form->createView()]);
     }
+
+
+//    /**
+//     * @Route("/import")
+//     * @return Response
+//     */
+//    public function import(){
+//        $file = fopen('C:\Users\toma4\projects\last.csv', 'r');
+//        $em = $this->getDoctrine()->getManager();
+//        while (($line = fgetcsv($file)) !== FALSE) {
+//            //$line is an array of the csv elements
+//            $line = str_replace("&&*", ",", $line[0]);
+//            //$line = str_replace("&*&", ",", $line);
+//            $data = explode(";", $line);
+//            $question = new WrittenQuestion();
+//            $question->setQuestion(str_replace("&*&", ";", $data[1]))
+//                ->setAnswerA(str_replace("&*&", ";", $data[2]))
+//                ->setAnswerB(str_replace("&*&", ";", $data[3]))
+//                ->setAnswerC(str_replace("&*&", ";", $data[4]))
+//                ->setPrompt(str_replace("&*&", ";", $data[5]))
+//                ->setIsFree(rand(0,1) == 1 ? true : false);
+//            $em->persist($question);
+//            $em->flush();
+//        }
+//        fclose($file);
+//
+//        return new Response("OK");
+//    }
 }

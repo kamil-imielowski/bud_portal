@@ -1,0 +1,68 @@
+<p>Pytanie {{ qk + 1 }}</p>
+
+<h3>{{ question.question }}</h3>
+
+{% for answer in answers %}
+    <div class="testimonial pointer answer" data-answer="{{ answer }}">
+        <div class="testimonial__content">
+            <div class="testimonial__text">{{ answer }}</div>
+        </div>
+    </div>
+{% endfor %}
+
+<script>
+    var isChecking = false;
+    var resolved = {{ resolved }};
+    var odp = "{{ question.answerA }}";
+
+    if(resolved){
+        $( ".answer" ).each(function () {
+            if($(this).data('answer') === odp){
+                $(this).addClass("correct-answer");
+            }else{
+                $(this).addClass("bad-answer");
+            }
+        });
+    }
+
+    $('.answer').click(function () {
+        if(resolved){
+            return false;
+        }
+        if(isChecking){
+            return false;
+        }
+        isChecking = true;
+        var answer = $(this);
+        answer.addClass('check-answer');
+        setTimeout(function()
+        {
+            answer.removeClass('check-answer');
+            $( ".answer" ).each(function () {
+                if($(this).data('answer') === odp){
+                    $(this).addClass("correct-answer");
+                }else{
+                    $(this).addClass("bad-answer");
+                }
+            });
+
+            var correct = false;
+            var qk = {{ qk }}
+            if(answer.data('answer') === odp){
+                correct = true;
+                $("#qbox-"+qk).addClass('qbox-correct');
+            }else{
+                $("#qbox-"+qk).addClass('qbox-bad');
+            }
+            $.ajax({
+                url: "{{ path('answer-question') }}",
+                method: "GET",
+                data: {qk: qk, correct: correct},
+                success: function(){
+                }
+            })
+
+        }, 2000);
+    })
+
+</script>

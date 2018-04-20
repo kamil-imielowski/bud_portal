@@ -3246,8 +3246,8 @@ mark, .mark {
 
 .testimonial {
     border: 1px solid #ebebeb;
-    padding: 40px;
-    margin: 50px 0;
+    padding: 20px;
+    margin: 25px 0;
     transition: all ease .3s;
 }
 
@@ -3261,15 +3261,16 @@ mark, .mark {
     position: relative;
 }
 
-.testimonial__info:after {
-    content: "\E67E";
-    font-family: 'themify';
-    font-size: 48px;
-    color: #c2c2c2;
-    top: -15px;
-    right: 5px;
-    position: absolute;
-}
+/* moja zmiana edit koment */
+/*.testimonial__info:after {*/
+    /*content: "\E67E";*/
+    /*font-family: 'themify';*/
+    /*font-size: 48px;*/
+    /*color: #c2c2c2;*/
+    /*top: -15px;*/
+    /*right: 5px;*/
+    /*position: absolute;*/
+/*}*/
 
 .testimonial__avatar {
     float: left;
@@ -3628,6 +3629,22 @@ mark, .mark {
 
 /* 29. consult_footer
 --------------------------------------------------------------------------------*/
+/*!* zmiana footer *!*/
+/*@media screen and (min-width: 992px) {*/
+    /*html {*/
+        /*position: relative;*/
+        /*min-height: 100%;*/
+    /*}*/
+    /*body {*/
+        /*margin-bottom: 325px; !* Margin bottom by footer height *!*/
+    /*}*/
+    /*.footer {*/
+        /*position: absolute;*/
+        /*bottom: 0;*/
+        /*width: 100%;*/
+    /*}*/
+/*}*/
+/*!* zmiana footer *!*/
 
 .footer {
     background-color: #1a1a23;

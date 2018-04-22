@@ -16,9 +16,14 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        // replace this example code with whatever you need
+        $ad1 = $this->forward('AppBundle:Advertising:place', array('place' => 1));
+        $ad2 = $this->forward('AppBundle:Advertising:place', array('place' => 2));
+        $ad3 = $this->forward('AppBundle:Advertising:place', array('place' => 3));
+
         return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+            'ad1' => $ad1,
+            'ad2' => $ad2,
+            'ad3' => $ad3,
         ]);
     }
 

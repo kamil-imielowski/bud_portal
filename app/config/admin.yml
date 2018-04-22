@@ -22,6 +22,7 @@ easy_admin:
           - { entity: 'QuestionCategories', icon: 'question' }
           - { label: 'Settings' }
           - { entity: 'CMS', icon: 'bolt' }
+          - { entity: 'Advertising', icon: 'bullhorn' }
           - { entity: 'Settings', icon: 'cog' }
 
     list:
@@ -167,6 +168,15 @@ easy_admin:
 #                  - { property: 'plainPassword', type: 'text', type_options: { required: false } }
                   - { property: 'roles', type: 'choice', type_options: { multiple: true, choices: { 'ROLE_USER': 'ROLE_USER', 'ROLE_VIP': 'ROLE_VIP', 'ROLE_ADMIN': 'ROLE_ADMIN' } } }
                   - { property: 'vipTo', type: 'Symfony\Component\Form\Extension\Core\Type\DateTimeType', }
+
+        Advertising:
+          class: AppBundle\Entity\Advertising
+          form:
+            fields:
+              - {property: 'name', label: 'Nazwa'}
+              - {property: 'place', label: 'Miejsce wyświetlania', type: 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', type_options: {choices: {miejsce1: 1, miejsce2: 2, miejsce3: 3}}}
+              - {property: 'code', label: 'Kod'}
+              - {property: 'expireAt', label: 'Ważne do:'}
 
 
 

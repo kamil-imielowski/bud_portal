@@ -5,31 +5,36 @@
     <div class="slider">
 
         <!-- carousel__element owl-carousel -->
-        <div class="carousel__element owl-carousel" data-options='{"items":1,"loop":true,"dots":false,"nav":false,"margin":0, "autoplay": true, "autoplayTimeout": 3000}'>
-            <div class="slider__item" style="background-image: url('assets/img/slider.jpg');">
-                <div class="md-tb">
-                    <div class="md-tb__cell">
-                        <div class="slider__content">
-                            <div class="container">
-                                <h2>We provide free template</h2>
-                                <p>A Bootstrap 4 Responsive multi-purpose Theme for the Business, Web agency and more!</p>
+        <div class="carousel__element owl-carousel" data-options='{"items":1,"loop":true,"dots":false,"nav":false,"margin":0, "autoplay": true, "autoplayTimeout": 4000}'>
+
+            {% for baner in baners %}
+                <div class="slider__item" style="background-image: url('{{ asset(baner_images ~ baner.image) }}'); background-size: cover;">
+                    <div class="md-tb">
+                        <div class="md-tb__cell">
+                            <div class="slider__content">
+                                <div class="container">
+                                    <h2>{{ baner.title }}</h2>
+                                    <p>{{ baner.description }}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="slider__item" style="background-image: url('https://picsum.photos/1920/1080');">
-                <div class="md-tb">
-                    <div class="md-tb__cell">
-                        <div class="slider__content">
-                            <div class="container">
-                                <h2>We create the trend</h2>
-                                <p>Curabitur elementum urna augue, eu porta purus gravida in. Cras consectetur, lorem a cursus vestibulum, ligula purus iaculis nulla, in dignissim risus turpis id justo. Sed eleifend ante et ligula elei</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
+
+            {#<div class="slider__item" style="background-image: url({{ asset('assets/img/avatars/1.jpg') }});">#}
+                {#<div class="md-tb">#}
+                    {#<div class="md-tb__cell">#}
+                        {#<div class="slider__content">#}
+                            {#<div class="container">#}
+                                {#<h2>We create the trend</h2>#}
+                                {#<p>Curabitur elementum urna augue, eu porta purus gravida in. Cras consectetur, lorem a cursus vestibulum, ligula purus iaculis nulla, in dignissim risus turpis id justo. Sed eleifend ante et ligula elei</p>#}
+                            {#</div>#}
+                        {#</div>#}
+                    {#</div>#}
+                {#</div>#}
+            {#</div>#}
+
         </div><!-- End / carousel__element owl-carousel -->
 
     </div><!-- End / slider -->
@@ -83,6 +88,8 @@
     </section>
     <!-- End / Section -->
 
+    {{ ad1.content | raw }}
+    {{ ad2.content | raw }}
     {{ ad3.content | raw }}
 {% endblock %}
 

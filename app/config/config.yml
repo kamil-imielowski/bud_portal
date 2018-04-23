@@ -10,6 +10,7 @@ imports:
 parameters:
     locale: pl
     app.blog.image: /uploads/images/blog
+    app.baner.image: /uploads/images/baners
 
 framework:
     #esi: ~
@@ -43,6 +44,7 @@ twig:
 #      '%kernel.project_dir%\vendor\egeloen\ckeditor-bundle\Resources\views': IvoryCKEditorBundle
     globals:
       blog_images: 'uploads/images/blog/'
+      baner_images: 'uploads/images/baners/'
       locale: '%locale%'
 
 # Doctrine Configuration

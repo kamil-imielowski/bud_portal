@@ -23,6 +23,7 @@ easy_admin:
           - { label: 'Settings' }
           - { entity: 'CMS', icon: 'bolt' }
           - { entity: 'Advertising', icon: 'bullhorn' }
+          - { entity: 'Baner', label: 'Baners', icon: 'image' }
           - { entity: 'Settings', icon: 'cog' }
 
     list:
@@ -178,6 +179,21 @@ easy_admin:
               - {property: 'code', label: 'Kod'}
               - {property: 'expireAt', label: 'Ważne do:'}
 
+        Baner:
+          class: AppBundle\Entity\Baner
+          form:
+              fields:
+                  - {property: 'name', type: 'Symfony\Component\Form\Extension\Core\Type\TextType'}
+                  - {property: 'title', type: 'Symfony\Component\Form\Extension\Core\Type\TextType'}
+                  - {property: 'description', type: 'Symfony\Component\Form\Extension\Core\Type\TextType'}
+                  - {property: 'imageFile', type: 'Vich\UploaderBundle\Form\Type\VichImageType'}
+          list:
+              fields:
+                - {property: 'name'}
+                - {property: 'image', type: 'image', base_path: "%app.baner.image%"}
+                - {property: 'title'}
+                - {property: 'createdAt'}
+
 
 
 vich_uploader:
@@ -187,3 +203,8 @@ vich_uploader:
           uri_prefix:         '%app.blog.image%'
           upload_destination: '%kernel.root_dir%/../web/uploads/images/blog'
           namer: vich_uploader.namer_uniqid #według dokumentacji'Vich\UploaderBundle\Naming\UniqidNamer' - nie dziala. Lepiej sprawdzic jak service sie nazywa w $this->container->get
+
+      baner_images:
+                uri_prefix:         '%app.baner.image%'
+                upload_destination: '%kernel.root_dir%/../web/uploads/images/baners'
+                namer: vich_uploader.namer_uniqid #według dokumentacji'Vich\UploaderBundle\Naming\UniqidNamer' - nie dziala. Lepiej sprawdzic jak service sie nazywa w $this->container->get

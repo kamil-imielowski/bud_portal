@@ -73,3 +73,7 @@
     background-color: #9f191f;
     color: white;
 }
+
+.border-a {
+    border: #1a1a23 1px solid;
+}

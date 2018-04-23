@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Baner;
 use AppBundle\Entity\NewsletterRecipient;
 use AppBundle\Form\NewsletterRecipientType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -20,7 +21,11 @@ class DefaultController extends Controller
         $ad2 = $this->forward('AppBundle:Advertising:place', array('place' => 2));
         $ad3 = $this->forward('AppBundle:Advertising:place', array('place' => 3));
 
+        $em = $this->getDoctrine()->getManager();
+        $baners = $em->getRepository(Baner::class)->findAll();
+
         return $this->render('default/index.html.twig', [
+            'baners' => $baners,
             'ad1' => $ad1,
             'ad2' => $ad2,
             'ad3' => $ad3,

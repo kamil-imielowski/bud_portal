@@ -51,17 +51,17 @@
 
                         </div>
                         <div class="search-form">
-                            <div class="search-form__toggle"><i class="ti-search"></i></div>
-                            <div class="search-form__form">
+                            {#<div class="search-form__toggle"><i class="ti-search"></i></div>#}
+                            {#<div class="search-form__form">#}
 
-                                <!-- form-search -->
-                                <div class="form-search">
-                                    <form>
-                                        <input class="form-control" type="text" placeholder="Wciśnij enter, aby wyszukać"/>
-                                    </form>
-                                </div><!-- End / form-search -->
+                                {#<!-- form-search -->#}
+                                {#<div class="form-search">#}
+                                    {#<form>#}
+                                        {#<input class="form-control" type="text" placeholder="Wciśnij enter, aby wyszukać"/>#}
+                                    {#</form>#}
+                                {#</div><!-- End / form-search -->#}
 
-                            </div>
+                            {#</div>#}
                         </div>
                     </div>
 
@@ -207,6 +207,15 @@
             </script>
 
             <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+
+            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-118150274-1"></script>
+            <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+
+                gtag('config', 'UA-118150274-1');
+            </script>
             <!-- End Cookie Consent plugin -->
             {% block javascripts %}
 

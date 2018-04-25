@@ -9,21 +9,27 @@
             <h2 class="form-01__title">Rejestracja</h2>
 
             {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'form-01__form fos_user_registration_register'}}) }}
+            <div class="errors-container">{{ form_errors(form.name) }}</div>
             <div class="form__item">
                 {{ form_widget(form.name, {'attr': {'placeholder': 'Imię'}}) }}
             </div>
+
+            <div class="errors-container">{{ form_errors(form.email) }}</div>
             <div class="form__item">
                 {{ form_widget(form.email, {'attr': {'placeholder': 'Adres e-mail'}}) }}
             </div>
 
+            <div class="errors-container">{{ form_errors(form.username) }}</div>
             <div class="form__item">
                 {{ form_widget(form.username, {'attr': {'placeholder': 'Login'}}) }}
             </div>
 
+            <div class="errors-container">{{ form_errors(form.plainPassword.first) }}</div>
             <div class="form__item">
                 {{ form_widget(form.plainPassword.first, {'attr': {'placeholder': 'Hasło'}}) }}
             </div>
 
+            <div class="errors-container">{{ form_errors(form.plainPassword.second) }}</div>
             <div class="form__item">
                 {{ form_widget(form.plainPassword.second, {'attr': {'placeholder': 'Powtórz hasło'}}) }}
             </div>

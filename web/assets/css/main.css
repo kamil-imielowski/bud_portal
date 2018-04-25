@@ -3825,7 +3825,7 @@ mark, .mark {
 
 .header__logo {
     height: 100px;
-    max-width: 100px;
+    max-width: 150px;
     line-height: 100px;
     float: left;
     transition: height .3s ease;

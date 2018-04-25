@@ -58,7 +58,7 @@
 
 {% block javascripts %}
     {{ parent() }}
-    {#<script src="{{ asset('assets/js/disabledCopy.js') }}"></script>#}
+    <script src="{{ asset('assets/js/disabledCopy.js') }}"></script>
     <script>
         var current = 0;
         var init = {{ app.session.get('egzamin')['init'] }};

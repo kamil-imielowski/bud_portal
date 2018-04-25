@@ -77,3 +77,8 @@
 .border-a {
     border: #1a1a23 1px solid;
 }
+
+.errors-container ul{
+    list-style: none;
+    color: #9f191f;
+}

@@ -42,9 +42,8 @@ class User extends BaseUser
     protected $name;
 
     /**
- * @ORM\Column(name="surname", type="string", length=255)
+ * @ORM\Column(name="surname", type="string", length=255, nullable=true)
  *
- * @Assert\NotBlank(message="Podaj swoje nazwisko", groups={"Registration", "Profile"})
  * @Assert\Length(
  *     min=3,
  *     max=255,
@@ -69,9 +68,8 @@ class User extends BaseUser
     protected $city;
 
     /**
-     * @ORM\Column(name="zone", type="string", length=255)
+     * @ORM\Column(name="zone", type="string", length=255, nullable=true)
      *
-     * @Assert\NotBlank(message="Wybierz województwo", groups={"Registration", "Profile"})
      */
     protected $zone;
 
@@ -94,8 +92,7 @@ class User extends BaseUser
     protected $graduation;
 
     /**
-     * @ORM\Column(name="degree", type="string", length=255)
-     * @Assert\NotBlank(message="Wybierz tytuł zawodowy", groups={"Registration", "Profile"})
+     * @ORM\Column(name="degree", type="string", length=255, nullable=true)
      */
     protected $degree;
 

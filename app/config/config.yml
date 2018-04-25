@@ -9,8 +9,9 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: pl
-    app.blog.image: /uploads/images/blog
-    app.baner.image: /uploads/images/baners
+    app.blog.image: /uploads/images/blog/
+    app.baner.image: /uploads/images/baners/
+    app.practice.files: /uploads/files/practice/
 
 framework:
     #esi: ~
@@ -45,6 +46,7 @@ twig:
     globals:
       blog_images: 'uploads/images/blog/'
       baner_images: 'uploads/images/baners/'
+      practice_files: '/uploads/files/practice/'
       locale: '%locale%'
 
 # Doctrine Configuration

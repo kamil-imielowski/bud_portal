@@ -10,6 +10,7 @@ namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
@@ -45,15 +46,15 @@ class RegistrationType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('surname')
-            ->add('city')
-            ->add('zone', ChoiceType::class, array('placeholder' => "wybierz województwo", 'required' => true, 'choices' => $this->zones))
-            ->add('phone')
+//            ->add('surname')
+//            ->add('city')
+//            ->add('zone', ChoiceType::class, array('placeholder' => "wybierz województwo", 'required' => true, 'choices' => $this->zones))
+//            ->add('phone')
 //            ->add('birthdate', DateType::class, array('widget' => 'single_text', 'html5' => false,'attr' => ['class' => 'datepickerB'],))
-            ->add('birthdate', TextType::class, array('required'=> false))
-            ->add('studio')
-            ->add('graduation')
-            ->add('degree', ChoiceType::class, array('placeholder' => "tytuł zawodowy", 'required' => true, 'choices' => $this->degree))
+//            ->add('birthdate', DateType::class, array('required'=> false, 'widget' => 'single_text'))
+//            ->add('studio')
+//            ->add('graduation')
+//            ->add('degree', ChoiceType::class, array('placeholder' => "tytuł zawodowy", 'required' => true, 'choices' => $this->degree))
         ;
     }
 

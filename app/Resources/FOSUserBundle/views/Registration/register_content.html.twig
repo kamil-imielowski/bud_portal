@@ -10,6 +10,9 @@
 
             {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'form-01__form fos_user_registration_register'}}) }}
             <div class="form__item">
+                {{ form_widget(form.name, {'attr': {'placeholder': 'Imię'}}) }}
+            </div>
+            <div class="form__item">
                 {{ form_widget(form.email, {'attr': {'placeholder': 'Adres e-mail'}}) }}
             </div>
 
@@ -25,42 +28,6 @@
                 {{ form_widget(form.plainPassword.second, {'attr': {'placeholder': 'Powtórz hasło'}}) }}
             </div>
 
-            <div class="form__item">
-                {{ form_widget(form.name, {'attr': {'placeholder': 'Imię'}}) }}
-            </div>
-
-            <div class="form__item">
-                {{ form_widget(form.surname, {'attr': {'placeholder': 'Nazwisko'}}) }}
-            </div>
-
-            <div class="form__item">
-                {{ form_widget(form.city, {'attr': {'onFocus': 'geolocate()', 'placeholder': 'Miasto', 'autocomplete': 'true'}}) }}
-            </div>
-
-            <div class="form__item">
-                {{ form_widget(form.zone, {'attr': {'title': 'Województwo'}}) }}
-            </div>
-
-            <div class="form__item">
-                {{ form_widget(form.phone, {'attr': {'placeholder': 'Numer telefonu'}}) }}
-            </div>
-
-            <div class="form__item">
-                {{ form_widget(form.birthdate, {'attr': {'placeholder': 'Data urodzenia', 'class': 'datepickerB'}}) }}
-            </div>
-
-            <div class="form__item">
-                {{ form_widget(form.studio, {'attr': {'placeholder': 'Pracownia'}}) }}
-            </div>
-
-            <div class="form__item">
-                {{ form_widget(form.graduation, {'attr': {'placeholder': 'Ukończona uczelnia'}}) }}
-            </div>
-
-            <div class="form__item">
-                {{ form_widget(form.degree, {'attr': {'placeholder': ''}}) }}
-            </div>
-
             <div class="form__button">
                     <input type="submit" id="_submit" name="_submit" class="btn btn-primary" value="Zarejestruj się" />
                 </div>
@@ -72,65 +39,65 @@
 </div>
 
 
-<script>
-    var placeSearch, autocomplete;
-    var componentForm = {
-        street_number: 'short_name',
-        route: 'long_name',
-        locality: 'long_name',
-        administrative_area_level_1: 'short_name',
-        country: 'long_name',
-        postal_code: 'short_name'
-    };
+{#<script>#}
+    {#var placeSearch, autocomplete;#}
+    {#var componentForm = {#}
+        {#street_number: 'short_name',#}
+        {#route: 'long_name',#}
+        {#locality: 'long_name',#}
+        {#administrative_area_level_1: 'short_name',#}
+        {#country: 'long_name',#}
+        {#postal_code: 'short_name'#}
+    {#};#}
 
-    function initAutocomplete() {
-        autocomplete = new google.maps.places.Autocomplete(
-            /** @type {!HTMLInputElement} */(document.getElementById('fos_user_registration_form_city')),
-            {types: ['(cities)'], componentRestrictions: {country: "pl"}});
+    {#function initAutocomplete() {#}
+        {#autocomplete = new google.maps.places.Autocomplete(#}
+            {#/** @type {!HTMLInputElement} */(document.getElementById('fos_user_registration_form_city')),#}
+            {#{types: ['(cities)'], componentRestrictions: {country: "pl"}});#}
 
-        autocomplete.addListener('place_changed', fillInAddress);
-    }
+        {#autocomplete.addListener('place_changed', fillInAddress);#}
+    {#}#}
 
-    function fillInAddress() {
-        // Get the place details from the autocomplete object.
-        var place = autocomplete.getPlace();
-        var city = place.address_components[0][componentForm['locality']];
-        var zone = place.address_components[2][componentForm['administrative_area_level_1']];
-        if(zone.indexOf("Województwo ") !== 1){
-            zone = zone.replace('Województwo ', '');
-        }
-        $('#fos_user_registration_form_city').val(city);
-        $('#fos_user_registration_form_zone option[value='+zone+']').attr('selected', 'selected');
-    }
+    {#function fillInAddress() {#}
+        {#// Get the place details from the autocomplete object.#}
+        {#var place = autocomplete.getPlace();#}
+        {#var city = place.address_components[0][componentForm['locality']];#}
+        {#var zone = place.address_components[2][componentForm['administrative_area_level_1']];#}
+        {#if(zone.indexOf("Województwo ") !== 1){#}
+            {#zone = zone.replace('Województwo ', '');#}
+        {#}#}
+        {#$('#fos_user_registration_form_city').val(city);#}
+        {#$('#fos_user_registration_form_zone option[value='+zone+']').attr('selected', 'selected');#}
+    {#}#}
 
-    // Bias the autocomplete object to the user's geographical location,
-    // as supplied by the browser's 'navigator.geolocation' object.
-    function geolocate() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function(position) {
-                var geolocation = {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude
-                };
-                var circle = new google.maps.Circle({
-                    center: geolocation,
-                    radius: position.coords.accuracy
-                });
-                autocomplete.setBounds(circle.getBounds());
-            });
-        }
-    }
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYsITi_pjVej8nQjseHOTUumSTMG7QBEw&libraries=places&callback=initAutocomplete" async defer></script>
+    {#// Bias the autocomplete object to the user's geographical location,#}
+    {#// as supplied by the browser's 'navigator.geolocation' object.#}
+    {#function geolocate() {#}
+        {#if (navigator.geolocation) {#}
+            {#navigator.geolocation.getCurrentPosition(function(position) {#}
+                {#var geolocation = {#}
+                    {#lat: position.coords.latitude,#}
+                    {#lng: position.coords.longitude#}
+                {#};#}
+                {#var circle = new google.maps.Circle({#}
+                    {#center: geolocation,#}
+                    {#radius: position.coords.accuracy#}
+                {#});#}
+                {#autocomplete.setBounds(circle.getBounds());#}
+            {#});#}
+        {#}#}
+    {#}#}
+{#</script>#}
+{#<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYsITi_pjVej8nQjseHOTUumSTMG7QBEw&libraries=places&callback=initAutocomplete" async defer></script>#}
 
-<script src="{{ asset('assets/js/moment-with-locales.min.js') }}"></script>
-<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap-datepicker.css') }}" >
-<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap-dropdownOnly4datepicker.css') }}" >
-<script src="{{ asset('assets/js/bootstrap-datepicker.js') }}"></script>
-<script src="{{ asset('assets/js/bootstrap-datepicker.pl.js') }}"></script>
-<script>
-        $('.datepickerB').datepicker({
-            format: 'yyyy-mm-dd',
-            language: 'pl'
-        });
-</script>
+{#<script src="{{ asset('assets/js/moment-with-locales.min.js') }}"></script>#}
+{#<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap-datepicker.css') }}" >#}
+{#<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap-dropdownOnly4datepicker.css') }}" >#}
+{#<script src="{{ asset('assets/js/bootstrap-datepicker.js') }}"></script>#}
+{#<script src="{{ asset('assets/js/bootstrap-datepicker.pl.js') }}"></script>#}
+{#<script>#}
+        {#$('.datepickerB').datepicker({#}
+            {#format: 'yyyy-mm-dd',#}
+            {#language: 'pl'#}
+        {#});#}
+{#</script>#}

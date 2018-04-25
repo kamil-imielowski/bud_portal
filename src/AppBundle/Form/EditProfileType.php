@@ -9,6 +9,7 @@
 namespace AppBundle\Form;
 
 
+use Doctrine\DBAL\Types\DateType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -50,8 +51,8 @@ class EditProfileType extends AbstractType
             ->add('city')
             ->add('zone', ChoiceType::class, array('placeholder' => "wybierz województwo", 'required' => true, 'choices' => $this->zones))
             ->add('phone')
-            ->add('birthdate', TextType::class, array('required'=> false))
-            ->add('studio')
+//            ->add('birthdate', DateType::class, array('required'=> false, 'widget' => 'single_text'))
+//            ->add('studio')
             ->add('graduation')
             ->add('degree', ChoiceType::class, array('placeholder' => "tytuł zawodowy", 'required' => true, 'choices' => $this->degree))
         ;

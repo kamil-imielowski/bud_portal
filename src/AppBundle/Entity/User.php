@@ -89,16 +89,6 @@ class User extends BaseUser
     protected $phone;
 
     /**
-     * @ORM\Column(name="birthdate", type="date", nullable=true)
-     */
-    protected $birthdate;
-
-    /**
-     * @ORM\Column(name="studio", type="string", length=255, nullable=true)
-     */
-    protected $studio;
-
-    /**
      * @ORM\Column(name="graduation", type="string", length=255, nullable=true)
      */
     protected $graduation;
@@ -232,44 +222,6 @@ class User extends BaseUser
      */
     public function getPhone(){
         return $this->phone;
-    }
-
-    /**
-     * set birthdate
-     * @param $birthdate
-     * @return User
-     */
-    public function setBirthdate($birthdate){
-        $this->birthdate = $birthdate;
-
-        return $this;
-    }
-
-    /**
-     * get birthdate
-     * @return mixed
-     */
-    public function getBirthdate(){
-        return $this->birthdate;
-    }
-
-    /**
-     * set studio
-     * @param $studio
-     * @return User
-     */
-    public function setStudio($studio){
-        $this->studio = $studio;
-
-        return $this;
-    }
-
-    /**
-     * get studio
-     * @return mixed
-     */
-    public function getStudio(){
-        return $this->studio;
     }
 
     /**

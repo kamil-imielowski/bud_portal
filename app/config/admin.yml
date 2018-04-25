@@ -7,8 +7,8 @@ easy_admin:
         brand_color: 'rgb(2, 93, 244)'
         assets:
           favicon: 'assets/img/favicon.png'
-          js:
-            - 'js/easyadminbundle.js'
+#          js:
+#            - 'js/easyadminbundle.js'
         menu:
           - { entity: 'User', icon: 'user' }
           - { entity: 'Blog', icon: 'align-justify' }
@@ -24,6 +24,7 @@ easy_admin:
           - { entity: 'CMS', icon: 'bolt' }
           - { entity: 'Advertising', icon: 'bullhorn' }
           - { entity: 'Baner', label: 'Baners', icon: 'image' }
+          - { entity: 'Practice', icon: 'star' }
           - { entity: 'Settings', icon: 'cog' }
 
     list:
@@ -194,6 +195,28 @@ easy_admin:
                 - {property: 'title'}
                 - {property: 'createdAt'}
 
+        Practice:
+          class: AppBundle\Entity\Practice
+          actions:
+            - {name: 'add', label:  }
+          form:
+              title: "Dodaj nowy plik"
+              fields:
+                  - {property: 'type', label: 'practice.type', type: 'choice', type_options: { multiple: false, choices: { 'W biurze projektowym': office, 'Na budowie': build, 'Umowy': contracts } } }
+                  - {property: 'name', type: 'Symfony\Component\Form\Extension\Core\Type\TextType'}
+                  - {property: 'title', type: 'Symfony\Component\Form\Extension\Core\Type\TextType'}
+                  - {property: 'description', type: 'Symfony\Component\Form\Extension\Core\Type\TextType'}
+                  - {property: 'fileObject', type: 'Vich\UploaderBundle\Form\Type\VichFileType', type_options: {required: true}}
+                  - {property: 'isFree', type: 'Symfony\Component\Form\Extension\Core\Type\CheckboxType'}
+          list:
+              fields:
+                - {property: 'name'}
+                - {property: 'typeEnum', label: 'practice.type'}
+                - {property: 'file', template: 'easy_admin/file.html.twig' }
+                - {property: 'isFree', type: 'toggle'}
+                - {property: 'title'}
+                - {property: 'createdAt'}
+
 
 
 vich_uploader:
@@ -201,10 +224,15 @@ vich_uploader:
   mappings:
       blog_images:
           uri_prefix:         '%app.blog.image%'
-          upload_destination: '%kernel.root_dir%/../web/uploads/images/blog'
+          upload_destination: '%kernel.root_dir%/../web/uploads/images/blog/'
           namer: vich_uploader.namer_uniqid #według dokumentacji'Vich\UploaderBundle\Naming\UniqidNamer' - nie dziala. Lepiej sprawdzic jak service sie nazywa w $this->container->get
 
       baner_images:
-                uri_prefix:         '%app.baner.image%'
-                upload_destination: '%kernel.root_dir%/../web/uploads/images/baners'
-                namer: vich_uploader.namer_uniqid #według dokumentacji'Vich\UploaderBundle\Naming\UniqidNamer' - nie dziala. Lepiej sprawdzic jak service sie nazywa w $this->container->get
+          uri_prefix:         '%app.baner.image%'
+          upload_destination: '%kernel.root_dir%/../web/uploads/images/baners/'
+          namer: vich_uploader.namer_uniqid
+
+      practice_files:
+          uri_prefix:         '%app.practice.files%'
+          upload_destination: '%kernel.root_dir%/../web/uploads/files/practice/'
+          namer: vich_uploader.namer_uniqid

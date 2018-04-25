@@ -22,11 +22,6 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-6 text-right"><b class="">Nazwisko:</b></div>
-                        <div class="col-6 text-left">{{ user.surname }}</div>
-                    </div>
-
-                    <div class="row">
                         <div class="col-6 text-right"><b class="">Login:</b></div>
                         <div class="col-6 text-left">{{ user.username }}</div>
                     </div>
@@ -49,18 +44,13 @@
     
                 <div class="col-sm">
                     <div class="row">
+                        <div class="col-6 text-right"><b class="">Nazwisko:</b></div>
+                        <div class="col-6 text-left">{{ user.surname }}</div>
+                    </div>
+
+                    <div class="row">
                         <div class="col-6 text-right"><b class="">Telefon:</b></div>
                         <div class="col-6 text-left">{{ user.phone == '' ? 'brak danych' : user.phone }}</div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-6 text-right"><b class="">Data urodzena:</b></div>
-                        <div class="col-6 text-left">{{ user.birthdate == '' ? 'brak danych' : user.birthdate }}</div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-6 text-right"><b class="">Pracowania:</b></div>
-                        <div class="col-6 text-left">{{ user.studio == '' ? 'brak danych' : user.studio }}</div>
                     </div>
 
                     <div class="row">

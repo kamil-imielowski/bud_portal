@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Baner;
+use AppBundle\Entity\Blog;
 use AppBundle\Entity\NewsletterRecipient;
 use AppBundle\Form\NewsletterRecipientType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -24,8 +25,11 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $baners = $em->getRepository(Baner::class)->findAll();
 
+        $blogs = $em->getRepository(Blog::class)->getLastPublishedBlogs();
+
         return $this->render('default/index.html.twig', [
             'baners' => $baners,
+            'blogs' => $blogs,
             'ad1' => $ad1,
             'ad2' => $ad2,
             'ad3' => $ad3,

@@ -10,4 +10,12 @@ namespace AppBundle\Repository;
  */
 class BlogRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getLastPublishedBlogs($limit = 2){
+        return $this->createQueryBuilder('b')
+            ->where('b.published = true')
+            ->setMaxResults($limit)
+            ->orderBy('b.createdAt', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
 }

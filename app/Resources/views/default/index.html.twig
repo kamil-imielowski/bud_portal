@@ -22,19 +22,6 @@
                 </div>
             {% endfor %}
 
-            {#<div class="slider__item" style="background-image: url({{ asset('assets/img/avatars/1.jpg') }});">#}
-                {#<div class="md-tb">#}
-                    {#<div class="md-tb__cell">#}
-                        {#<div class="slider__content">#}
-                            {#<div class="container">#}
-                                {#<h2>We create the trend</h2>#}
-                                {#<p>Curabitur elementum urna augue, eu porta purus gravida in. Cras consectetur, lorem a cursus vestibulum, ligula purus iaculis nulla, in dignissim risus turpis id justo. Sed eleifend ante et ligula elei</p>#}
-                            {#</div>#}
-                        {#</div>#}
-                    {#</div>#}
-                {#</div>#}
-            {#</div>#}
-
         </div><!-- End / carousel__element owl-carousel -->
 
     </div><!-- End / slider -->
@@ -44,53 +31,42 @@
     <!-- Section -->
     <section class="md-section" style="background-color:#f7f7f7;padding:0;">
         <div class="container">
-            <div class="textbox-group">
+            {#<div class="textbox-group">#}
                 <div class="row">
-                    <div class="col-md-4 col-lg-4 ">
-
-                        <!-- textbox -->
-                        <div class="textbox">
-                            <div class="textbox__image"><a href="#"><img src="assets/img/services/4.jpg" alt=""/></a></div>
-                            <div class="textbox__body">
-                                <h2 class="textbox__title"><a href="#">Free template</a></h2>
-                                <div class="textbox__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut laoreet ut lacus a tincidunt. Quisque lu</div>
-                            </div>
-                        </div><!-- End / textbox -->
-
+                    <div class="col-lg-8 offset-0 offset-sm-0 offset-md-0 offset-lg-2 ">
+                        <h2 class="page-title__title">Ostatnie wpisy na blogu</h2>
                     </div>
-                    <div class="col-md-4 col-lg-4 ">
+                    {% for blog in blogs %}
+                        <!-- layout-blog sidebar-left -->
+                        <div class="layout-blog sidebar-left">
+                            <div class="layout-blog__content">
 
-                        <!-- textbox -->
-                        <div class="textbox">
-                            <div class="textbox__image"><a href="#"><img src="assets/img/services/5.jpg" alt=""/></a></div>
-                            <div class="textbox__body">
-                                <h2 class="textbox__title"><a href="#">Responsive Layout</a></h2>
-                                <div class="textbox__description">Nam elit ligula, egestas et ornare non, viverra eu justo. Aliquam ornare lectus ut pharetra dictum. </div>
+                                <!--  -->
+                                <div class="post-01__style-02 md-text-center">
+                                    <div class="post-01__media"><a href="{{ path('blog_details', {"id":blog.id, "urlTitle": blog.urlTitle}) }}"><img src="{{ asset(blog_images ~ blog.image) }}" alt=""/></a>
+                                    </div>
+                                    <div>
+                                        {#<ul class="post-01__categories">#}
+                                        {#<li><a href="#">Business</a></li>#}
+                                        {#</ul>#}
+                                        <h2 class="post-01__title"><a href="{{ path('blog_details', {"id":blog.id, "urlTitle": blog.urlTitle}) }}">{{ blog.title }}</a></h2>
+                                        <div class="post-01__time">{{ blog.createdAt|localizeddate('long', 'none', locale) }}</div>
+                                        <div class="post-01__note"></div>
+                                    </div>
+                                </div><!-- End /  -->
+
                             </div>
-                        </div><!-- End / textbox -->
-
-                    </div>
-                    <div class="col-md-4 col-lg-4 ">
-
-                        <!-- textbox -->
-                        <div class="textbox">
-                            <div class="textbox__image"><a href="#"><img src="assets/img/services/6.jpg" alt=""/></a></div>
-                            <div class="textbox__body">
-                                <h2 class="textbox__title"><a href="#">SEO Optimized</a></h2>
-                                <div class="textbox__description">Mauris lacinia venenatis dolor sit amet viverra. Integer malesuada nulla neque. Sed rutrum ligula eu</div>
-                            </div>
-                        </div><!-- End / textbox -->
-
-                    </div>
+                        </div>
+                    {% endfor %}
                 </div>
-            </div>
+            {#</div>#}
         </div>
     </section>
     <!-- End / Section -->
 
-    {{ ad1.content | raw }}
-    {{ ad2.content | raw }}
-    {{ ad3.content | raw }}
+    {#{{ ad1.content | raw }}#}
+    {#{{ ad2.content | raw }}#}
+    {#{{ ad3.content | raw }}#}
 {% endblock %}
 
 {% block stylesheets %}

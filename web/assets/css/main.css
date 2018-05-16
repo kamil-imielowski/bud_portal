@@ -192,7 +192,7 @@ img {
 
 a:hover {
     text-decoration: none;
-    color: #f39c12;
+    color: #3399ff;
 }
 
 a:focus {
@@ -337,14 +337,14 @@ fieldset[disabled] .btn-default.focus {
 
 .btn-primary {
     color: #fff;
-    background-color: #f39c12;
+    background-color: #3399ff;
     border-color: transparent;
 }
 
 .btn-primary.btn-outline {
-    color: #c87f0a;
+    color: #3a79df;
     background-color: transparent;
-    border-color: #f39c12;
+    border-color: #3399ff;
 }
 
 .btn-primary.btn-white {
@@ -355,19 +355,19 @@ fieldset[disabled] .btn-default.focus {
 
 .btn-primary:focus, .btn-primary.focus {
     color: #fff;
-    background-color: #c87f0a;
+    background-color: #3a79df;
     border-color: transparent;
 }
 
 .btn-primary:hover, .btn-primary.hover {
     color: #fff;
-    background-color: #f4a62a;
+    background-color: #205fc5;
     border-color: transparent;
 }
 
 .btn-primary:active, .btn-primary.active, .open > .btn-primary.dropdown-toggle {
     color: #fff;
-    background-color: #c87f0a;
+    background-color: #3a79df;
     border-color: transparent;
 }
 
@@ -377,7 +377,7 @@ fieldset[disabled] .btn-default.focus {
 .open > .btn-primary.dropdown-toggle:focus,
 .open > .btn-primary.dropdown-toggle.focus {
     color: #fff;
-    background-color: #a66908;
+    background-color: #154084;
     border-color: transparent;
 }
 
@@ -390,12 +390,12 @@ fieldset[disabled] .btn-default.focus {
 .btn-primary[disabled]:focus, .btn-primary[disabled].focus,
 fieldset[disabled] .btn-primary:hover, fieldset[disabled] .btn-primary:focus,
 fieldset[disabled] .btn-primary.focus {
-    background-color: #f39c12;
+    background-color: #3399ff;
     border-color: transparent;
 }
 
 .btn-primary .badge {
-    color: #f39c12;
+    color: #3399ff;
     background-color: #fff;
 }
 
@@ -654,7 +654,7 @@ fieldset[disabled] .btn-danger.focus {
 }
 
 .btn-link {
-    color: #f39c12;
+    color: #3399ff;
     font-weight: normal;
     border-radius: 0;
 }
@@ -669,7 +669,7 @@ fieldset[disabled] .btn-link {
 }
 
 .btn-link:hover, .btn-link:focus {
-    color: #b06f09;
+    color: #0066ff;
     text-decoration: underline;
     background-color: transparent;
 }
@@ -775,8 +775,8 @@ input[type="button"].btn-block {
     padding: 0 15px;
     height: 46px;
     line-height: 44px;
-    border: 1px solid #f39c12;
-    background-color: #f39c12;
+    border: 1px solid #3399ff;
+    background-color: #3399ff;
 }
 
 .btn-w180 {
@@ -879,7 +879,7 @@ input[type="datetime-local"]:focus, input[type="date"]:focus,
 input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus,
 input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus,
 input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus {
-    border-color: #f39c12;
+    border-color: #3399ff;
 }
 
 .form-control:focus::-webkit-input-placeholder,
@@ -1061,7 +1061,7 @@ h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
 }
 
 h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover {
-    color: #f39c12;
+    color: #3399ff;
     text-decoration: none;
 }
 
@@ -1123,7 +1123,7 @@ blockquote:before {
     content: '';
     width: 5px;
     height: 100%;
-    background-color: #f39c12;
+    background-color: #3399ff;
     position: absolute;
     top: 0;
     left: 0;
@@ -1162,7 +1162,7 @@ abbr {
 }
 
 mark, .mark {
-    background-color: #f39c12;
+    background-color: #3399ff;
     color: #fff;
 }
 
@@ -1175,13 +1175,13 @@ mark, .mark {
 }
 
 .box-number__number {
-    color: #f39c12;
+    color: #3399ff;
 }
 
 .box-number__number > h2 {
     font-size: 30px;
     font-weight: 300;
-    color: #f39c12;
+    color: #3399ff;
     margin-bottom: 5px;
     line-height: 1.333;
     display: inline-block;
@@ -1293,7 +1293,7 @@ mark, .mark {
 }
 
 .owl-dot.active {
-    background-color: #f39c12;
+    background-color: #3399ff;
 }
 
 .owl-prev, .owl-next {
@@ -1377,7 +1377,7 @@ mark, .mark {
 
 .comment-heading > span {
     margin-left: 10px;
-    color: #f39c12;
+    color: #3399ff;
 }
 
 .fn {
@@ -1417,7 +1417,7 @@ mark, .mark {
 }
 
 .comment-button > a:hover {
-    background-color: #f39c12;
+    background-color: #3399ff;
     color: white;
 }
 
@@ -1491,7 +1491,7 @@ mark, .mark {
 .countdown__module span {
     font-size: 30px;
     font-weight: 400;
-    color: #f39c12;
+    color: #3399ff;
     display: block;
     margin: 5px;
     height: 100px;
@@ -1791,7 +1791,7 @@ mark, .mark {
 }
 
 .form-sub__form .form-button {
-    color: #f39c12;
+    color: #3399ff;
     height: 46px;
     border: 1px solid #ebebeb;
     border-left: none;
@@ -1802,8 +1802,8 @@ mark, .mark {
 }
 
 .form-sub__form .form-button:hover, .form-sub__form .form-button:focus {
-    background-color: #f39c12;
-    border-color: #f39c12;
+    background-color: #3399ff;
+    border-color: #3399ff;
     color: white;
 }
 
@@ -1826,7 +1826,7 @@ mark, .mark {
 .form-sub__title {
     font-size: 16px;
     font-weight: 400;
-    color: #c2c2c2;
+    color: #fff;
     text-transform: capitalize;
 }
 
@@ -2622,7 +2622,7 @@ mark, .mark {
     background-color: white;
     box-shadow: 0 10px 30px 0 rgba(0, 0, 0, .2);
     margin-bottom: 30px;
-    color: #f39c12;
+    color: #3399ff;
     font-size: 24px;
 }
 
@@ -2659,13 +2659,13 @@ mark, .mark {
 }
 
 .iconbox__style-03:hover .iconbox__icon, .iconbox__style-03:focus .iconbox__icon {
-    color: #f39c12;
+    color: #3399ff;
 }
 
 .iconbox__style-04 .iconbox__icon {
     display: inline-block;
     font-size: 48px;
-    color: #f39c12;
+    color: #3399ff;
     text-align: left;
     position: relative;
     line-height: 1;
@@ -2740,7 +2740,7 @@ mark, .mark {
 }
 
 .pagination__item.active {
-    color: #f39c12;
+    color: #3399ff;
     text-decoration: underline;
 }
 
@@ -2763,7 +2763,7 @@ mark, .mark {
 }
 
 .post-01__categories a {
-    color: #f39c12;
+    color: #3399ff;
     text-transform: uppercase;
 }
 
@@ -3061,7 +3061,7 @@ mark, .mark {
 }
 
 .post-03__link {
-    color: #f39c12;
+    color: #3399ff;
     text-transform: uppercase;
     font-weight: 700;
 }
@@ -3194,7 +3194,7 @@ mark, .mark {
 }
 
 .social-01__style-02 .social-01__item:hover {
-    background-color: #f39c12;
+    background-color: #3399ff;
     color: white;
 }
 
@@ -3236,7 +3236,7 @@ mark, .mark {
 }
 
 .tagclould > a:hover {
-    color: #f39c12;
+    color: #3399ff;
     text-decoration: underline;
 }
 
@@ -3396,7 +3396,7 @@ mark, .mark {
 }
 
 .title-01__title > span, .title-01__title > a {
-    color: #f39c12;
+    color: #3399ff;
 }
 
 .title-01__style-02 .title-01__title {
@@ -3519,8 +3519,8 @@ mark, .mark {
 }
 
 .video-button:hover, .video-button:focus {
-    border-color: #f39c12;
-    background-color: #f39c12;
+    border-color: #3399ff;
+    background-color: #3399ff;
 }
 
 .video {
@@ -3602,7 +3602,7 @@ mark, .mark {
 
 .widget-text__style-02 ul li:hover, .widget-text__style-02 ul li:focus,
 .widget-text__style-03 ul li:hover, .widget-text__style-03 ul li:focus {
-    color: #f39c12;
+    color: #3399ff;
 }
 
 .widget-text__style-03 ul li a {
@@ -3610,7 +3610,7 @@ mark, .mark {
 }
 
 .widget-text__style-03 ul li a:hover, .widget-text__style-03 ul li a:focus {
-    color: #f39c12;
+    color: #3399ff;
 }
 
 .widget-text__style-04 .widget-text__content > * {
@@ -3647,9 +3647,9 @@ mark, .mark {
 /*!* zmiana footer *!*/
 
 .footer {
-    background-color: #1a1a23;
+    background-color: #1f1c2f;
     overflow: hidden;
-    color: #c2c2c2;
+    color: #fff;
 }
 
 .footer .row {
@@ -3657,11 +3657,11 @@ mark, .mark {
 }
 
 .footer .widget-text__widget ul li a {
-    color: #c2c2c2;
+    color: #fff;
 }
 
 .footer .widget-text__widget ul li a:hover {
-    color: #f39c12;
+    color: #3399ff;
 }
 
 .footer__main {
@@ -3707,8 +3707,12 @@ mark, .mark {
 }
 
 .consult_backToTop a {
-    color: #f39c12 !important;
+    color: #fff !important;
     padding-right: 0;
+}
+
+.consult_backToTop a:hover {
+    color: #3399ff !important;
 }
 
 .consult_backToTop i {
@@ -3788,8 +3792,9 @@ mark, .mark {
 }
 
 .header.shrink {
+    color: #1f1c2f;
     position: fixed;
-    background-color: white;
+    background-color: #FFFFFF;
 }
 
 .header.shrink .header__logo {
@@ -3907,15 +3912,19 @@ mark, .mark {
 }
 
 .header__style-02:not(.shrink) .consult-nav .consult-menu > li > a {
+     color: #fff;
+ }
+
+.header__style-02:not(.shrink) {
     color: #fff;
 }
 
 .header__style-02:not(.shrink) .consult-nav .consult-menu .current-menu-item > a {
-    color: #f39c12;
+    color: #3399ff;
 }
 
 .header__style-02:not(.shrink) .dropdown__toggle {
-    color: #c2c2c2;
+    color: #fff;
 }
 
 .header__style-02:not(.shrink) .search-form__toggle {
@@ -3990,7 +3999,7 @@ mark, .mark {
     }
 
     .consult-nav li:hover > a {
-        color: #f39c12;
+        color: #3399ff;
     }
 
     .consult-nav .consult-menu .sub-menu {
@@ -4017,7 +4026,7 @@ mark, .mark {
         background-color: #fff;
         text-align: left;
         border: 1px solid rgba(0, 0, 0, .1);
-        border-top: 3px solid #f39c12;
+        border-top: 3px solid #3399ff;
     }
 
     .consult-nav .consult-menu .sub-menu a {
@@ -4047,7 +4056,7 @@ mark, .mark {
 
     .consult-nav .consult-menu a {
         font-size: 14px;
-        color: #868686;
+        color: #1f1c2f;
         transition: all 300ms ease;
         font-weight: 700;
         text-transform: uppercase;
@@ -4062,12 +4071,12 @@ mark, .mark {
 
     .consult-nav .consult-menu .sub-menu .current-menu-parent > a,
     .consult-nav .consult-menu .sub-menu .current-menu-item > a {
-        color: #f39c12;
+        color: #3399ff;
     }
 
     .consult-nav .consult-menu .current-menu-parent > a,
     .consult-nav .consult-menu .current-menu-item > a {
-        color: #f39c12;
+        color: #3399ff;
     }
 
     .consult-nav .consult-menu .sub-menu {
@@ -4100,18 +4109,18 @@ mark, .mark {
         text-transform: capitalize;
         height: auto;
         line-height: 1.875;
-        color: #8f8f8f;
+        color: #1f1c2f;
         border-bottom: none;
         box-shadow: none;
     }
 
     .consult-nav .consult-menu .sub-menu li:hover > a {
-        color: #f39c12;
+        color: #3399ff;
     }
 
     .consult-nav .consult-menu .sub-menu li .current-menu-parent > a,
     .consult-nav .consult-menu .sub-menu li .current-menu-item > a {
-        color: #f39c12;
+        color: #3399ff;
     }
 
     .consult-nav .navbar-toggle {
@@ -4195,16 +4204,16 @@ mark, .mark {
     }
 
     .consult-nav .consult-menu a:hover {
-        color: #f39c12;
+        color: #3399ff;
     }
 
     .consult-nav .consult-menu .active > a {
-        color: #f39c12;
+        color: #3399ff;
     }
 
     .consult-nav .consult-menu .current-menu-parent > a,
     .consult-nav .consult-menu .current-menu-item > a {
-        color: #f39c12;
+        color: #3399ff;
     }
 
     .consult-nav .consult-menu .sub-menu a {
@@ -4212,19 +4221,19 @@ mark, .mark {
     }
 
     .consult-nav .consult-menu .sub-menu .menu-item-has-children > a:hover {
-        color: #f39c12;
+        color: #3399ff;
     }
 
     .consult-nav .consult-menu .sub-menu .menu-item-has-children.active > a {
-        color: #f39c12;
+        color: #3399ff;
     }
 
     .consult-nav .consult-menu .sub-menu .menu-item-has-children.current-menu-parent > a {
-        color: #f39c12;
+        color: #3399ff;
     }
 
     .consult-nav .consult-menu .sub-menu .current-menu-item > a {
-        color: #f39c12;
+        color: #3399ff;
     }
 
     .consult-nav .navbar-toggle {
@@ -4435,7 +4444,7 @@ mark, .mark {
 }
 
 .filter__list > li.current > a {
-    color: #f39c12;
+    color: #3399ff;
 }
 
 .filter__list a {
@@ -4444,7 +4453,7 @@ mark, .mark {
 }
 
 .filter__list a:hover {
-    color: #f39c12;
+    color: #3399ff;
 }
 .consult_logo {
     display: block;
@@ -4457,7 +4466,7 @@ mark, .mark {
 }
 
 .consult-phone {
-    color: #f39c12;
+    color: #3399ff;
     text-align: center;
     margin-bottom: 50px;
     font-size: 30px;
@@ -4488,13 +4497,13 @@ mark, .mark {
     margin-bottom: 60px;
     transition: all ease .3s;
     font-size: 18px;
-    color: #f39c12;
+    color: #3399ff;
     text-align: center;
 }
 
 .consult-back:hover {
-    border-color: #f39c12;
-    background-color: #f39c12;
+    border-color: #3399ff;
+    background-color: #3399ff;
     color: white;
 }
 
@@ -4531,7 +4540,7 @@ mark, .mark {
 .consult-404__content > h1 {
     font-size: 80px;
     font-weight: 400;
-    color: #f39c12;
+    color: #3399ff;
     letter-spacing: 20px;
     margin-bottom: 5px;
 }
@@ -4553,7 +4562,7 @@ mark, .mark {
 }
 
 .consult-404__content a {
-    color: #f39c12;
+    color: #3399ff;
     font-weight: 700;
     text-decoration: underline;
 }

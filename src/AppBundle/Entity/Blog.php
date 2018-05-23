@@ -29,6 +29,12 @@ class Blog
     private $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\BlogCategory", inversedBy="blogs")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     */
+    private $category;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="title", type="text")
@@ -95,6 +101,28 @@ class Blog
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set category
+     *
+     * @param $category
+     *
+     * @return Blog
+     */
+    public function setCategory($category){
+        $this->category = $category;
+
+        Return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return mixed
+     */
+    public function getCategory(){
+        return $this->category;
     }
 
     /**

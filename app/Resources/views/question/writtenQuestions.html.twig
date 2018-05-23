@@ -10,20 +10,23 @@
 
                     <!-- title-01 -->
                     <div class="title-01 title-01__style-04">
-                        <h3>Pytania ustne</h3>
+                        <h3>Pytania Pisemne</h3>
                     </div><!-- End / title-01 -->
 
+                    <div>
+                        {{ cms.content }}
+                    </div>
 
-                    {% for question in questions %}
-                        <div>
-                            <p>{{ question.question }}</p>
-                        </div>
-                    {% endfor %}
+                    {#{% for question in questions %}#}
+                        {#<div>#}
+                            {#<p>{{ question.question }}</p>#}
+                        {#</div>#}
+                    {#{% endfor %}#}
 
                     {#<div class="navigation">#}
-                    <div class="layout-blog__content">
-                    {{ knp_pagination_render(questions) }}
-                    </div>
+                    {#<div class="layout-blog__content">#}
+                    {#{{ knp_pagination_render(questions) }}#}
+                    {#</div>#}
                     {#</div>#}
                 </div>
             </div>

@@ -37,10 +37,11 @@ class EditProfileType extends AbstractType
     );
 
     private $degree = array(
-        "magister" => "magister",
-        "inżynier" => "inżynier",
-        "architekt" => "architekt",
-        "inżynier architekt" => "inżynier architekt",
+        "Magister inżynier architektury" => "Magister inżynier architektury",
+        "Inżynier architektury" => "Inżynier architektury",
+        "Dr. mgr. inż. architektury" => "Dr. mgr. inż. architektury",
+        "Inżynier budownictwa" => "Inżynier budownictwa",
+        "Magister inżynier budownictwa" => "Magister inżynier budownictwa",
     );
 
     public function buildForm(FormBuilderInterface $builder, array $options)

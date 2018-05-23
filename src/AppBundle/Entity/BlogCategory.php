@@ -8,12 +8,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * questionCategories
+ * BlogCategory
  *
- * @ORM\Table(name="question_categories")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\questionCategoriesRepository")
+ * @ORM\Table(name="blog_category")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\BlogCategoryRepository")
  */
-class QuestionCategories
+class BlogCategory
 {
     /**
      * @var int
@@ -50,24 +50,25 @@ class QuestionCategories
     /**
      * @var Collection
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\VerbalQuestion", mappedBy="category")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Blog", mappedBy="category")
      */
-    private $verbalQuestions;
+    private $blogs;
 
     public function __construct()
     {
-        $this->verbalQuestions = new ArrayCollection();
+        $this->blogs = new ArrayCollection();
     }
 
     /**
-     * get verbalQuestions
+     * get blogs
      *
-     * @return Collection|VerbalQuestion[]
+     * @return Collection|Blog[]
      */
-    public function getVerbalQuestions()
+    public function getBlog()
     {
-        return $this->verbalQuestions;
+        return $this->blogs;
     }
+
 
     /**
      * Get id
@@ -84,7 +85,7 @@ class QuestionCategories
      *
      * @param string $name
      *
-     * @return questionCategories
+     * @return BlogCategory
      */
     public function setName($name)
     {
@@ -104,11 +105,26 @@ class QuestionCategories
     }
 
     /**
+     * Get urlName
+     *
+     * @return string
+     */
+    public function getUrlName() {
+        $url = $this->getName();
+        $url = preg_replace('~[^\\pL0-9_]+~u', '-', $url);
+        $url = trim($url, "-");
+        $url = iconv("utf-8", "us-ascii//TRANSLIT", $url);
+        $url = strtolower($url);
+        $url = preg_replace('~[^-a-z0-9_]+~', '', $url);
+        return $url;
+    }
+
+    /**
      * Set createdAt
      *
      * @param \DateTime $createdAt
      *
-     * @return questionCategories
+     * @return BlogCategory
      */
     public function setCreatedAt($createdAt)
     {
@@ -132,7 +148,7 @@ class QuestionCategories
      *
      * @param \DateTime $updatedAt
      *
-     * @return questionCategories
+     * @return BlogCategory
      */
     public function setUpdatedAt($updatedAt)
     {

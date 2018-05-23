@@ -23,7 +23,7 @@ class WrittenQuestion
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\QuestionCategories", inversedBy="writtenQuestions")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\WrittenQuestionCategory", inversedBy="writtenQuestions")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
     private $category;

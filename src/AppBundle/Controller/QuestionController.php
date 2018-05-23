@@ -9,6 +9,7 @@
 namespace AppBundle\Controller;
 
 
+use AppBundle\Entity\CMS;
 use AppBundle\Entity\User;
 use AppBundle\Entity\VerbalQuestion;
 use AppBundle\Entity\WrittenQuestion;
@@ -26,11 +27,31 @@ class QuestionController extends Controller
      * @Route("/pytania/ustne", name="verbalQuestions")
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function verbalQuestionsAction(){
+    public function verbalQuestionsAction(Request $request){
         $entityManager = $this->getDoctrine()->getManager();
-        $questions = $entityManager->getRepository(VerbalQuestion::class)->findBy(["isFree" => true]);
+        /**
+         * @var User $user
+         */
+        $user = $this->getUser();
+        if( !is_null($user) && $user->hasRole("ROLE_VIP")){
+            $questions = $entityManager->getRepository(VerbalQuestion::class)->findAll();
+        }elseif(!is_null($user)){
+            $questions = $entityManager->getRepository(VerbalQuestion::class)->findBy(["isFree" => true]);
+        }
+
+        if(!is_null($user)){
+            $paginator  = $this->get('knp_paginator');
+            $questions = $paginator->paginate(
+                $questions, /* query NOT result */
+                $request->query->getInt('page', 1)/*page number*/,
+                $request->query->getInt('limit', 10)/*limit per page*/
+            );
+        }else{
+            $cms = $entityManager->getRepository(CMS::class)->findOneBy(["place" => "pytania ustne"]);
+        }
         return $this->render("question/verbalQuestions.html.twig", [
-            "questions" => $questions
+            "questions" => isset($questions) ? $questions : null,
+            'cms' => isset($cms) ? $cms : null
         ]);
     }
 
@@ -48,9 +69,11 @@ class QuestionController extends Controller
             $request->query->getInt('page', 1)/*page number*/,
             $request->query->getInt('limit', 10)/*limit per page*/
         );
+        $cms = $entityManager->getRepository(CMS::class)->findOneBy(["place" => "pytania pisemne"]);
 
         return $this->render("question/writtenQuestions.html.twig", [
-            "questions" => $questions
+            "questions" => $questions,
+            "cms" => $cms
         ]);
     }
 

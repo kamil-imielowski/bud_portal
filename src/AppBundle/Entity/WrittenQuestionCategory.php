@@ -8,12 +8,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * questionCategories
+ * WrittenQuestionCategory
  *
- * @ORM\Table(name="question_categories")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\questionCategoriesRepository")
+ * @ORM\Table(name="written_question_category")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\WrittenQuestionCategoryRepository")
  */
-class QuestionCategories
+class WrittenQuestionCategory
 {
     /**
      * @var int
@@ -50,23 +50,24 @@ class QuestionCategories
     /**
      * @var Collection
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\VerbalQuestion", mappedBy="category")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\WrittenQuestion", mappedBy="category")
      */
-    private $verbalQuestions;
+    private $writtenQuestions;
+
 
     public function __construct()
     {
-        $this->verbalQuestions = new ArrayCollection();
+        $this->writtenQuestions = new ArrayCollection();
     }
 
     /**
-     * get verbalQuestions
+     * get writtenQuestion
      *
-     * @return Collection|VerbalQuestion[]
+     * @return Collection|WrittenQuestion[]
      */
-    public function getVerbalQuestions()
+    public function getWrittenQuestion()
     {
-        return $this->verbalQuestions;
+        return $this->writtenQuestions;
     }
 
     /**
@@ -84,7 +85,7 @@ class QuestionCategories
      *
      * @param string $name
      *
-     * @return questionCategories
+     * @return writtenQuestionCategory
      */
     public function setName($name)
     {
@@ -108,7 +109,7 @@ class QuestionCategories
      *
      * @param \DateTime $createdAt
      *
-     * @return questionCategories
+     * @return writtenQuestionCategory
      */
     public function setCreatedAt($createdAt)
     {
@@ -132,7 +133,7 @@ class QuestionCategories
      *
      * @param \DateTime $updatedAt
      *
-     * @return questionCategories
+     * @return writtenQuestionCategory
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -151,4 +152,3 @@ class QuestionCategories
         return $this->updatedAt;
     }
 }
-

@@ -12,14 +12,16 @@ easy_admin:
         menu:
           - { entity: 'User', icon: 'user' }
           - { entity: 'Blog', icon: 'align-justify' }
+          - { entity: 'BlogCategory', icon: 'align-justify' }
           - { entity: 'NewsLetterEmails', icon: 'envelope' }
           - { label: 'Lawbook' }
           - { entity: 'Lawbook', icon: 'gavel' }
           - { entity: 'LawbookCategory', icon: 'gavel' }
           - { label: 'Questions' }
           - { entity: 'WrittenQuestion', icon: 'question' }
+          - { entity: 'WrittenQuestionCategory', label: 'WrittenQuestionCategory', icon: 'question' }
           - { entity: 'VerbalQuestion', icon: 'question' }
-          - { entity: 'QuestionCategories', icon: 'question' }
+          - { entity: 'QuestionCategories', label: 'VerbalQuestionCategories', icon: 'question' }
           - { label: 'Settings' }
           - { entity: 'CMS', icon: 'bolt' }
           - { entity: 'Advertising', icon: 'bullhorn' }
@@ -53,12 +55,14 @@ easy_admin:
                   - {property: 'title', type: 'Symfony\Component\Form\Extension\Core\Type\TextType'}
                   - {property: 'imageFile', type: 'Vich\UploaderBundle\Form\Type\VichImageType'}
                   - {property: 'content', type: 'Ivory\CKEditorBundle\Form\Type\CKEditorType'}
+                  - {property: 'category', type: 'Symfony\Bridge\Doctrine\Form\Type\EntityType', type_options: {class: AppBundle\Entity\BlogCategory, choice_label: 'name', required: false, empty_data: null}}
                   - {property: 'published', type: 'Symfony\Component\Form\Extension\Core\Type\CheckboxType'}
           list:
             fields:
               - {property: 'title'}
               - {property: 'image', type: 'image', base_path: "%app.blog.image%"}
               - {property: 'published', type: 'toggle'}
+              - {property: 'category.name'}
               - {property: 'views'}
 
 
@@ -98,7 +102,7 @@ easy_admin:
               - {property: 'answerA', type: 'Symfony\Component\Form\Extension\Core\Type\TextType'}
               - {property: 'answerB', type: 'Symfony\Component\Form\Extension\Core\Type\TextType'}
               - {property: 'answerC', type: 'Symfony\Component\Form\Extension\Core\Type\TextType'}
-              - {property: 'category', type: 'Symfony\Bridge\Doctrine\Form\Type\EntityType', type_options: {class: AppBundle\Entity\QuestionCategories, choice_label: 'name', required: true, empty_data: null}}
+              - {property: 'category', type: 'Symfony\Bridge\Doctrine\Form\Type\EntityType', type_options: {class: AppBundle\Entity\WrittenQuestionCategory, choice_label: 'name', required: true, empty_data: null}}
           list:
             fields:
               - {property: 'id'}
@@ -126,6 +130,17 @@ easy_admin:
 
         QuestionCategories:
           class: AppBundle\Entity\QuestionCategories
+          form:
+              fields:
+                  - {property: 'name', type: 'Symfony\Component\Form\Extension\Core\Type\TextType'}
+          list:
+            fields:
+              - {property: 'id'}
+              - {property: 'name'}
+              - {property: 'updatedAt'}
+
+        WrittenQuestionCategory:
+          class: AppBundle\Entity\WrittenQuestionCategory
           form:
               fields:
                   - {property: 'name', type: 'Symfony\Component\Form\Extension\Core\Type\TextType'}
@@ -216,6 +231,17 @@ easy_admin:
                 - {property: 'isFree', type: 'toggle'}
                 - {property: 'title'}
                 - {property: 'createdAt'}
+
+        BlogCategory:
+          class: AppBundle\Entity\BlogCategory
+          form:
+              fields:
+                  - {property: 'name', type: 'Symfony\Component\Form\Extension\Core\Type\TextType'}
+          list:
+            fields:
+              - {property: 'id'}
+              - {property: 'name'}
+              - {property: 'updatedAt'}
 
 
 

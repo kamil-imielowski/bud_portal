@@ -10,8 +10,10 @@ namespace AppBundle\Controller;
 
 
 use AppBundle\Entity\Blog;
+use AppBundle\Entity\BlogCategory;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class BlogController extends Controller
 {
@@ -19,10 +21,22 @@ class BlogController extends Controller
      * @Route("/blog", name="blog")
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function blogAction(){
+    public function blogAction(Request $request){
         $entityManager = $this->getDoctrine()->getManager();
-        $blogs = $entityManager->getRepository(Blog::class)->findBy(["published" => true]);
-        return $this->render("blog/index.html.twig", ["blogs" => $blogs]);
+        $cat = $request->query->getInt('category', null);
+        if(!empty($cat)){
+            $category = explode("_", $cat);
+            $c = $entityManager->getRepository(BlogCategory::class)->findOneBy(["id" => $category[0]]);
+            $blogs = $entityManager->getRepository(Blog::class)->findBy(["published" => true, "category" => $c]);
+
+        }else{
+            $blogs = $entityManager->getRepository(Blog::class)->findBy(["published" => true]);
+        }
+        $categories = $entityManager->getRepository(BlogCategory::class)->findAll();
+        return $this->render("blog/index.html.twig", [
+            "blogs" => $blogs,
+            "categories" => $categories
+        ]);
     }
 
     /**

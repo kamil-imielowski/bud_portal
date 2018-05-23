@@ -12,14 +12,32 @@
 
                         <!-- title-01 -->
                         <div class="title-01 title-01__style-04">
-
+                            <h3>Pytania Ustne</h3>
                         </div><!-- End / title-01 -->
 
-                        {% for question in questions %}
-                            <div>
-                                <p>{{ question.question }}</p>
+                        {% if is_granted("ROLE_USER") %}
+
+                            {% for question in questions %}
+                                <div>
+                                    <div class="question-box">
+                                        <p class="d-inline">{{ question.question }}</p>
+                                        <button class="btn btn-primary d-inline btn-xs question" data-answer="a-{{ question.id }}"><i class="fas fa-reply"></i> Odpowiedź</button>
+                                    </div>
+                                    <p id="a-{{ question.id }}" style="display: none">{{ question.answer }}</p>
+                                </div>
+                            {% endfor %}
+
+                            <div class="navigation">
+                                <div class="layout-blog__content">
+                                    {{ knp_pagination_render(questions) }}
+                                </div>
                             </div>
-                        {% endfor %}
+
+                        {% else %}
+                            <div>
+                                {{ cms.content }}
+                            </div>
+                        {% endif %}
 
                     </div>
                 </div>
@@ -34,4 +52,12 @@
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('assets/js/disabledCopy.js') }}"></script>
+    <script>
+        $(".question").click(function () {
+            var a = $(this).data('answer');
+            $("#"+a).slideToggle( "slow", function() {
+                // Animation complete.
+            });
+        })
+    </script>
 {% endblock %}

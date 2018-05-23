@@ -25,28 +25,56 @@
     <section class="md-section">
         <div class="container">
 
-            {% for blog in blogs %}
+
             <!-- layout-blog sidebar-left -->
             <div class="layout-blog sidebar-left">
-                <div class="layout-blog__content">
 
+                <div class="layout-blog__content">
+                    {% for blog in blogs %}
                     <!--  -->
                     <div class="post-01__style-02 md-text-center">
                         <div class="post-01__media"><a href="{{ path('blog_details', {"id":blog.id, "urlTitle": blog.urlTitle}) }}"><img src="{{ asset(blog_images ~ blog.image) }}" alt=""/></a>
                         </div>
                         <div>
-                            {#<ul class="post-01__categories">#}
-                                {#<li><a href="#">Business</a></li>#}
-                            {#</ul>#}
+                            {% if blog.category is not empty %}
+                            <ul class="post-01__categories">
+                                <li><a href="{{ path('blog', {category: blog.category.id ~ "_" ~ blog.category.urlName}) }}">{{ blog.category.name }}</a></li>
+                            </ul>
+                            {% endif %}
                             <h2 class="post-01__title"><a href="{{ path('blog_details', {"id":blog.id, "urlTitle": blog.urlTitle}) }}">{{ blog.title }}</a></h2>
                             <div class="post-01__time">{{ blog.createdAt|localizeddate('long', 'none', locale) }}</div>
                             <div class="post-01__note"></div>
                         </div>
                     </div><!-- End /  -->
-
+                    {% else %}
+                        <strong>Brak wpisów w wybranej kategorii</strong>
+                    {% endfor %}
                 </div>
+
+                <aside class="layout-blog__sidebar">
+
+                    <!--  -->
+                    <div>
+                        <!-- widget-text__widget -->
+                        <section class="widget-text__widget widget-text__style-02 widget">
+                            <h3 class="widget-title">Kategorie</h3>
+                            <div class="widget-text__content">
+                                <ul>
+                                    <li><a href="{{ path('blog') }}">Wszystkie</a></li>
+                                    {% for category in categories %}
+                                    <li><a href="{{ path('blog', {category: category.id ~ "_" ~ category.urlName}) }}">{{ category.name }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </section><!-- End / widget-text__widget -->
+                    </div><!-- End /  -->
+
+                </aside>
+
             </div>
-            {% endfor %}
+
+
+
         </div>
     </section>
 

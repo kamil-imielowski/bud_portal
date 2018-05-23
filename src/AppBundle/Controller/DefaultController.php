@@ -18,10 +18,6 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $ad1 = $this->forward('AppBundle:Advertising:place', array('place' => 1));
-        $ad2 = $this->forward('AppBundle:Advertising:place', array('place' => 2));
-        $ad3 = $this->forward('AppBundle:Advertising:place', array('place' => 3));
-
         $em = $this->getDoctrine()->getManager();
         $baners = $em->getRepository(Baner::class)->findAll();
 
@@ -30,9 +26,6 @@ class DefaultController extends Controller
         return $this->render('default/index.html.twig', [
             'baners' => $baners,
             'blogs' => $blogs,
-            'ad1' => $ad1,
-            'ad2' => $ad2,
-            'ad3' => $ad3,
         ]);
     }
 
@@ -61,30 +54,34 @@ class DefaultController extends Controller
         return $this->render("default/newsletterRecipientForm.html.twig", ['form' => $form->createView()]);
     }
 
-
 //    /**
 //     * @Route("/import")
 //     * @return Response
 //     */
 //    public function import(){
-//        $file = fopen('C:\Users\toma4\projects\last.csv', 'r');
-//        $em = $this->getDoctrine()->getManager();
-//        while (($line = fgetcsv($file)) !== FALSE) {
-//            //$line is an array of the csv elements
-//            $line = str_replace("&&*", ",", $line[0]);
-//            //$line = str_replace("&*&", ",", $line);
-//            $data = explode(";", $line);
-//            $question = new WrittenQuestion();
-//            $question->setQuestion(str_replace("&*&", ";", $data[1]))
-//                ->setAnswerA(str_replace("&*&", ";", $data[2]))
-//                ->setAnswerB(str_replace("&*&", ";", $data[3]))
-//                ->setAnswerC(str_replace("&*&", ";", $data[4]))
-//                ->setPrompt(str_replace("&*&", ";", $data[5]))
-//                ->setIsFree(rand(0,1) == 1 ? true : false);
-//            $em->persist($question);
-//            $em->flush();
+//        for($i = 1; $i <= 19; $i++){
+//            $file = fopen('C:\Users\toma4\projects\/'.$i.'.csv', 'r');
+//            $em = $this->getDoctrine()->getManager();
+//            $cat = $em->getRepository(WrittenQuestionCategory::class) -> findOneBy(['id' => $i]);
+//            while (($line = fgetcsv($file)) !== FALSE) {
+//                //$line is an array of the csv elements
+//                $line = str_replace("&&*", ",", $line[0]);
+//                //$line = str_replace("&*&", ",", $line);
+//                $data = explode(";", $line);
+//                $question = new WrittenQuestion();
+//                $question->setQuestion(str_replace("&*&", ";", $data[1]))
+//                    ->setCategory($cat)
+//                    ->setAnswerA(str_replace("&*&", ";", $data[2]))
+//                    ->setAnswerB(str_replace("&*&", ";", $data[3]))
+//                    ->setAnswerC(str_replace("&*&", ";", $data[4]))
+//                    ->setPrompt(str_replace("&*&", ";", $data[5]))
+//                    ->setIsFree(rand(0,1) == 1 ? true : false);
+//                $em->persist($question);
+//                $em->flush();
+//            }
+//            fclose($file);
 //        }
-//        fclose($file);
+//
 //
 //        return new Response("OK");
 //    }

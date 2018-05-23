@@ -1310,7 +1310,8 @@ mark, .mark {
 
 .owl-prev:after, .owl-next:after {
     font-size: 36px;
-    font-family: FontAwesome;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
     line-height: 1;
 }
 
@@ -3592,7 +3593,8 @@ mark, .mark {
 
 .widget-text__style-02 ul li:before, .widget-text__style-03 ul li:before {
     content: "\F105";
-    font-family: FontAwesome;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
     display: inline-block;
     top: 50%;
     left: 0;

@@ -116,6 +116,7 @@
             <!-- Content-->
             <div class="md-content">
                 {% block body %}{% endblock %}
+                {{ render(controller('AppBundle:Advertising:place', {'place': 1})) }}
             </div>
             <!-- End / Content-->
 

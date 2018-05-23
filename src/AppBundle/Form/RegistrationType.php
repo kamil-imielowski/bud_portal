@@ -35,13 +35,6 @@ class RegistrationType extends AbstractType
         'zachodniopomorskie' => 'zachodniopomorskie',
     );
 
-    private $degree = array(
-        "magister" => "magister",
-        "inżynier" => "inżynier",
-        "architekt" => "architekt",
-        "inżynier architekt" => "inżynier architekt",
-    );
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder

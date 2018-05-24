@@ -1,5 +1,10 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}" />
+    <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" />
+{% endblock %}
+
 {% block body %}
 
     <!-- Section -->
@@ -12,11 +17,24 @@
 
                     </div>
 
+                    {% for flashMessage in app.session.flashbag.get('error') %}
+                        <p class="error">{{ flashMessage }}</p>
+                    {% endfor %}
+
                     <form method="post">
                         <input name="route" type="hidden" value="exam_lobby">
-                        <div>
-                            <label>Ilość pytań:</label>
-                            <input name="questions" type="number" step="1" min="1" max="80" value="45" required>
+                        <div class="form-group">
+                            <label for="questionsInput">Ilość pytań:</label>
+                            <input class="form-control" name="questions" id="questionsInput" type="number" step="1" min="1" max="80" value="45" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="basic">Kategorie pytań:</label>
+                            <select class="custom-select  form-control" id="basic" multiple="multiple" name="category[]">
+                                {#<option selected value="all">Wszystkie</option>#}
+                                {% for category in categories %}
+                                    <option value="{{ category.id }}">{{ category.name }}</option>
+                                {% endfor %}
+                            </select>
                         </div>
                         <button type="submit" class="btn btn-w180" id="startExam">Rozpocznij Egzamin</button>
                     </form>
@@ -31,8 +49,15 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('assets/js/disabledCopy.js') }}"></script>
+    {#<script src="{{ asset('assets/js/disabledCopy.js') }}"></script>#}
+    <script src="{{ asset('assets/js/select2.min.js') }}"></script>
     <script>
         localStorage.clear();
+        $(document).ready(function() {
+            $("#basic").select2({
+                placeholder: 'Wybierz kategorię',
+                width: 'resolve',
+            });
+        });
     </script>
 {% endblock %}

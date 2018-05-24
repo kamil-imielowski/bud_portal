@@ -82,3 +82,16 @@
     list-style: none;
     color: #9f191f;
 }
+
+.error{
+    color: #9f191f;
+}
+
+.select2{
+    width: 100% !important;
+    height: auto;
+}
+
+ul.select2-selection {
+    max-height: 200px;
+}

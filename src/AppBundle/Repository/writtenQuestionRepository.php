@@ -20,6 +20,15 @@ class writtenQuestionRepository extends \Doctrine\ORM\EntityRepository
             ->getResult();
     }
 
+    public function getAllIdsForCategory($category)
+    {
+        return $this->createQueryBuilder('w')
+            ->select('w.id')
+            ->where("w.category = $category" )
+            ->getQuery()
+            ->getResult();
+    }
+
     public function getIDsRange()
     {
         try {

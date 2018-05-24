@@ -13,6 +13,7 @@ use AppBundle\Entity\CMS;
 use AppBundle\Entity\User;
 use AppBundle\Entity\VerbalQuestion;
 use AppBundle\Entity\WrittenQuestion;
+use AppBundle\Entity\WrittenQuestionCategory;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -89,32 +90,52 @@ class QuestionController extends Controller
         if($request->getMethod() == "POST"){
             $this->get('session')->getFlashBag()->add('from', $request->get('route'));
             $this->get('session')->getFlashBag()->add('pytan', $request->get('questions'));
+            $this->get('session')->getFlashBag()->add('categories', $request->get('category'));
             return $this->redirectToRoute('exam');
         }
 
-        return $this->render("question/beforeExam.html.twig");
+        $em = $this->getDoctrine()->getManager();
+        $categories = $em->getRepository(WrittenQuestionCategory::class)->getNotEmptyCategories();
+
+        return $this->render("question/beforeExam.html.twig",[
+            'categories' => $categories
+        ]);
     }
 
     /**
      * @Route("/egzamin", name="exam")
      * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \Exception
      */
     public function examAction(){
+        //brak usera zalogowanego
         if(is_null($this->getUser())){
             return $this->redirectToRoute('fos_user_security_login');
         }
+
+        //brak uprawnien do egzaminu
         if(!$this->getUser()->hasRole("ROLE_VIP")){
             return $this->redirectToRoute('memberPlans');
         }
+
+
         $from = $this->get('session')->getFlashBag()->get('from');
         $egzamin = $this->get('session')->get('egzamin');
+
+        //czy z lobby wyslanego, a nie z palca routing wpisany
         if((empty($from) || $from[0] != 'exam_lobby') && is_null($egzamin)){
             return $this->redirectToRoute('exam_lobby');
         }else{
             //inicjalizacja egzaminu
             if(is_null($egzamin['pytan'])){
                 $egzamin['pytan'] = $this->get('session')->getFlashBag()->get('pytan')[0];
-                $egzamin['pytania'] = $this->generateQuestions($egzamin['pytan']);
+                $egzamin['categories'] = $this->get('session')->getFlashBag()->get('categories')[0];
+                try{
+                    $egzamin['pytania'] = $this->generateQuestions($egzamin['pytan'], $egzamin['categories']);
+                }catch (\Exception $e){
+                    $this->get('session')->getFlashBag()->add('error', $e->getMessage());
+                    return $this->redirectToRoute('exam_lobby');
+                }
                 $egzamin['init'] = 0;
             }
             $this->get('session')->set('egzamin', $egzamin);
@@ -172,13 +193,27 @@ class QuestionController extends Controller
     /**
      * @param int $questions
      * @return array
+     * @throws \Exception
      */
-    private function generateQuestions($questions){
+    private function generateQuestions($questions, $categories){
         $em = $this->getDoctrine()->getManager();
-        $min = $em->getRepository(WrittenQuestion::class)->getAllIds();
+        $min = array();
+        if(empty($categories)){
+            $min = $em->getRepository(WrittenQuestion::class)->getAllIds();
+        }else{
+            //pobranie pytan pod kategorie odpowiednie
+            foreach ($categories as $c){
+                $a = $em->getRepository(WrittenQuestion::class)->getAllIdsForCategory($c);
+                $min = array_merge ($min, $a);
+            }
+        }
+        $minC = $max = count($min);
+        if($questions > $minC){
+            throw new \Exception("Liczba pytań w wybranych kategoriach wynosi $minC, zmiejsz liczbę pytań");
+        }
         $j = 0;
         $rand = array();
-        $max = count($min) - 1;
+        $max = $minC - 1;
         while($j<$questions){
             $r = mt_rand(0, $max);
             if(!in_array($min[$r]['id'], $rand)){

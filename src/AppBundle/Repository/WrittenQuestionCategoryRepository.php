@@ -10,4 +10,12 @@ namespace AppBundle\Repository;
  */
 class WrittenQuestionCategoryRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getNotEmptyCategories(){
+        return $this->createQueryBuilder('c')
+            ->innerJoin("c.writtenQuestions", "q")
+            ->select("c")
+            ->where("c.id = q.category")
+            ->getQuery()
+            ->getResult();
+    }
 }

@@ -102,6 +102,8 @@ easy_admin:
               - {property: 'answerA', type: 'Symfony\Component\Form\Extension\Core\Type\TextType'}
               - {property: 'answerB', type: 'Symfony\Component\Form\Extension\Core\Type\TextType'}
               - {property: 'answerC', type: 'Symfony\Component\Form\Extension\Core\Type\TextType'}
+              - {property: 'prompt', type: 'Symfony\Component\Form\Extension\Core\Type\TextType'}
+              - {property: 'isFree', type: 'Symfony\Component\Form\Extension\Core\Type\CheckboxType'}
               - {property: 'category', type: 'Symfony\Bridge\Doctrine\Form\Type\EntityType', type_options: {class: AppBundle\Entity\WrittenQuestionCategory, choice_label: 'name', required: true, empty_data: null}}
           list:
             fields:

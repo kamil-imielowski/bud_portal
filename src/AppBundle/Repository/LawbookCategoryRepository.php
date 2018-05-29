@@ -19,4 +19,12 @@ class LawbookCategoryRepository extends EntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function getVipCategoriesData(){
+        return $this->createQueryBuilder('c')
+            ->innerJoin("c.lawbooks", "l")
+            ->andWhere("l.published = true")
+            ->getQuery()
+            ->getResult();
+    }
 }

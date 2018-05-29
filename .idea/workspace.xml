@@ -2,21 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="836f4cf2-3439-4e65-b2d9-999e539891aa" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/web/assets/css/bootstrap-multiselect.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/assets/css/bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/assets/css/popper.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/assets/css/select2.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/assets/js/bootstrap-multiselect.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/assets/js/bootstrap.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/assets/js/popper.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/assets/js/select2.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Resources/views/lawbook/rawLawbookContent.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/translations/messages.pl.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/translations/messages.pl.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/views/lawbook/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/lawbook/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Resources/views/question/beforeExam.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/question/beforeExam.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/config/admin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/admin.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/QuestionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/QuestionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Repository/WrittenQuestionCategoryRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Repository/WrittenQuestionCategoryRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Repository/writtenQuestionRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Repository/writtenQuestionRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/config/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/LawbookController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/LawbookController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Lawbook.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Lawbook.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Repository/LawbookCategoryRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Repository/LawbookCategoryRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/assets/css/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/assets/css/custom.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,40 +25,38 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="QuestionController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/QuestionController.php">
+      <file leaf-file-name="Lawbook.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Lawbook.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="136" column="64" lean-forward="true" selection-start-line="136" selection-start-column="64" selection-end-line="136" selection-end-column="64" />
+            <state relative-caret-position="847">
+              <caret line="250" column="40" lean-forward="true" selection-start-line="250" selection-start-column="40" selection-end-line="250" selection-end-column="40" />
               <folding>
-                <element signature="e#123#148#0#PHP" expanded="true" />
+                <element signature="e#36#68#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="writtenQuestionRepository.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/writtenQuestionRepository.php">
+      <file leaf-file-name="LawbookController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/LawbookController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="31" selection-start-line="2" selection-start-column="31" selection-end-line="2" selection-end-column="31" />
+            <state relative-caret-position="99">
+              <caret line="31" column="31" selection-start-line="31" selection-start-column="31" selection-end-line="31" selection-end-column="31" />
               <folding>
-                <element signature="e#39#81#0#PHP" expanded="true" />
+                <element signature="e#1487#1524#1#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AdvertisingRepository.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/AdvertisingRepository.php">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="beforeExam.html.twig" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Resources/views/question/beforeExam.html.twig">
+      <file leaf-file-name="contracts.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/practice/contracts.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="326">
-              <caret line="20" column="39" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="39" />
+            <state relative-caret-position="255">
+              <caret line="27" column="65" lean-forward="true" selection-start-line="27" selection-start-column="65" selection-end-line="27" selection-end-column="81" />
+              <folding>
+                <element signature="e#12#26#0#Twig" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -72,17 +64,29 @@
       <file leaf-file-name="base.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="116" lean-forward="true" selection-start-line="16" selection-start-column="116" selection-end-line="16" selection-end-column="116" />
+            <state relative-caret-position="170">
+              <caret line="46" column="34" lean-forward="true" selection-start-line="46" selection-start-column="34" selection-end-line="46" selection-end-column="57" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="popper.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/assets/css/popper.css">
+      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/lawbook/index.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="989">
-              <caret line="139" column="1" selection-start-line="139" selection-start-column="1" selection-end-line="139" selection-end-column="1" />
+            <state relative-caret-position="221">
+              <caret line="31" column="46" lean-forward="true" selection-start-line="31" selection-start-column="46" selection-end-line="31" selection-end-column="46" />
+              <folding>
+                <element signature="e#12#26#0#Twig" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PracticeController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/PracticeController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="439">
+              <caret line="102" column="5" lean-forward="true" selection-start-line="91" selection-start-column="4" selection-end-line="102" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -90,26 +94,26 @@
       <file leaf-file-name="custom.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/assets/css/custom.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="666">
-              <caret line="86" column="19" selection-start-line="86" selection-start-column="19" selection-end-line="86" selection-end-column="19" />
+            <state relative-caret-position="507">
+              <caret line="106" column="18" selection-start-line="106" selection-start-column="18" selection-end-line="106" selection-end-column="18" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bootstrap-multiselect.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/assets/js/bootstrap-multiselect.js">
+      <file leaf-file-name="admin.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/config/admin.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="836">
-              <caret line="1775" column="3" selection-start-line="1775" selection-start-column="3" selection-end-line="1775" selection-end-column="3" />
+            <state relative-caret-position="310">
+              <caret line="90" column="62" selection-start-line="90" selection-start-column="62" selection-end-line="90" selection-end-column="62" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bootstrap-multiselect.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/assets/css/bootstrap-multiselect.css">
+      <file leaf-file-name="config.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/config/config.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="1509" selection-start-column="1509" selection-end-column="1509" />
+            <state relative-caret-position="340">
+              <caret line="50" column="44" selection-start-line="50" selection-start-column="44" selection-end-line="50" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -125,7 +129,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>jque</find>
       <find>modernizr</find>
       <find>console</find>
       <find>base_dir</find>
@@ -155,6 +158,7 @@
       <find>font-family</find>
       <find>font-family: FontAwesome;</find>
       <find>questionCategories</find>
+      <find>practice_files</find>
     </findStrings>
     <replaceStrings>
       <replace>Manager</replace>
@@ -180,11 +184,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Resources/views/Advertising/place_3.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/Advertising/place_2.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/Advertising/place_1.html.twig" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Entity/Baner.php" />
-        <option value="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Profile/edit_content.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Profile/show_content.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/easy_admin/file.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/practice/projectOffice.html.twig" />
@@ -202,7 +201,6 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Repository/BlogRepository.php" />
         <option value="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Security/login_content.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/layout/menuAnonymous.html.twig" />
-        <option value="$PROJECT_DIR$/app/config/config.yml" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Blog.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/BlogCategory.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/BlogController.php" />
@@ -219,7 +217,6 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Repository/WrittenQuestionCategoryRepository.php" />
         <option value="$PROJECT_DIR$/app/Resources/translations/messages.pl.yml" />
-        <option value="$PROJECT_DIR$/app/config/admin.yml" />
         <option value="$PROJECT_DIR$/web/assets/js/bootstrap-multiselect.js" />
         <option value="$PROJECT_DIR$/web/assets/css/bootstrap-multiselect.css" />
         <option value="$PROJECT_DIR$/web/assets/js/popper.min.js" />
@@ -229,8 +226,15 @@
         <option value="$PROJECT_DIR$/web/assets/js/select2.min.js" />
         <option value="$PROJECT_DIR$/src/AppBundle/Repository/writtenQuestionRepository.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/QuestionController.php" />
+        <option value="$PROJECT_DIR$/app/config/config.yml" />
+        <option value="$PROJECT_DIR$/app/config/admin.yml" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Entity/Lawbook.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Repository/LawbookCategoryRepository.php" />
         <option value="$PROJECT_DIR$/web/assets/css/custom.css" />
         <option value="$PROJECT_DIR$/app/Resources/views/question/beforeExam.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/lawbook/rawLawbookContent.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/lawbook/index.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/LawbookController.php" />
       </list>
     </option>
   </component>
@@ -309,6 +313,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -325,20 +330,7 @@
               <item name="bud_portal" type="b2602c69:ProjectViewProjectNode" />
               <item name="bud_portal" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="config" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="bud_portal" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bud_portal" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="bud_portal" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bud_portal" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="translations" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="bud_portal" type="b2602c69:ProjectViewProjectNode" />
@@ -346,6 +338,22 @@
               <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="bud_portal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bud_portal" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="lawbook" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="bud_portal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bud_portal" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="practice" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="bud_portal" type="b2602c69:ProjectViewProjectNode" />
@@ -398,25 +406,10 @@
               <item name="web" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="assets" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
-            <path>
-              <item name="bud_portal" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bud_portal" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="web" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="assets" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="css" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="bud_portal" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bud_portal" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="web" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="assets" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="js" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -426,15 +419,15 @@
     <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\toma4\projects\bud_portal\src\AppBundle\Form" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\toma4\projects\bud_portal\web\assets\css" />
       <recent name="C:\Users\toma4\projects\bud_portal\web\assets\js" />
       <recent name="C:\Users\toma4\projects\bud_portal\src\AppBundle\Repository" />
       <recent name="C:\Users\toma4\projects\bud_portal\src\AppBundle\Entity" />
       <recent name="C:\Users\toma4\projects\bud_portal\app\Resources\KnpPaginatorBundle" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\toma4\projects\bud_portal\src\AppBundle\Form" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -498,17 +491,17 @@
       <workItem from="1526494885594" duration="9297000" />
       <workItem from="1526941948617" duration="14055000" />
       <workItem from="1527150774967" duration="7733000" />
+      <workItem from="1527503007511" duration="9003000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="337032000" />
+    <option name="totallyTimeSpent" value="346035000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1671875" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.21669106" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" weight="0.32838285" />
@@ -528,6 +521,27 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3278867" />
     </layout>
+    <layout-to-restore>
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21669106" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3278867" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" weight="0.32838285" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -537,14 +551,31 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="9" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/src/AppBundle/Entity/Practice.php</url>
+          <line>4</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="10" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/config/config.yml">
+    <entry file="file://$PROJECT_DIR$/web/assets/css/bootstrap-multiselect.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
+        <state>
+          <caret column="1509" selection-start-column="1509" selection-end-column="1509" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/question/beforeExam.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="39" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="39" />
+          <folding>
+            <element signature="e#12#26#0#Twig" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -552,16 +583,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="14" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Lawbook.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1563">
-          <caret line="92" selection-start-line="92" selection-end-line="112" selection-end-column="5" />
-          <folding>
-            <element signature="e#36#68#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -656,16 +677,6 @@
         <state relative-caret-position="-765" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/PracticeController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="76" column="11" lean-forward="true" selection-start-line="76" selection-start-column="11" selection-end-line="76" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/lawbook/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/question/exam.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1037">
@@ -677,25 +688,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="29" column="25" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/accountUpgrade/choosePlan.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1510" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/question/verbalQuestions.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="38" column="34" selection-start-line="38" selection-start-column="34" selection-end-line="38" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/question/writtenQuestions.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="17" selection-end-column="26" />
         </state>
       </provider>
     </entry>
@@ -747,13 +739,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/admin.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="105" column="34" selection-start-line="105" selection-start-column="34" selection-end-line="105" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/WrittenQuestionCategoryRepository.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -761,19 +746,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/assets/js/bootstrap.min.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/assets/css/bootstrap.min.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/assets/js/popper.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="38" selection-start-line="4" selection-start-column="38" selection-end-line="4" selection-end-column="38" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -788,23 +764,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="66290" lean-forward="true" selection-start-column="66290" selection-end-column="66290" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/assets/css/bootstrap-multiselect.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="1509" selection-start-column="1509" selection-end-column="1509" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/assets/js/bootstrap-multiselect.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="836">
-          <caret line="1775" column="3" selection-start-line="1775" selection-start-column="3" selection-end-line="1775" selection-end-column="3" />
         </state>
       </provider>
     </entry>
@@ -814,31 +773,6 @@
           <caret line="52" column="1" selection-start-line="52" selection-start-column="1" selection-end-line="52" selection-end-column="1" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/LawbookRepository.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/LawbookCategoryRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="24" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/PracticeRepository.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/questionCategoriesRepository.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/SettingsRepository.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/verbalQuestionRepository.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/AdvertisingRepository.php">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/writtenQuestionRepository.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -852,39 +786,170 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/QuestionController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="136" column="64" lean-forward="true" selection-start-line="136" selection-start-column="64" selection-end-line="136" selection-end-column="64" />
+        <state relative-caret-position="2057">
+          <caret line="136" column="64" selection-start-line="136" selection-start-column="64" selection-end-line="136" selection-end-column="64" />
           <folding>
             <element signature="e#123#148#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/assets/css/custom.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="666">
-          <caret line="86" column="19" selection-start-line="86" selection-start-column="19" selection-end-line="86" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/assets/css/popper.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="989">
+        <state relative-caret-position="456">
           <caret line="139" column="1" selection-start-line="139" selection-start-column="1" selection-end-line="139" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
+    <entry file="file://$PROJECT_DIR$/web/assets/js/bootstrap-multiselect.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="116" lean-forward="true" selection-start-line="16" selection-start-column="116" selection-end-line="16" selection-end-column="116" />
+        <state relative-caret-position="442">
+          <caret line="1775" column="3" selection-start-line="1775" selection-start-column="3" selection-end-line="1775" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/assets/css/bootstrap-multiselect.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="1509" selection-start-column="1509" selection-end-column="1509" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/admin.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="90" column="62" selection-start-line="90" selection-start-column="62" selection-end-line="90" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="50" column="44" selection-start-line="50" selection-start-column="44" selection-end-line="50" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Lawbook.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="847">
+          <caret line="250" column="40" lean-forward="true" selection-start-line="250" selection-start-column="40" selection-end-line="250" selection-end-column="40" />
+          <folding>
+            <element signature="e#36#68#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/LawbookRepository.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/accountUpgrade/choosePlan.html.twig">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/question/writtenQuestions.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="17" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/practice/projectOffice.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-102">
+          <folding>
+            <element signature="e#12#26#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/assets/css/custom.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="507">
+          <caret line="106" column="18" selection-start-line="106" selection-start-column="18" selection-end-line="106" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/question/verbalQuestions.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="388">
+          <caret line="59" column="15" lean-forward="true" selection-start-line="57" selection-start-column="20" selection-end-line="59" selection-end-column="15" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/question/beforeExam.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="20" column="39" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="39" />
+        <state relative-caret-position="391">
+          <caret line="51" column="4" lean-forward="true" selection-start-line="51" selection-start-column="4" selection-end-line="51" selection-end-column="68" />
+          <folding>
+            <element signature="e#12#26#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/lawbook/rawLawbookContent.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="24" selection-start-column="24" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/LawbookCategoryRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="354">
+          <caret line="24" column="42" selection-start-line="24" selection-start-column="42" selection-end-line="24" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Practice.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="262" column="5" selection-start-line="222" selection-start-column="4" selection-end-line="262" selection-end-column="5" />
+          <folding>
+            <element signature="e#36#68#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/PracticeController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="439">
+          <caret line="102" column="5" lean-forward="true" selection-start-line="91" selection-start-column="4" selection-end-line="102" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/LawbookController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="99">
+          <caret line="31" column="31" selection-start-line="31" selection-start-column="31" selection-end-line="31" selection-end-column="31" />
+          <folding>
+            <element signature="e#1487#1524#1#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="46" column="34" lean-forward="true" selection-start-line="46" selection-start-column="34" selection-end-line="46" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/practice/contracts.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="27" column="65" lean-forward="true" selection-start-line="27" selection-start-column="65" selection-end-line="27" selection-end-column="81" />
+          <folding>
+            <element signature="e#12#26#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/lawbook/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="31" column="46" lean-forward="true" selection-start-line="31" selection-start-column="46" selection-end-line="31" selection-end-column="46" />
+          <folding>
+            <element signature="e#12#26#0#Twig" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

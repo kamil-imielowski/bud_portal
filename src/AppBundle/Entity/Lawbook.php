@@ -4,12 +4,16 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Lawbook
  *
  * @ORM\Table(name="lawbook")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\LawbookRepository")
+ * @Vich\Uploadable
  */
 class Lawbook
 {
@@ -38,9 +42,36 @@ class Lawbook
     /**
      * @var string
      *
+     * @ORM\Column(name="name", type="text")
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="articles", type="text")
+     */
+    private $articles;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="content", type="text")
      */
     private $content;
+
+    /**
+     * @Vich\UploadableField(mapping="lawbook_files", fileNameProperty="file")
+     * @var File
+     */
+    private $fileObject;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="file", type="string", length=255)
+     */
+    private $file;
 
     /**
      * @var bool
@@ -55,6 +86,13 @@ class Lawbook
      * @ORM\Column(name="freeDownload", type="boolean", options={"default" : false})
      */
     private $freeDownload;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="isImportant", type="boolean", options={"default" : false})
+     */
+    private $isImportant;
 
     /**
      * @var int
@@ -137,6 +175,54 @@ class Lawbook
     }
 
     /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Lawbook
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set articles
+     *
+     * @param string $articles
+     *
+     * @return Lawbook
+     */
+    public function setArticles($articles)
+    {
+        $this->articles = $articles;
+
+        return $this;
+    }
+
+    /**
+     * Get articles
+     *
+     * @return string
+     */
+    public function getArticles()
+    {
+        return $this->articles;
+    }
+
+    /**
      * Set content
      *
      * @param string $content
@@ -158,6 +244,44 @@ class Lawbook
     public function getContent()
     {
         return $this->content;
+    }
+
+    public function setFileObject(File $fileObject = null)
+    {
+        $this->fileObject = $fileObject;
+
+        if ($fileObject instanceof UploadedFile) {
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    public function getFileObject()
+    {
+        return $this->fileObject;
+    }
+
+    /**
+     * Set file
+     *
+     * @param string $file
+     *
+     * @return Lawbook
+     */
+    public function setFile($file)
+    {
+        $this->file = $file;
+
+        return $this;
+    }
+
+    /**
+     * Get file
+     *
+     * @return string
+     */
+    public function getFile()
+    {
+        return $this->file;
     }
 
     /**
@@ -206,6 +330,30 @@ class Lawbook
     public function getFreeDownload()
     {
         return $this->freeDownload;
+    }
+
+    /**
+     * Set isImportant
+     *
+     * @param boolean $isImportant
+     *
+     * @return Lawbook
+     */
+    public function setIsImportant($isImportant)
+    {
+        $this->isImportant = $isImportant;
+
+        return $this;
+    }
+
+    /**
+     * Get isImportant
+     *
+     * @return bool
+     */
+    public function getIsImportant()
+    {
+        return $this->isImportant;
     }
 
     /**

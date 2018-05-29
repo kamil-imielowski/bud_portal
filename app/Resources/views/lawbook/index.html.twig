@@ -23,11 +23,24 @@
                             <div class="title-01 title-01__style-02">
                                 <h2 class="title-01__title">{{ lawbookCategory.name }}</h2>
 
-                                <ul class="list-style-none">
-                                    {% for lawbook in lawbookCategory.lawbooks %}
-                                        <li><a href="#test-popup" class="open-popup-link lawbook" data-url="{{ path('lawbookContent', {'id': lawbook.id}) }}">{{ lawbook.title }}</a></li>
-                                    {% endfor %}
-                                </ul>
+                                {#<ul class="list-style-none">#}
+                                {% for lawbook in lawbookCategory.lawbooks %}
+                                    <div class="{{ lawbook.isImportant ? 'lawbook-box-important' : 'question-box' }}">
+                                        <p>{{ lawbook.title }}</p>
+                                        <a href="#">{{ lawbook.name }}</a>
+
+                                        {% if is_granted("ROLE_VIP") %}
+                                            <div>
+                                                <a target="_blank" href="{{ path('lawbookContentT', {id: lawbook.id}) }}" class="">Wersja elektroniczna</a>
+                                                <a target="_blank" href="{{ path('download_lawbook_file', {name: lawbook.file}) }}" class="">PDF do pobrania</a>
+                                                <a class="showArticles pointer" data-id="{{ lawbook.id }}">Ważne artykuły</a>
+                                            </div>
+                                            <p class="hidden" id="{{ lawbook.id }}">{{ lawbook.articles }}</p>
+                                        {% endif %}
+                                    </div>
+                                    {#<li><a href="#test-popup" class="open-popup-link lawbook" data-url="{{ path('lawbookContent', {'id': lawbook.id}) }}">{{ lawbook.title }}</a></li>#}
+                                {% endfor %}
+                                {#</ul>#}
                             </div>
 
                         {% endfor %}
@@ -50,6 +63,12 @@
 {% block javascripts %}
     {{ parent() }}
     <script>
+        $(".showArticles").click(function () {
+            var id = $(this).data("id");
+            $("#" + id).slideToggle( "slow", function() {
+                // Animation complete.
+            });
+        })
         $('.open-popup-link').magnificPopup({
             type:'inline',
             closeBtnInside:true,

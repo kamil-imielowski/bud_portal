@@ -71,16 +71,24 @@ easy_admin:
           form:
               fields:
                   - {property: 'title', type: 'Symfony\Component\Form\Extension\Core\Type\TextType'}
+                  - {property: 'name', label: 'Nazwa (przywołania)', type: 'Symfony\Component\Form\Extension\Core\Type\TextType'}
+                  - {property: 'articles', label: 'Akty prawne', type: 'Symfony\Component\Form\Extension\Core\Type\TextType'}
                   - {property: 'content', type: 'Ivory\CKEditorBundle\Form\Type\CKEditorType'}
+                  - {property: 'fileObject', type: 'Vich\UploaderBundle\Form\Type\VichFileType'}
                   - {property: 'category', type: 'Symfony\Bridge\Doctrine\Form\Type\EntityType', type_options: {class: AppBundle\Entity\LawbookCategory, choice_label: 'name', required: true, empty_data: null}}
                   - {property: 'published', type: 'Symfony\Component\Form\Extension\Core\Type\CheckboxType'}
                   - {property: 'freeDownload', type: 'Symfony\Component\Form\Extension\Core\Type\CheckboxType'}
+                  - {property: 'isImportant', labl: 'Ważna ustawa', type: 'Symfony\Component\Form\Extension\Core\Type\CheckboxType'}
+          new:
+              fields:
+                  - {property: 'fileObject', type: 'Vich\UploaderBundle\Form\Type\VichFileType', type_options: {required: true}}
           list:
             fields:
               - {property: 'title'}
               - {property: 'category.name'}
               - {property: 'published', type: 'toggle'}
               - {property: 'freeDownload', type: 'toggle'}
+              - {property: 'isImportant', label: 'Ważna ustawa', type: 'toggle'}
               - {property: 'views'}
 
         LawbookCategory:
@@ -263,4 +271,9 @@ vich_uploader:
       practice_files:
           uri_prefix:         '%app.practice.files%'
           upload_destination: '%kernel.root_dir%/../web/uploads/files/practice/'
+          namer: vich_uploader.namer_uniqid
+
+      lawbook_files:
+          uri_prefix:         '%app.lawbook.files%'
+          upload_destination: '%kernel.root_dir%/../web/uploads/files/lawbook/'
           namer: vich_uploader.namer_uniqid

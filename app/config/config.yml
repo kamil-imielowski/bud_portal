@@ -12,6 +12,7 @@ parameters:
     app.blog.image: /uploads/images/blog/
     app.baner.image: /uploads/images/baners/
     app.practice.files: /uploads/files/practice/
+    app.lawbook.files: /uploads/files/lawbook/
 
 framework:
     #esi: ~
@@ -47,6 +48,7 @@ twig:
       blog_images: 'uploads/images/blog/'
       baner_images: 'uploads/images/baners/'
       practice_files: '/uploads/files/practice/'
+      lawbook_files: '/uploads/files/lawbook/'
       locale: '%locale%'
 
 # Doctrine Configuration

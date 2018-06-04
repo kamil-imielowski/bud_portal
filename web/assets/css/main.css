@@ -3649,7 +3649,7 @@ mark, .mark {
 /*!* zmiana footer *!*/
 
 .footer {
-    background-color: #1f1c2f;
+    background-color: #000000;
     overflow: hidden;
     color: #fff;
 }
@@ -3934,7 +3934,7 @@ mark, .mark {
 }
 
 .header__style-02 .navbar-toggle > span {
-    background-color: #fefefe;
+    background-color: #626262;
 }
 
 .header__style-03 {

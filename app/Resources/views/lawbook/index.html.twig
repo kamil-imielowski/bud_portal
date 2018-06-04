@@ -25,15 +25,15 @@
 
                                 {#<ul class="list-style-none">#}
                                 {% for lawbook in lawbookCategory.lawbooks %}
-                                    <div class="{{ lawbook.isImportant ? 'lawbook-box-important' : 'question-box' }}">
+                                    <div class="{{ lawbook.isImportant ? 'lawbook-box-important' : 'lawbook-box' }}">
                                         <p>{{ lawbook.title }}</p>
                                         <a href="#">{{ lawbook.name }}</a>
 
                                         {% if is_granted("ROLE_VIP") %}
                                             <div>
-                                                <a target="_blank" href="{{ path('lawbookContentT', {id: lawbook.id}) }}" class="">Wersja elektroniczna</a>
-                                                <a target="_blank" href="{{ path('download_lawbook_file', {name: lawbook.file}) }}" class="">PDF do pobrania</a>
-                                                <a class="showArticles pointer" data-id="{{ lawbook.id }}">Ważne artykuły</a>
+                                                <a class="btn btn-primary d-inline btn-xs " target="_blank" href="{{ path('lawbookContentT', {id: lawbook.id}) }}">Wersja elektroniczna</a>
+                                                <a class="btn btn-primary d-inline btn-xs " target="_blank" href="{{ path('download_lawbook_file', {name: lawbook.file}) }}">PDF do pobrania</a>
+                                                <a class="btn btn-primary d-inline btn-xs showArticles pointer" data-id="{{ lawbook.id }}">Ważne artykuły</a>
                                             </div>
                                             <p class="hidden" id="{{ lawbook.id }}">{{ lawbook.articles }}</p>
                                         {% endif %}

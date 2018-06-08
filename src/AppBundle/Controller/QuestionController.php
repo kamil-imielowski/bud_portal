@@ -10,6 +10,7 @@ namespace AppBundle\Controller;
 
 
 use AppBundle\Entity\CMS;
+use AppBundle\Entity\IncorrectAnswer;
 use AppBundle\Entity\User;
 use AppBundle\Entity\VerbalQuestion;
 use AppBundle\Entity\WrittenQuestion;
@@ -89,8 +90,10 @@ class QuestionController extends Controller
         }
         if($request->getMethod() == "POST"){
             $this->get('session')->getFlashBag()->add('from', $request->get('route'));
-            $this->get('session')->getFlashBag()->add('pytan', $request->get('questions'));
+            $this->get('session')->getFlashBag()->add('pytan', empty($request->get('questions')) ? 60 : $request->get('questions'));
             $this->get('session')->getFlashBag()->add('categories', $request->get('category'));
+            $this->get('session')->getFlashBag()->add('incorrectAnswersExam', ($request->get('examType') == "incorrectAnswersRadio") ? true : false );
+            $this->get('session')->getFlashBag()->add('questionQuantityCheck', empty($request->get('questionQuantityCheck')) ? false : true );
             return $this->redirectToRoute('exam');
         }
 
@@ -130,8 +133,11 @@ class QuestionController extends Controller
             if(is_null($egzamin['pytan'])){
                 $egzamin['pytan'] = $this->get('session')->getFlashBag()->get('pytan')[0];
                 $egzamin['categories'] = $this->get('session')->getFlashBag()->get('categories')[0];
+                $egzamin['incorrectAnswersExam'] = $this->get('session')->getFlashBag()->get('incorrectAnswersExam')[0];
+                $egzamin['questionQuantityCheck'] = $this->get('session')->getFlashBag()->get('questionQuantityCheck')[0];
                 try{
-                    $egzamin['pytania'] = $this->generateQuestions($egzamin['pytan'], $egzamin['categories']);
+                    $egzamin['pytania'] = $this->generateQuestions($egzamin['pytan'], $egzamin['categories'], $egzamin['incorrectAnswersExam'], $egzamin['questionQuantityCheck']);
+                    $egzamin['pytan'] = count($egzamin['pytania']);
                 }catch (\Exception $e){
                     $this->get('session')->getFlashBag()->add('error', $e->getMessage());
                     return $this->redirectToRoute('exam_lobby');
@@ -145,12 +151,35 @@ class QuestionController extends Controller
     }
 
     /**
-     * @Route("/egzamin/zakoncz", name="exam_end")
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @Route("/egzamin/podsumowanie", name="exam_end")
+     * @return Response
      */
     public function endExamAction(){
+        $egzamin = $this->get('session')->get('egzamin');
         $this->get('session')->remove('egzamin');
-        return $this->redirectToRoute('exam_lobby');
+
+        if(empty($egzamin)){
+            return $this->redirectToRoute('exam_lobby');
+        }
+
+        $correct = 0;
+
+
+        foreach ($egzamin['pytania'] as $pytanie){
+            if($pytanie['correct']){
+                $correct++;
+            }
+        }
+
+        $all = count($egzamin['pytania']);
+        $progressBar = round($correct/$all);
+        $zdane = ($correct/$all > 50.0) ? true : false;
+        return $this->render("question/summaryExam.html.twig", [
+            "correct" => $correct,
+            "all" => $all,
+            'progessBar' => $progressBar,
+            "zdane" => $zdane
+        ]);
     }
 
     /**
@@ -186,6 +215,30 @@ class QuestionController extends Controller
         $egzamin = $this->get('session')->get('egzamin');
         $egzamin['pytania'][$request->get('qk')]['resolved'] = true;
         $egzamin['pytania'][$request->get('qk')]['correct'] = $request->get('correct');
+
+        /** @var User $user */
+        $user = $this->getUser();
+
+        $em = $this->getDoctrine()->getManager();
+        $question = $em->getRepository(WrittenQuestion::class)->findOneBy(['id' => $request->get('id')]);
+        $incorrectAnswer = $em->getRepository(IncorrectAnswer::class)->findOneBy(['user' => $user, 'question' => $question]);
+        $correct = $request->get('correct') == 'false' ? false : true;
+        if(!$correct){
+            //dodanie pytania do błędnych odp
+            if(empty($incorrectAnswer)){
+                $incorrectAnswer = new IncorrectAnswer();
+                $incorrectAnswer->setUser($user);
+                $incorrectAnswer->setQuestion($question);
+                $em->persist($incorrectAnswer);
+                $em->flush();
+            }
+        }else{
+            // usuniecie pytania z blednych odp
+            if(!is_null($incorrectAnswer)) {
+                $em->remove($incorrectAnswer);
+                $em->flush();
+            }
+        }
         $this->get('session')->set('egzamin', $egzamin);
         return new Response('OK');
     }
@@ -195,19 +248,36 @@ class QuestionController extends Controller
      * @return array
      * @throws \Exception
      */
-    private function generateQuestions($questions, $categories){
+    private function generateQuestions($questions, $categories, $incorrectAnswers, $questionQuantityCheck){
         $em = $this->getDoctrine()->getManager();
         $min = array();
-        if(empty($categories)){
-            $min = $em->getRepository(WrittenQuestion::class)->getAllIds();
+        if(!$incorrectAnswers){
+            if(empty($categories)){
+                $min = $em->getRepository(WrittenQuestion::class)->getAllIds();
+            }else{
+                //pobranie pytan pod kategorie odpowiednie
+                foreach ($categories as $c){
+                    $a = $em->getRepository(WrittenQuestion::class)->getAllIdsForCategory($c);
+                    $min = array_merge ($min, $a);
+                }
+            }
         }else{
-            //pobranie pytan pod kategorie odpowiednie
-            foreach ($categories as $c){
-                $a = $em->getRepository(WrittenQuestion::class)->getAllIdsForCategory($c);
-                $min = array_merge ($min, $a);
+            // pytania tylko z blednych odp
+            /** @var User $user */
+            $user = $this->getUser();
+            $ica = $user->getIncorrectAnswer();
+            foreach ($ica as $i => $ia){
+                $min[$i]['id'] = $ia->getQuestion()->getId();
+            }
+            if(count($min) == 0){
+                throw new \Exception("Nie posiadasz błędnych odpowiedzi");
+            }
+            if(!$questionQuantityCheck){
+                $questions = count($min);
             }
         }
-        $minC = $max = count($min);
+
+        $minC = count($min);
         if($questions > $minC){
             throw new \Exception("Liczba pytań w wybranych kategoriach wynosi $minC, zmiejsz liczbę pytań");
         }
@@ -216,7 +286,7 @@ class QuestionController extends Controller
         $max = $minC - 1;
         while($j<$questions){
             $r = mt_rand(0, $max);
-            if(!in_array($min[$r]['id'], $rand)){
+            if(!$this->searchForUnique($min[$r]['id'], $rand)){
                 $rand[$j]['id'] = $min[$r]['id'];
                 $rand[$j]['resolved'] = false;
                 $rand[$j]['correct'] = null;
@@ -225,6 +295,15 @@ class QuestionController extends Controller
         }
 
         return $rand;
+    }
+
+    private function searchForUnique($id, $array) {
+        foreach ($array as $key => $val) {
+            if ($val['id'] === $id) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

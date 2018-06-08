@@ -57,7 +57,7 @@
             $.ajax({
                 url: "{{ path('answer-question') }}",
                 method: "GET",
-                data: {qk: qk, correct: correct},
+                data: {qk: qk, correct: correct, id: {{ question.id}} },
                 success: function(){
                 }
             })

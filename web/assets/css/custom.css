@@ -25,6 +25,14 @@
     color: black;
 }
 
+.red{
+    color: red;
+}
+
+.green{
+    color: green;
+}
+
 .check-answer {
     /*background-color: #ffA500;*/
     -webkit-animation: check-answer-blink 1s infinite;  /* Safari 4+ */

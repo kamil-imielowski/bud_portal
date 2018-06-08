@@ -13,9 +13,9 @@
             <div class="row">
                 <div class="col-lg-10 col-xl-8 offset-0 offset-sm-0 offset-md-0 offset-lg-1 offset-xl-2 ">
 
-                    <div class="title-01 title-01__style-04">
+                    {#<div class="title-01 title-01__style-04">#}
 
-                    </div>
+                    {#</div>#}
 
                     {% for flashMessage in app.session.flashbag.get('error') %}
                         <p class="error">{{ flashMessage }}</p>
@@ -23,20 +23,51 @@
 
                     <form method="post">
                         <input name="route" type="hidden" value="exam_lobby">
-                        <div class="form-group">
-                            <label for="questionsInput">Ilość pytań:</label>
-                            <input class="form-control" name="questions" id="questionsInput" type="number" step="1" min="1" max="80" value="45" required>
+
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="examType" id="examRadio" value="examRadio" checked>
+                                Test egzaminacyjny
+                            </label>
                         </div>
-                        <div class="form-group">
-                            <label for="basic">Kategorie pytań:</label>
-                            <select class="custom-select  form-control" id="basic" multiple="multiple" name="category[]">
+
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="examType" id="questionCategoriesRadio" value="questionCategoriesRadio">
+                                Test z wybranych aktów prawnych
+                            </label>
+                        </div>
+
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="examType" id="incorrectAnswers" value="incorrectAnswersRadio">
+                                Test z pytań na które udzielono błędnych odpowiedzi
+                            </label>
+                        </div>
+
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" id="questionQuantityCheck" name="questionQuantityCheck" value="checked" disabled>
+                                Definiuj ilość pytań
+                            </label>
+                        </div>
+
+                        <div id="questionsInputContainer" class="form-group hidden">
+                            <label for="questionsInput">Ilość pytań:</label>
+                            <input class="form-control" name="questions" id="questionsInput" type="number" step="1" min="1" max="80" value="60" required>
+                        </div>
+
+                        <div id="questionCategoriesContainer" class="form-group hidden">
+                            <label for="questionCategories">Kategorie pytań:</label>
+                            <select class="custom-select  form-control" id="questionCategories" multiple="multiple" name="category[]">
                                 {#<option selected value="all">Wszystkie</option>#}
                                 {% for category in categories %}
                                     <option value="{{ category.id }}">{{ category.name }}</option>
                                 {% endfor %}
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-w180" id="startExam">Rozpocznij Egzamin</button>
+
+                        <button type="submit" class="btn btn-w180 mt-3" id="startExam">Rozpocznij Egzamin</button>
                     </form>
 
 
@@ -53,11 +84,55 @@
     <script src="{{ asset('assets/js/select2.min.js') }}"></script>
     <script>
         localStorage.clear();
+
+        var questionCategoriesContainer = $("#questionCategoriesContainer");
+        var questionsInputContainer = $("#questionsInputContainer");
+        var questionsInput = $("#questionsInput");
+        var questionQuantityCheck = $("#questionQuantityCheck");
+        var questionCategories = $("#questionCategories");
+
         $(document).ready(function() {
-            $("#basic").select2({
+            $("#questionCategories").select2({
                 placeholder: 'Wybierz kategorię',
                 width: 'resolve',
             });
+
+            $("input[name=examType]").on("change", function () {
+                switch ($(this).val()){
+                    case 'examRadio':
+                        $(questionQuantityCheck).attr("disabled", "disabled");
+                        $(questionCategoriesContainer).hide("slow", function() {});
+                        $(questionsInputContainer).hide("slow", function() {});
+                        break;
+
+                    case 'questionCategoriesRadio':
+                        QuestionQuantityCheck();
+                        $(questionCategoriesContainer).show("slow", function() {});
+                        $(questionCategories).removeAttr("disabled");
+                        $(questionQuantityCheck).removeAttr("disabled");
+                        break;
+
+                    case 'incorrectAnswersRadio':
+                        QuestionQuantityCheck();
+                        $(questionQuantityCheck).removeAttr("disabled");
+                        $(questionCategoriesContainer).hide("slow", function() {});
+                        break;
+                }
+            })
+
+            $(questionQuantityCheck).on("click", function () {
+                QuestionQuantityCheck();
+            })
         });
+
+        function QuestionQuantityCheck(){
+            if($(questionQuantityCheck).is(':checked')){
+                $(questionsInputContainer).show("slow", function() {});
+                $(questionsInput).removeAttr("disabled");
+            }else{
+                $(questionsInputContainer).hide("slow", function() {});
+                $(questionsInput).attr("disabled", "disabled");
+            }
+        }
     </script>
 {% endblock %}

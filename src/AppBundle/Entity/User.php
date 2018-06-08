@@ -110,10 +110,18 @@ class User extends BaseUser
      */
     protected $paymentTransactions;
 
+    /**
+     * @var Collection
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\IncorrectAnswer", mappedBy="user")
+     */
+    private $incorrectAnswers;
+
     public function __construct()
     {
         parent::__construct();
         $this->paymentTransactions = new ArrayCollection();
+        $this->incorrectAnswers = new ArrayCollection();
     }
 
     /**
@@ -124,6 +132,16 @@ class User extends BaseUser
     public function getPaymentTransaction()
     {
         return $this->paymentTransactions;
+    }
+
+    /**
+     * get incorrectAnswers
+     *
+     * @return Collection|IncorrectAnswer[]
+     */
+    public function getIncorrectAnswer()
+    {
+        return $this->incorrectAnswers;
     }
 
     /**

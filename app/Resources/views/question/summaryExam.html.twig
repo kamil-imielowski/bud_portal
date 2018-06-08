@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {#<link href="{{ asset('assets/css/bootstrap.min.css') }}" />#}
+{% endblock %}
+
+{% block body %}
+<section class="md-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-xl-8 offset-0 offset-sm-0 offset-md-0 offset-lg-1 offset-xl-2 ">
+
+                <div class="title-01 title-01__style-04">
+                    Podsumowanie egzaminu
+                </div>
+
+                {% if zdane %}
+                    <h2 class="green">Egzamin Zaliczony</h2>
+                {% else %}
+                    <h2 class="red">Egzamin niezaliczony</h2>
+                {% endif %}
+
+                <label>Poprawne odpowiedzi: </label>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: {{ correct }}%;" aria-valuenow="{{ correct }}" aria-valuemin="0" aria-valuemax="{{ all }}">{{ correct }} / {{ all }}</div>
+                </div>
+
+
+                <a class="btn btn-primary d-inline btn-xs question" href="{{ path('exam_lobby') }}">Powrót do kreatora testów</a>
+
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    {#<script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>#}
+{% endblock %}

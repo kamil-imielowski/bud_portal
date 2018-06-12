@@ -166,7 +166,7 @@ class QuestionController extends Controller
 
 
         foreach ($egzamin['pytania'] as $pytanie){
-            if($pytanie['correct']){
+            if($pytanie['correct'] == true){
                 $correct++;
             }
         }
@@ -265,7 +265,17 @@ class QuestionController extends Controller
             // pytania tylko z blednych odp
             /** @var User $user */
             $user = $this->getUser();
-            $ica = $user->getIncorrectAnswer();
+            if(empty($categories)) {
+                $ica = $user->getIncorrectAnswer();
+            }else{
+                foreach($user->getIncorrectAnswer() as $i => $ia){
+                    foreach ($categories as $c){
+                        if($ia->getQuestion()->getCategory()->getId() == $c){
+                            $ica[] = $ia;
+                        }
+                    }
+                }
+            }
             foreach ($ica as $i => $ia){
                 $min[$i]['id'] = $ia->getQuestion()->getId();
             }

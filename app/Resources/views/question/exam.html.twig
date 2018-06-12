@@ -1,5 +1,17 @@
 {% extends 'base.html.twig' %}
 
+{% set ia, ca = 0, 0 %}
+
+{% for i in 1..app.session.get('egzamin')['pytan'] %}
+    {% if app.session.get('egzamin')['pytania'][i - 1]['correct'] is not null %}
+        {% if app.session.get('egzamin')['pytania'][i - 1]['correct'] == 'true' %}
+            {% set ca = ca + 1 %}
+        {% else %}
+            {% set ia = ia + 1 %}
+        {% endif %}
+    {% endif %}
+{% endfor %}
+
 {% block body %}
 
     <!-- Section -->
@@ -9,10 +21,16 @@
                 <div class="col-lg-10 col-xl-8 offset-0 offset-sm-0 offset-md-0 offset-lg-1 offset-xl-2 ">
 
                     <div class="row">
-                        <div class="col-6 offset-0">
+                        <div class="col-3 offset-0">
                             <a href="{{ path('exam_end') }}" class="btn btn-danger">Zakońćż egzamin</a>
                         </div>
-                        <div class="col-6 offset-0">
+                        <div class="col-3 offset-0 text-center">
+                            <p>Poprawnych odp.: <strong><bdi id="correct_answers">0</bdi></strong></p>
+                        </div>
+                        <div class="col-3 offset-0 text-center">
+                            <p>Błędnych odp.: <strong><bdi id="incorrect_answers">0</bdi></strong></p>
+                        </div>
+                        <div class="col-3 offset-0">
                             <div id="timer" class="text-right"><h3><span id="minutes">00</span>:<span id="seconds">00</span></h3></div>
                         </div>
                     </div>
@@ -66,6 +84,10 @@
         var questionQ = {{ app.session.get('egzamin')['pytan'] }}
         var url = "{{ path('exam_get_question') }}";
         var sec = typeof localStorage.getItem("sec") == 'undefined' ? 0 : localStorage.getItem("sec");
+
+        $("#correct_answers").text({{ ca }});
+        $("#incorrect_answers").text({{ ia }});
+
 
         function pad ( val ) { return val > 9 ? val : "0" + val; }
         setInterval( function(){

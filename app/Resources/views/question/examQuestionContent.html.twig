@@ -14,6 +14,8 @@
     var isChecking = false;
     var resolved = {{ resolved }};
     var odp = "{{ question.answerA }}";
+    var correct_answers = parseInt($("#correct_answers").text());
+    var incorrect_answers = parseInt($("#incorrect_answers").text());
 
     if(resolved){
         $( ".answer" ).each(function () {
@@ -51,9 +53,13 @@
             if(answer.data('answer') === odp){
                 correct = true;
                 $("#qbox-"+qk).addClass('qbox-correct');
+                correct_answers++;
             }else{
                 $("#qbox-"+qk).addClass('qbox-bad');
+                incorrect_answers++;
             }
+            $("#correct_answers").text(correct_answers);
+            $("#incorrect_answers").text(incorrect_answers);
             $.ajax({
                 url: "{{ path('answer-question') }}",
                 method: "GET",

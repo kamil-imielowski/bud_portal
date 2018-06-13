@@ -48,14 +48,14 @@
                             </select>
                         </div>
 
-                        <div class="form-check">
+                        <div class="form-check" id="incorrectAnswersContainer">
                             <label class="form-check-label">
                                 <input class="form-check-input" type="radio" name="examType" id="incorrectAnswers" value="incorrectAnswersRadio">
                                 Test z pytań na które udzielono błędnych odpowiedzi
                             </label>
                         </div>
 
-                        <div class="form-check">
+                        <div class="form-check" id="questionQuantityContainer">
                             <label class="form-check-label">
                                 <input class="form-check-input" type="checkbox" id="questionQuantityCheck" name="questionQuantityCheck" value="checked" disabled>
                                 Definiuj ilość pytań
@@ -64,7 +64,7 @@
 
                         <div id="questionsInputContainer" class="form-group hidden">
                             <label for="questionsInput">Ilość pytań:</label>
-                            <input class="form-control" name="questions" id="questionsInput" type="number" step="1" min="1" max="80" value="60" required>
+                            <input class="form-control" name="questions" id="questionsInput" type="number" step="1" min="1" value="60" required>
                         </div>
 
                         <button type="submit" class="btn btn-w180 mt-3" id="startExam">Rozpocznij Egzamin</button>
@@ -107,6 +107,7 @@
 
                     case 'questionCategoriesRadio':
                         QuestionQuantityCheck();
+                        $("#questionCategoriesContainer").insertBefore( $("#incorrectAnswersContainer"), null);
                         $(questionCategoriesContainer).show("slow", function() {});
                         $(questionCategories).removeAttr("disabled");
                         $(questionQuantityCheck).removeAttr("disabled");
@@ -114,6 +115,7 @@
 
                     case 'incorrectAnswersRadio':
                         QuestionQuantityCheck();
+                        $("#questionCategoriesContainer").insertBefore( $("#questionQuantityContainer"), null);
                         $(questionQuantityCheck).removeAttr("disabled");
                         $(questionCategoriesContainer).show("slow", function() {});
                         break;

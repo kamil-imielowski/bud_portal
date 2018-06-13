@@ -36,7 +36,7 @@
                     </div>
                     <hr />
 
-                    <div class="row">
+                    <div class="row" id="questionbox-container">
                         {% for i in 1..app.session.get('egzamin')['pytan'] %}
                             {% if app.session.get('egzamin')['pytania'][i - 1]['correct'] is not null %}
                                 <div class="col-sm-2 col-md-1">

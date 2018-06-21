@@ -90,6 +90,7 @@ class QuestionController extends Controller
         }
         if($request->getMethod() == "POST"){
             $this->get('session')->getFlashBag()->add('from', $request->get('route'));
+            $this->get('session')->getFlashBag()->add('examType', $request->get('examType'));
             $this->get('session')->getFlashBag()->add('pytan', empty($request->get('questions')) ? 60 : $request->get('questions'));
             $this->get('session')->getFlashBag()->add('categories', $request->get('category'));
             $this->get('session')->getFlashBag()->add('incorrectAnswersExam', ($request->get('examType') == "incorrectAnswersRadio") ? true : false );
@@ -132,6 +133,7 @@ class QuestionController extends Controller
             //inicjalizacja egzaminu
             if(is_null($egzamin['pytan'])){
                 $egzamin['pytan'] = $this->get('session')->getFlashBag()->get('pytan')[0];
+                $egzamin['examType'] = $this->get('session')->getFlashBag()->get('examType')[0];
                 $egzamin['categories'] = $this->get('session')->getFlashBag()->get('categories')[0];
                 $egzamin['incorrectAnswersExam'] = $this->get('session')->getFlashBag()->get('incorrectAnswersExam')[0];
                 $egzamin['questionQuantityCheck'] = $this->get('session')->getFlashBag()->get('questionQuantityCheck')[0];

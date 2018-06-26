@@ -15,6 +15,7 @@ use AppBundle\Entity\User;
 use AppBundle\Entity\VerbalQuestion;
 use AppBundle\Entity\WrittenQuestion;
 use AppBundle\Entity\WrittenQuestionCategory;
+use AppBundle\Service\Exam;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -24,6 +25,12 @@ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 class QuestionController extends Controller
 {
+
+    private $examManager;
+
+    public function __construct(Exam $examManager) {
+        $this->examManager = $examManager;
+    }
 
     /**
      * @Route("/pytania/ustne", name="verbalQuestions")
@@ -138,7 +145,8 @@ class QuestionController extends Controller
                 $egzamin['incorrectAnswersExam'] = $this->get('session')->getFlashBag()->get('incorrectAnswersExam')[0];
                 $egzamin['questionQuantityCheck'] = $this->get('session')->getFlashBag()->get('questionQuantityCheck')[0];
                 try{
-                    $egzamin['pytania'] = $this->generateQuestions($egzamin['pytan'], $egzamin['categories'], $egzamin['incorrectAnswersExam'], $egzamin['questionQuantityCheck']);
+                    $egzamin['pytania'] = $this->examManager->generateQuestions($egzamin['pytan'], $egzamin['categories'], $egzamin['incorrectAnswersExam'], $egzamin['questionQuantityCheck'], $egzamin['examType']);
+                    //$egzamin['pytania'] = $this->generateQuestions($egzamin['pytan'], $egzamin['categories'], $egzamin['incorrectAnswersExam'], $egzamin['questionQuantityCheck']);
                     $egzamin['pytan'] = count($egzamin['pytania']);
                 }catch (\Exception $e){
                     $this->get('session')->getFlashBag()->add('error', $e->getMessage());
@@ -168,14 +176,15 @@ class QuestionController extends Controller
 
 
         foreach ($egzamin['pytania'] as $pytanie){
-            if($pytanie['correct'] == true){
+            if($pytanie['correct'] == "true"){
                 $correct++;
             }
         }
 
         $all = count($egzamin['pytania']);
-        $progressBar = round($correct/$all);
-        $zdane = ($correct/$all > 50.0) ? true : false;
+        $percentageResult  = $correct * 100 / $all;
+        $progressBar = round($percentageResult);
+        $zdane = ($percentageResult > 50.0) ? true : false;
         return $this->render("question/summaryExam.html.twig", [
             "correct" => $correct,
             "all" => $all,
@@ -243,79 +252,6 @@ class QuestionController extends Controller
         }
         $this->get('session')->set('egzamin', $egzamin);
         return new Response('OK');
-    }
-
-    /**
-     * @param int $questions
-     * @return array
-     * @throws \Exception
-     */
-    private function generateQuestions($questions, $categories, $incorrectAnswers, $questionQuantityCheck){
-        $em = $this->getDoctrine()->getManager();
-        $min = array();
-        if(!$incorrectAnswers){
-            if(empty($categories)){
-                $min = $em->getRepository(WrittenQuestion::class)->getAllIds();
-            }else{
-                //pobranie pytan pod kategorie odpowiednie
-                foreach ($categories as $c){
-                    $a = $em->getRepository(WrittenQuestion::class)->getAllIdsForCategory($c);
-                    $min = array_merge ($min, $a);
-                }
-            }
-        }else{
-            // pytania tylko z blednych odp
-            /** @var User $user */
-            $user = $this->getUser();
-            if(empty($categories)) {
-                $ica = $user->getIncorrectAnswer();
-            }else{
-                foreach($user->getIncorrectAnswer() as $i => $ia){
-                    foreach ($categories as $c){
-                        if($ia->getQuestion()->getCategory()->getId() == $c){
-                            $ica[] = $ia;
-                        }
-                    }
-                }
-            }
-            foreach ($ica as $i => $ia){
-                $min[$i]['id'] = $ia->getQuestion()->getId();
-            }
-            if(count($min) == 0){
-                throw new \Exception("Nie posiadasz błędnych odpowiedzi");
-            }
-            if(!$questionQuantityCheck){
-                $questions = count($min);
-            }
-        }
-
-        $minC = count($min);
-        if($questions > $minC){
-            throw new \Exception("Liczba pytań w wybranych kategoriach wynosi $minC, zmiejsz liczbę pytań");
-        }
-        $j = 0;
-        $rand = array();
-        $max = $minC - 1;
-        while($j<$questions){
-            $r = mt_rand(0, $max);
-            if(!$this->searchForUnique($min[$r]['id'], $rand)){
-                $rand[$j]['id'] = $min[$r]['id'];
-                $rand[$j]['resolved'] = false;
-                $rand[$j]['correct'] = null;
-                $j++;
-            }
-        }
-
-        return $rand;
-    }
-
-    private function searchForUnique($id, $array) {
-        foreach ($array as $key => $val) {
-            if ($val['id'] === $id) {
-                return true;
-            }
-        }
-        return false;
     }
 
     /**

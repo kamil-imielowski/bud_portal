@@ -20,9 +20,12 @@
                     <h2 class="red">Egzamin niezaliczony</h2>
                 {% endif %}
 
+                <h4>Poprawnych odpowiedzi: {{ correct }}</h4>
+                <h4>Błędnych odpowiedzi: {{ all - correct }}</h4>
+
                 <label>Poprawne odpowiedzi: </label>
                 <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: {{ correct }}%;" aria-valuenow="{{ correct }}" aria-valuemin="0" aria-valuemax="{{ all }}">{{ correct }} / {{ all }}</div>
+                    <div class="progress-bar" role="progressbar" style="width: {{ progessBar }}%;" aria-valuenow="{{ correct }}" aria-valuemin="0" aria-valuemax="{{ all }}">{{ correct }} / {{ all }}</div>
                 </div>
 
 

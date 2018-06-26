@@ -1,6 +1,8 @@
 <p>Pytanie {{ qk + 1 }}</p>
 
 <h3>{{ question.question }}</h3>
+<button id="promptBtn" type="button" class="btn btn-primary d-inline btn-xs question">Podpowiedź</button>
+<p class="hidden promptQuestionContainer">{{ question.prompt }}</p>
 
 {% for answer in answers %}
     <div class="testimonial pointer answer" data-answer="{{ answer }}">
@@ -16,6 +18,10 @@
     var odp = "{{ question.answerA }}";
     var correct_answers = parseInt($("#correct_answers").text());
     var incorrect_answers = parseInt($("#incorrect_answers").text());
+
+    $("#promptBtn").on("click", function () {
+        $(".promptQuestionContainer").toggle("slow", function() {});
+    })
 
     if(resolved){
         $( ".answer" ).each(function () {

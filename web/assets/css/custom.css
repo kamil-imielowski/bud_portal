@@ -129,3 +129,7 @@ ul.select2-selection {
     max-height: 400px;
     overflow-y: auto;
 }
+
+.select2-search__field{
+    width: 100% !important
+}

@@ -43,3 +43,9 @@ services:
         class: AppBundle\Form\RegistrationType
         tags:
             - { name: form.type, alias: app_user_registration }
+
+    exam_manager:
+        class: AppBundle\Service\Exam
+        arguments:
+          $tokenStorage: "@security.token_storage"
+          $em: "@doctrine.orm.entity_manager"

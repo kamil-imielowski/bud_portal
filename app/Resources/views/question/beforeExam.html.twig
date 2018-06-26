@@ -41,7 +41,6 @@
                         <div id="questionCategoriesContainer" class="form-group hidden">
                             <label for="questionCategories">Kategorie pytań:</label>
                             <select class="custom-select  form-control" id="questionCategories" multiple="multiple" name="category[]">
-                                {#<option selected value="all">Wszystkie</option>#}
                                 {% for category in categories %}
                                     <option value="{{ category.id }}">{{ category.name }}</option>
                                 {% endfor %}

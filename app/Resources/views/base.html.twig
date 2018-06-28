@@ -78,7 +78,8 @@
                             <li {{ app.request.attributes.get('_route') == 'lawbook' ? 'class="current-menu-item"' : '' }}>
                                 <a href="{{ path('lawbook') }}">Ustawy</a>
                             </li>
-                            <li class="menu-item-has-children {{ app.request.attributes.get('_route') == 'verbalQuestions' ? 'current-menu-item' : '' }} {{ app.request.attributes.get('_route') == 'writtenQuestions' ? 'current-menu-item' : '' }}"><a href="#">Pytania</a>
+                            <li class="menu-item-has-children {{ app.request.attributes.get('_route') == 'verbalQuestions' ? 'current-menu-item' : '' }} {{ app.request.attributes.get('_route') == 'writtenQuestions' ? 'current-menu-item' : '' }}">
+                                <a href="#">Pytania</a>
                                 <ul class="sub-menu">
                                     <li>
                                         <a href="{{ path('verbalQuestions') }}">Ustne</a>
@@ -88,7 +89,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="{% if app.request.attributes.get('_route') == "" %} current-menu-item {% elseif app.request.attributes.get('_route') == "" %} current-menu-item {% elseif app.request.attributes.get('_route') == "" %} current-menu-item {% endif %}">
+                            <li class="menu-item-has-children {% if app.request.attributes.get('_route') == "" %} current-menu-item {% elseif app.request.attributes.get('_route') == "" %} current-menu-item {% elseif app.request.attributes.get('_route') == "" %} current-menu-item {% endif %}">
                                 <a href="#">Praktyka</a>
                                 <ul class="sub-menu">
                                     <li>
